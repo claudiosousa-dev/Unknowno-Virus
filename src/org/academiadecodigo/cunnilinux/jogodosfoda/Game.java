@@ -1,5 +1,7 @@
 package org.academiadecodigo.cunnilinux.jogodosfoda;
 
+import org.academiadecodigo.cunnilinux.jogodosfoda.input.KeyboardListener;
+import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -21,7 +23,7 @@ public class Game {
         heroDireita.grow(-50, -50);
         heroDireita.draw();
 
-        heroEsquerda.grow(-50,-50);
+        heroEsquerda.grow(-50, -50);
         heroEsquerda.draw();
 
         monsterTier1.grow(-120, -120);
@@ -30,6 +32,12 @@ public class Game {
 
     public void start() {
 
+            int[] keysArray= new int[]{KeyboardEvent.KEY_D, KeyboardEvent.KEY_A, KeyboardEvent.KEY_W, KeyboardEvent.KEY_S};
+
+            KeyboardListener listener = new KeyboardListener(heroDireita, heroEsquerda);
+            listener.addEventListener(keysArray);
+        }
+
     }
 
-}
+
