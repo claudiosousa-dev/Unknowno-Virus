@@ -32,12 +32,19 @@ public class Game {
 
     public void start() {
 
-            int[] keysArray= new int[]{KeyboardEvent.KEY_D, KeyboardEvent.KEY_A, KeyboardEvent.KEY_W, KeyboardEvent.KEY_S};
+        int[] keysArray = new int[]{KeyboardEvent.KEY_D, KeyboardEvent.KEY_A, KeyboardEvent.KEY_W, KeyboardEvent.KEY_S};
 
-            KeyboardListener listener = new KeyboardListener(heroDireita, heroEsquerda);
-            listener.addEventListener(keysArray);
-        }
+        KeyboardListener listener = new KeyboardListener(heroDireita, heroEsquerda);
+        listener.addEventListener(keysArray);
+
+        Canvas canvas = new Canvas();
+
+        //Enemies.createEnemies();
 
     }
+
+
+
+}
 
 

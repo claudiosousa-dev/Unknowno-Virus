@@ -1,13 +1,17 @@
 package org.academiadecodigo.cunnilinux.jogodosfoda;
 
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
+/*
 public class Hero {
 
-/*
-    Picture hero = new Picture(450,60, "resources/claudioTiroDireita.png");
-        hero.grow(-50,-50);
-        hero.draw();
-}
+    private Position pos;
+    private Picture hero;
+
+    Hero(int col, int row) {
+        pos = new Position(col, row);
+    }
 */
-}
+
+
+
+
