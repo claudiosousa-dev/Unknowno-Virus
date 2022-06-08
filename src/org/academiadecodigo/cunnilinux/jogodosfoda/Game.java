@@ -7,11 +7,9 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
     private Picture backgroundGame = new Picture(0, 0, AssetPaths.BACKGROUND);
-
     private Picture heroDireita = new Picture(450, 60, AssetPaths.HERO_RIGHT);
     private Picture heroEsquerda = new Picture(450, 60, AssetPaths.HERO_LEFT);
-
-    private Picture monsterTier1 = new Picture(400, 400, AssetPaths.ZOMBIE_TIER1);
+    private Picture monsterTier1 = new Picture(400, 400, AssetPaths.MONSTER_TIER1);
 
     public void init() {
         backgroundGame.grow(50, 50);
