@@ -7,7 +7,7 @@ public class CollisionDetector {
     private static Projectile[] projectiles;
 
     public static boolean intersectsEnemy() {
-        return hero.bounds().intersects(enemies.bounds());
+        return false; // hero.bounds().intersects(enemies.bounds());
     }
 
     public static void setHero(Hero hero) {
