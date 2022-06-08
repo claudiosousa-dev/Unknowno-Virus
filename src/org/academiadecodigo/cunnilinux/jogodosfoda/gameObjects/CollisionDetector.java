@@ -6,6 +6,12 @@ public class CollisionDetector {
     private static Enemy[] enemies;
     private static Projectile[] projectiles;
 
+    public static boolean intersectsEnemy() {
+        return hero.bounds().intersects(enemies.bounds());
+    }
 
+    public static void setHero(Hero hero) {
+        CollisionDetector.hero = hero;
+    }
 
 }
