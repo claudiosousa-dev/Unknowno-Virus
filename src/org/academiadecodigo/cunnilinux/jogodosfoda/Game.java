@@ -9,6 +9,10 @@ public class Game {
     private Picture backgroundGame = new Picture(0, 0, AssetPaths.BACKGROUND);
     private Picture monsterTier1 = new Picture(400, 400, AssetPaths.MONSTER_TIER1);
 
+    public void init() {
+
+    }
+
     public void start() {
         setupThings();
         setupLevel();
