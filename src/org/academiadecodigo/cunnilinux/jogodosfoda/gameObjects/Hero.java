@@ -3,11 +3,13 @@ package org.academiadecodigo.cunnilinux.jogodosfoda.gameObjects;
 import org.academiadecodigo.cunnilinux.jogodosfoda.AssetPaths;
 import org.academiadecodigo.cunnilinux.jogodosfoda.Canvas;
 import org.academiadecodigo.cunnilinux.jogodosfoda.Position;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 
 public class Hero {
 
@@ -42,8 +44,8 @@ public class Hero {
         pos.setCol(pos.getCol() - 1);
         hero.load("resources/claudioTiroEsquerda.png");
         hero.translate(-Canvas.CELL_SIZE, 0);
-       // if (this.getPos().getCol() == 0) {
-         //   return;
+        // if (this.getPos().getCol() == 0) {
+        //   return;
         //}
 
     }
@@ -53,8 +55,8 @@ public class Hero {
         pos.setCol(pos.getCol() + 1);
         hero.load("resources/claudioTiroDireita.png");
         hero.translate(Canvas.CELL_SIZE, 0);
-       // if (this.getPos().getCol() == 10) {
-           // return;
+        // if (this.getPos().getCol() == 10) {
+        // return;
         //}
 
     }
@@ -105,6 +107,9 @@ public class Hero {
 
     }
 
+    public boolean bounds() {
+        return new Rectangle();
+    }
 
 }
 

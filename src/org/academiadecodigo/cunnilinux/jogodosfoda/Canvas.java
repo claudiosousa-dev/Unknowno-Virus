@@ -1,10 +1,9 @@
 package org.academiadecodigo.cunnilinux.jogodosfoda;
 
-import java.awt.*;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class Canvas {
 
-        public static final int CELL_SIZE =50;
+        public static final int CELL_SIZE = 50;
         private static Rectangle CANVAS = null;
 
         Canvas() {

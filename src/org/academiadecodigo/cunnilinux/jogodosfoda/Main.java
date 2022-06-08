@@ -4,7 +4,6 @@ public class Main {
     public static void main(String[] args) {
 
         Game game = new Game();
-        Canvas canvas = new Canvas();
         game.start();
 
     }
