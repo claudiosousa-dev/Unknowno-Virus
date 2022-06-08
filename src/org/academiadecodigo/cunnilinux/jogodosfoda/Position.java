@@ -1,11 +1,8 @@
 package org.academiadecodigo.cunnilinux.jogodosfoda;
 
-import org.academiadecodigo.cunnilinux.jogodosfoda.Canvas;
-
 public class Position {
 
     private int col;
-
     private int row;
 
     public Position(int col, int row) {
@@ -22,18 +19,18 @@ public class Position {
     }
 
     public int colToX() {
-        return this.col * Canvas.CELL_SIZE;
+        return col * Canvas.CELL_SIZE;
     }
 
     public int rowToY() {
-        return this.row * Canvas.CELL_SIZE;
+        return row * Canvas.CELL_SIZE;
     }
 
-    public int setCol(int col) {
-        return this.col = col;
+    public void setCol(int col) {
+        this.col = col;
     }
 
-    public int setRow(int row) {
-        return this.row = row;
+    public void setRow(int row) {
+        this.row = row;
     }
 }

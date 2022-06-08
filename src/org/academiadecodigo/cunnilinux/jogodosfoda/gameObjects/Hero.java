@@ -14,18 +14,19 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Hero {
 
     private Position pos;
-    private Picture hero;
-    private Picture heroDireita = new Picture(450, 60, AssetPaths.HERO_RIGHT);
-    private Picture heroEsquerda = new Picture(450, 60, AssetPaths.HERO_LEFT);
+    private Picture heroRight;
+    private Picture heroLeft;
 
-    private HeroInputs heroInputs = new HeroInputs(new HeroMovement(this));
+    private HeroInputs heroInputs;
+    private Direction direction;
     private boolean dead;
 
     public Hero(int col, int row) {
         pos = new Position(col, row);
-        hero = new Picture(pos.colToX(), pos.rowToY(), "resources/claudioTiroDireita.png");
-        //pictureHeroLeft = new Picture(x, y, AssetPaths.HERO_LEFT);
-        //pictureHeroRight = new Picture(x, y, AssetPaths.HERO_RIGHT);
+        heroLeft = new Picture(pos.colToX(), pos.rowToY(), AssetPaths.HERO_LEFT);
+        heroRight = new Picture(pos.colToX(), pos.rowToY(), AssetPaths.HERO_RIGHT);
+        heroInputs = new HeroInputs(new HeroMovement(this));
+        dead = false;
     }
 
     public Position getPos() {
@@ -40,11 +41,11 @@ public class Hero {
         hero.draw();
     }
     private void shootProjectiles(){
-        Projectile projectile = new Projectile(pos.setCol(3),pos.setRow(3));
-        projectile.draw();
+        //Projectile projectile = new Projectile(pos.setCol(3),pos.setRow(3));
+        //projectile.draw();
     }
     private void moveLeft() {
-        pos.setCol(pos.getCol() - 1);
+        //pos.setCol(pos.getCol() - 1);
         hero.load("resources/claudioTiroEsquerda.png");
         hero.translate(-Canvas.CELL_SIZE, 0);
         // if (this.getPos().getCol() == 0) {
@@ -55,7 +56,7 @@ public class Hero {
 
     private void moveRight() {
 
-        pos.setCol(pos.getCol() + 1);
+        //pos.setCol(pos.getCol() + 1);
         hero.load("resources/claudioTiroDireita.png");
         hero.translate(Canvas.CELL_SIZE, 0);
         // if (this.getPos().getCol() == 10) {

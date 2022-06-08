@@ -1,24 +1,35 @@
 package org.academiadecodigo.cunnilinux.jogodosfoda;
 
+import org.academiadecodigo.cunnilinux.jogodosfoda.gameObjects.Enemy;
 import org.academiadecodigo.cunnilinux.jogodosfoda.gameObjects.Hero;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
-    private Picture background = new Picture(0, 0, AssetPaths.BACKGROUND);
+    private Canvas canvas;
+    private Picture background;
     private Hero hero;
-    private Picture monsterTier1 = new Picture(400, 400, AssetPaths.MONSTER_TIER1);
-    private boolean gameOver = false;
+    private Enemy enemyTier1;
+    private boolean gameOver;
 
     public void init() {
 
         Canvas canvas = new Canvas();
+        background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
+        hero = new Hero(canvas.);
+
+
+        background.draw();
+
+        hero = new Hero(1, 1);
+
+        hero.draw();
 
     }
 
     public void start() {
-        setupThings();
-        setupLevel();
+        //setupThings();
+        //setupLevel();
         // ProjectileFactory.createProjectiles();
         //Enemies.createEnemies();
 
@@ -43,10 +54,8 @@ public class Game {
 
     }
 
-    public void setupThings() {
+    public void setup() {
 
-        hero = new Hero(1, 1);
-        background = new Picture(0, 0, AssetPaths.BACKGROUND);
 
     }
 
