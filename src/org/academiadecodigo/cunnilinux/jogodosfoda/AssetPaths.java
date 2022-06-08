@@ -5,5 +5,6 @@ public class AssetPaths {
     public static final String BACKGROUND = "resources/backgroundGame.png";
     public static final String HERO_LEFT = "resources/claudioTiroEsquerda.png";
     public static final String HERO_RIGHT = "resources/claudioTiroDireita.png";
+    public static final String ZOMBIE_TIER1 = "resources/zombie.png";
 
 }

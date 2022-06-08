@@ -8,10 +8,10 @@ public class Game {
 
     private Picture backgroundGame = new Picture(0, 0, AssetPaths.BACKGROUND);
 
-    private Picture heroDireita = new Picture(450, 60, "resources/claudioTiroEsquerda.png");
-    private Picture heroEsquerda = new Picture(450, 60, "resources/claudioTiroDireita.png");
+    private Picture heroDireita = new Picture(450, 60, AssetPaths.HERO_RIGHT);
+    private Picture heroEsquerda = new Picture(450, 60, AssetPaths.HERO_LEFT);
 
-    private Picture monsterTier1 = new Picture(400, 400, "resources/zombie.png");
+    private Picture monsterTier1 = new Picture(400, 400, AssetPaths.ZOMBIE_TIER1);
 
     public void init() {
         backgroundGame.grow(50, 50);
