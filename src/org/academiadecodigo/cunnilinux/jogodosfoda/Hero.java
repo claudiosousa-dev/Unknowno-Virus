@@ -13,8 +13,6 @@ public class Hero {
 
     private Position pos;
     private Picture hero;
-    private Picture heroDireita = new Picture(450, 60, AssetPaths.HERO_RIGHT);
-    private Picture heroEsquerda = new Picture(450, 60, AssetPaths.HERO_LEFT);
 
     private HeroInputs heroInputs = new HeroInputs(new HeroMovement(this));
 
