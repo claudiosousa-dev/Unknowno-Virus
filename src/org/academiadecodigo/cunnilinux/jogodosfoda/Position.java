@@ -36,4 +36,5 @@ public class Position {
     public int setRow(int row) {
        return this.row = row;
     }
+
 }

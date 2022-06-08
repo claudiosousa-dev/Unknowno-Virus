@@ -7,7 +7,8 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
     private Hero hero;
-    private Picture backgroundGame;
+    private Picture backgroundGame = new Picture(0, 0, AssetPaths.BACKGROUND);
+  private Picture monsterTier1 = new Picture(400, 400, AssetPaths.MONSTER_TIER1);
 
     public void start() {
         setupThings();
@@ -29,7 +30,3 @@ public class Game {
 
 
 }
-
-
-
-
