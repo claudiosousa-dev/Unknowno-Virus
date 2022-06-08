@@ -13,26 +13,25 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Hero {
 
-    private Position pos;
+    private int xPosition;
     private Picture heroRight;
     private Picture heroLeft;
     private HeroInputs heroInputs;
     private Direction direction;
     private boolean dead;
 
-    public Hero(int col, int row) {
-
-        pos = new Position(col, row);
-        heroLeft = new Picture(pos.colToX(), pos.rowToY(), AssetPaths.HERO_LEFT);
-        heroRight = new Picture(pos.colToX(), pos.rowToY(), AssetPaths.HERO_RIGHT);
+    public Hero(int xPosition) {
+        this.xPosition = xPosition;
+        heroLeft = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_LEFT);
+        heroRight = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_RIGHT);
         heroInputs = new HeroInputs(new HeroMovement(this));
         direction = Direction.RIGHT;
         dead = false;
 
     }
 
-    public Position getPos() {
-        return pos;
+    public int getX() {
+        return xPosition;
     }
 
     public Picture getHero() {
@@ -64,27 +63,19 @@ public class Hero {
 
     private void moveLeft() {
 
-        //pos.setCol(pos.getCol() - 1);
         setDirection(Direction.LEFT);
         draw();
         heroLeft.translate(-Canvas.CELL_SIZE, 0);
         heroRight.translate(-Canvas.CELL_SIZE, 0);
-        // if (this.getPos().getCol() == 0) {
-        //   return;
-        //}
 
     }
 
     private void moveRight() {
 
-        //pos.setCol(pos.getCol() + 1);
         setDirection(Direction.RIGHT);
         draw();
         heroLeft.translate(Canvas.CELL_SIZE, 0);
         heroRight.translate(Canvas.CELL_SIZE, 0);
-        // if (this.getPos().getCol() == 10) {
-        // return;
-        //}
 
     }
 

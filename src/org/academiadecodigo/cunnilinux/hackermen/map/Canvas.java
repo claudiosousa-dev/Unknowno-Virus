@@ -5,7 +5,8 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 public class Canvas {
 
     public static final int CELL_SIZE = 50;
-    public static final int PADDING = 10;
+    public static final int PADDING = 0;
+    public static final int FLOOR_LEVEL = 65;
     private static Rectangle canvas;
 
     public Canvas() {
@@ -14,5 +15,14 @@ public class Canvas {
         canvas.fill();
 
     }
+
+    public int getWidth() {
+        return canvas.getWidth();
+    }
+
+    public int getHeight() {
+        return canvas.getHeight();
+    }
+
 
 }

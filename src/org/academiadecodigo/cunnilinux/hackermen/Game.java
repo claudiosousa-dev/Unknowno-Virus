@@ -10,45 +10,47 @@ public class Game {
     private Canvas canvas;
     private Picture background;
     private Hero hero;
-    private Enemy enemyTier1;
+    private Enemy enemy;
     private boolean gameOver;
 
     public void init() {
 
         Canvas canvas = new Canvas();
         background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
-        hero = new Hero(canvas.);
+        hero = new Hero(canvas.getWidth() / 2);
+        //enemy = new Enemy();
+        gameOver = false;
 
         background.draw();
-
         hero.draw();
 
     }
 
     public void start() {
+        //init();
         //setupThings();
         //setupLevel();
         // ProjectileFactory.createProjectiles();
         //Enemies.createEnemies();
 
-        while (true) {
+        //while (true) {
 
 
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException exception) {
-                exception.printStackTrace();
-                throw new RuntimeException(exception);
-            }
-
+        try {
+            Thread.sleep(100);
+        } catch (InterruptedException exception) {
+            exception.printStackTrace();
+            throw new RuntimeException(exception);
         }
+
+        //}
 
     }
 
     private void setupLevel() {
 
-        background.draw();
-        hero.draw();
+        //background.draw();
+        //hero.draw();
 
     }
 
