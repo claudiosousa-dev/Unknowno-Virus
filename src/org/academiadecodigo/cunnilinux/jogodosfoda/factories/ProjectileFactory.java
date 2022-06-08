@@ -1,6 +1,7 @@
+/*
 package org.academiadecodigo.cunnilinux.jogodosfoda.factories;
 
-import org.academiadecodigo.cunnilinux.jogodosfoda.Projectile;
+import org.academiadecodigo.cunnilinux.jogodosfoda.gameObjects.Projectile;
 
 public class ProjectileFactory {
 
@@ -10,9 +11,10 @@ public class ProjectileFactory {
         for (int i = 0; i < projectiles.length; i++) {
             int row = 10;
             projectiles[i] = new Projectile(0,0);
-           // projectiles[i].draw();
+            projectiles[i].draw();
         }
         return projectiles;
     }
 
 }
+*/

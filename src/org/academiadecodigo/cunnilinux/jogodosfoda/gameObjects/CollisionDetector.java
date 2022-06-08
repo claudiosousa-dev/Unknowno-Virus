@@ -2,7 +2,7 @@ package org.academiadecodigo.cunnilinux.jogodosfoda.gameObjects;
 
 public class CollisionDetector {
 
-    private static HeroOLd hero;
+    private static Hero hero;
     private static Enemy[] enemies;
     private static Projectile[] projectiles;
 
@@ -10,7 +10,7 @@ public class CollisionDetector {
         return false; // hero.bounds().intersects(enemies.bounds());
     }
 
-    public static void setHero(HeroOLd hero) {
+    public static void setHero(Hero hero) {
         CollisionDetector.hero = hero;
     }
 

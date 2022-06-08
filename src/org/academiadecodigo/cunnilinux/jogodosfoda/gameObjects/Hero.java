@@ -22,28 +22,31 @@ public class Hero {
     public Hero(int col, int row) {
         pos = new Position(col, row);
         hero = new Picture(pos.colToX(), pos.rowToY(), "resources/claudioTiroDireita.png");
-        pictureHeroLeft = new Picture(x, y, AssetPaths.HERO_LEFT);
-        pictureHeroRight = new Picture(x, y, AssetPaths.HERO_RIGHT);
+        //pictureHeroLeft = new Picture(x, y, AssetPaths.HERO_LEFT);
+        //pictureHeroRight = new Picture(x, y, AssetPaths.HERO_RIGHT);
     }
 
     public Position getPos() {
         return pos;
     }
 
-    Picture getHero() {
+    public Picture getHero() {
         return hero;
     }
 
-    void draw() {
+    public void draw() {
         hero.draw();
     }
-
+    private void shootProjectiles(){
+        Projectile projectile = new Projectile(pos.setCol(3),pos.setRow(3));
+        projectile.draw();
+    }
     private void moveLeft() {
         pos.setCol(pos.getCol() - 1);
         hero.load("resources/claudioTiroEsquerda.png");
         hero.translate(-Canvas.CELL_SIZE, 0);
-       // if (this.getPos().getCol() == 0) {
-         //   return;
+        // if (this.getPos().getCol() == 0) {
+        //   return;
         //}
 
     }
@@ -53,8 +56,8 @@ public class Hero {
         pos.setCol(pos.getCol() + 1);
         hero.load("resources/claudioTiroDireita.png");
         hero.translate(Canvas.CELL_SIZE, 0);
-       // if (this.getPos().getCol() == 10) {
-           // return;
+        // if (this.getPos().getCol() == 10) {
+        // return;
         //}
 
     }
@@ -66,15 +69,19 @@ public class Hero {
 
             KeyboardEvent left = new KeyboardEvent();
             KeyboardEvent right = new KeyboardEvent();
+            KeyboardEvent space = new KeyboardEvent();
 
             right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
             left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
             right.setKey(KeyboardEvent.KEY_RIGHT);
             left.setKey(KeyboardEvent.KEY_LEFT);
+            space.setKey(KeyboardEvent.KEY_SPACE);
 
             keyboard.addEventListener(left);
             keyboard.addEventListener(right);
+            keyboard.addEventListener(space);
         }
 
     }
@@ -96,6 +103,9 @@ public class Hero {
 
             if (keyboardEvent.getKey() == KeyboardEvent.KEY_RIGHT) {
                 hero.moveRight();
+            }
+            if(keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
+                shootProjectiles();
             }
         }
 

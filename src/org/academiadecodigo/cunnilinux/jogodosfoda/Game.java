@@ -20,6 +20,7 @@ public class Game {
     private void setupLevel() {
         backgroundGame.draw();
         hero.draw();
+
     }
 
     public void setupThings() {
@@ -29,3 +30,4 @@ public class Game {
 
 
 }
+
