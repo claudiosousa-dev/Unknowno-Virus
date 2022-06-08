@@ -3,11 +3,13 @@ package org.academiadecodigo.cunnilinux.jogodosfoda.gameObjects;
 import org.academiadecodigo.cunnilinux.jogodosfoda.AssetPaths;
 import org.academiadecodigo.cunnilinux.jogodosfoda.Canvas;
 import org.academiadecodigo.cunnilinux.jogodosfoda.Position;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 
 public class Hero {
 
@@ -115,6 +117,9 @@ public class Hero {
 
     }
 
+    public boolean bounds() {
+        return new Rectangle();
+    }
 
 }
 
