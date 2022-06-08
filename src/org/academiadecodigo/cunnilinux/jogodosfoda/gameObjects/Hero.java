@@ -118,7 +118,8 @@ public class Hero {
     }
 
     public boolean bounds() {
-        return new Rectangle();
+        //return new Rectangle();
+        return true;
     }
 
 }
