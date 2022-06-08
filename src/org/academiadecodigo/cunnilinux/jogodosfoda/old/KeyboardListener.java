@@ -1,4 +1,4 @@
-package org.academiadecodigo.cunnilinux.jogodosfoda.input;
+package org.academiadecodigo.cunnilinux.jogodosfoda.old;
 
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
