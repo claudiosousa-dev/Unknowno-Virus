@@ -4,7 +4,7 @@ import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
+/*
 public class MyKeyboardHandler implements KeyboardHandler {
 
     private Picture heroDireita;
@@ -48,4 +48,11 @@ public class MyKeyboardHandler implements KeyboardHandler {
     public void keyReleased(KeyboardEvent keyboardEvent) {
 
     }
+
+    public void setHeroDireita(Picture heroDireita){
+        this.heroDireita=heroDireita;
+    }public void setHeroEsquerda(Picture heroEsquerda){
+        this.heroDireita=heroEsquerda;
+    }
 }
+*/

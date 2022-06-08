@@ -1,7 +1,17 @@
 package org.academiadecodigo.cunnilinux.jogodosfoda;
-/*
+
+import org.academiadecodigo.cunnilinux.jogodosfoda.Canvas;
+
 public class Position {
-}
+
+    private int col;
+
+    private int row;
+
+    public Position(int col, int row) {
+        this.col = col;
+        this.row = row;
+    }
 
     public int getCol() {
         return col;
@@ -11,20 +21,20 @@ public class Position {
         return row;
     }
 
-    public int getCol() {
-        return col;
+    public int colToX() {
+        return this.col * Canvas.CELL_SIZE;
     }
 
-    public int getCol() {
-        return col;
+    public int rowToY() {
+        return this.row * Canvas.CELL_SIZE;
     }
 
     public int setCol(int col) {
-        this.col = col;
+        return this.col = col;
     }
 
     public int setRow(int row) {
-        this.row = row;
+       return this.row = row;
     }
 
-*/
+}
