@@ -4,8 +4,8 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Hero {
 
-    private Picture heroLeft;
-    private Picture heroRight;
+    private Picture pictureHeroLeft;
+    private Picture pictureHeroRight;
     private boolean dead;
 
     public Hero(double x, double y) {
