@@ -9,6 +9,4 @@ public class Canvas {
         Canvas() {
             CANVAS = new Rectangle(0,0,(CELL_SIZE) * 50, (CELL_SIZE) * 50);
         }
-
-        ///sfafadsfasjklç
 }
