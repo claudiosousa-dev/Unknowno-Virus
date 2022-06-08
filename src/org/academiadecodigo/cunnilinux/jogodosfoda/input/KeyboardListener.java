@@ -1,11 +1,10 @@
 package org.academiadecodigo.cunnilinux.jogodosfoda.input;
 
-import org.academiadecodigo.cunnilinux.jogodosfoda.input.MyKeyboardHandler;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
-
+/*
 public class KeyboardListener {
     Keyboard keyboard;
 
@@ -28,7 +27,7 @@ public class KeyboardListener {
 
     /*
      *  Create a keyboard event
-     */
+
     public KeyboardEvent createKeyboardEvent(int keyboardEventKey, KeyboardEventType keyboardEventType) {
         KeyboardEvent keyboardEvent = new KeyboardEvent();
         keyboardEvent.setKey(keyboardEventKey);
@@ -37,4 +36,4 @@ public class KeyboardListener {
     }
 }
 
-
+*/
