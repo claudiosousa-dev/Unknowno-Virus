@@ -11,8 +11,8 @@ public class Hero {
 
     public Hero(double x, double y) {
 
-        pictureHeroLeft = Picture(x, y, AssetPaths.HERO_LEFT);
-        pictureHeroRight = Picture(x, y, AssetPaths.HERO_RIGHT);
+        pictureHeroLeft = new Picture(x, y, AssetPaths.HERO_LEFT);
+        pictureHeroRight = new Picture(x, y, AssetPaths.HERO_RIGHT);
 
     }
 
