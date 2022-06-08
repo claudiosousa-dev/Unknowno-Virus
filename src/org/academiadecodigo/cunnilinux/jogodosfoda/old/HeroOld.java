@@ -1,5 +1,7 @@
-package org.academiadecodigo.cunnilinux.jogodosfoda;
+package org.academiadecodigo.cunnilinux.jogodosfoda.old;
 
+import org.academiadecodigo.cunnilinux.jogodosfoda.Canvas;
+import org.academiadecodigo.cunnilinux.jogodosfoda.Position;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
