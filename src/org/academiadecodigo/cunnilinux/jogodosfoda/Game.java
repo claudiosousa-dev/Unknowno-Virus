@@ -5,11 +5,14 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
+    private Picture background = new Picture(0, 0, AssetPaths.BACKGROUND);
     private Hero hero;
-    private Picture backgroundGame = new Picture(0, 0, AssetPaths.BACKGROUND);
     private Picture monsterTier1 = new Picture(400, 400, AssetPaths.MONSTER_TIER1);
+    private boolean gameOver = false;
 
     public void init() {
+
+        Canvas canvas = new Canvas();
 
     }
 
@@ -19,19 +22,32 @@ public class Game {
         // ProjectileFactory.createProjectiles();
         //Enemies.createEnemies();
 
+        while (true) {
+
+
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+                throw new RuntimeException(exception);
+            }
+
+        }
+
     }
 
     private void setupLevel() {
-        backgroundGame.draw();
+
+        background.draw();
         hero.draw();
 
     }
 
     public void setupThings() {
+
         hero = new Hero(1, 1);
-        backgroundGame = new Picture(0, 0, "resources/backgroundGame.jpg");
+        background = new Picture(0, 0, AssetPaths.BACKGROUND);
+
     }
 
-
 }
-
