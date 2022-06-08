@@ -1,5 +1,6 @@
 package org.academiadecodigo.cunnilinux.jogodosfoda.gameObjects;
 
+import org.academiadecodigo.cunnilinux.jogodosfoda.AssetPaths;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Hero {
@@ -10,11 +11,9 @@ public class Hero {
 
     public Hero(double x, double y) {
 
-        heroLeft = Picture(x, y, );
-        heroRight = Picture(x, y, );
+        pictureHeroLeft = Picture(x, y, AssetPaths.HERO_LEFT);
+        pictureHeroRight = Picture(x, y, AssetPaths.HERO_RIGHT);
 
     }
-
-
 
 }
