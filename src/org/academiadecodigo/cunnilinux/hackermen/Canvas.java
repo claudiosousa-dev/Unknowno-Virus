@@ -1,4 +1,4 @@
-package org.academiadecodigo.cunnilinux.jogodosfoda;
+package org.academiadecodigo.cunnilinux.hackermen;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 

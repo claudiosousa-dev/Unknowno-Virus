@@ -1,4 +1,4 @@
-package org.academiadecodigo.cunnilinux.jogodosfoda;
+package org.academiadecodigo.cunnilinux.hackermen;
 
 public class Position {
 

@@ -1,4 +1,4 @@
-package org.academiadecodigo.cunnilinux.jogodosfoda.gameObjects;
+package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 
 public class CollisionDetector {
 

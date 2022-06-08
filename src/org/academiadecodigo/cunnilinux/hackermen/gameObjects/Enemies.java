@@ -1,5 +1,5 @@
-package org.academiadecodigo.cunnilinux.jogodosfoda.gameObjects;
-import org.academiadecodigo.cunnilinux.jogodosfoda.Game;
+package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
+import org.academiadecodigo.cunnilinux.hackermen.Game;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Enemies {

@@ -1,7 +1,7 @@
-package org.academiadecodigo.cunnilinux.jogodosfoda.gameObjects;
+package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 
-import org.academiadecodigo.cunnilinux.jogodosfoda.AssetPaths;
-import org.academiadecodigo.cunnilinux.jogodosfoda.Position;
+import org.academiadecodigo.cunnilinux.hackermen.AssetPaths;
+import org.academiadecodigo.cunnilinux.hackermen.Position;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Projectile {

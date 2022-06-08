@@ -5,7 +5,7 @@
     <target name="init" description="Initializes properties">
         <property name="project.name" value="Hackermen" />
         <property name="src.dir" value="src" />
-        <property name="main.class" value="org.academiadecodigo.cunnilinux.jogodosfoda.Main" />
+        <property name="main.class" value="org.academiadecodigo.cunnilinux.hackermen.Main" />
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
         <property name="lib.dir" value="lib" />

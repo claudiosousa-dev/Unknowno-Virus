@@ -1,9 +1,5 @@
-package org.academiadecodigo.cunnilinux.jogodosfoda.old;
+package org.academiadecodigo.cunnilinux.hackermen.old;
 
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
-import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
-import org.academiadecodigo.simplegraphics.pictures.Picture;
 /*
 public class MyKeyboardHandler implements KeyboardHandler {
 
