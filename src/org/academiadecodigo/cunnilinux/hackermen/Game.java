@@ -2,6 +2,7 @@ package org.academiadecodigo.cunnilinux.hackermen;
 
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Enemy;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Hero;
+import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -18,10 +19,7 @@ public class Game {
         background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
         hero = new Hero(canvas.);
 
-
         background.draw();
-
-        hero = new Hero(1, 1);
 
         hero.draw();
 

@@ -1,8 +1,9 @@
 package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 
 import org.academiadecodigo.cunnilinux.hackermen.AssetPaths;
-import org.academiadecodigo.cunnilinux.hackermen.Canvas;
-import org.academiadecodigo.cunnilinux.hackermen.Position;
+import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
+import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
+import org.academiadecodigo.cunnilinux.hackermen.map.Position;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -15,17 +16,19 @@ public class Hero {
     private Position pos;
     private Picture heroRight;
     private Picture heroLeft;
-
     private HeroInputs heroInputs;
     private Direction direction;
     private boolean dead;
 
     public Hero(int col, int row) {
+
         pos = new Position(col, row);
         heroLeft = new Picture(pos.colToX(), pos.rowToY(), AssetPaths.HERO_LEFT);
         heroRight = new Picture(pos.colToX(), pos.rowToY(), AssetPaths.HERO_RIGHT);
         heroInputs = new HeroInputs(new HeroMovement(this));
+        direction = Direction.RIGHT;
         dead = false;
+
     }
 
     public Position getPos() {
@@ -33,20 +36,39 @@ public class Hero {
     }
 
     public Picture getHero() {
-        return hero;
+
+        if (direction == Direction.RIGHT) {
+            return heroRight;
+        } else {
+            return heroLeft;
+        }
+
     }
 
     public void draw() {
-        hero.draw();
+
+        if (direction == Direction.RIGHT) {
+            heroLeft.delete();
+            heroRight.draw();
+        } else {
+            heroRight.delete();
+            heroLeft.draw();
+        }
+
     }
-    private void shootProjectiles(){
+
+    private void shootProjectiles() {
         //Projectile projectile = new Projectile(pos.setCol(3),pos.setRow(3));
         //projectile.draw();
     }
+
     private void moveLeft() {
+
         //pos.setCol(pos.getCol() - 1);
-        hero.load("resources/claudioTiroEsquerda.png");
-        hero.translate(-Canvas.CELL_SIZE, 0);
+        setDirection(Direction.LEFT);
+        draw();
+        heroLeft.translate(-Canvas.CELL_SIZE, 0);
+        heroRight.translate(-Canvas.CELL_SIZE, 0);
         // if (this.getPos().getCol() == 0) {
         //   return;
         //}
@@ -56,8 +78,10 @@ public class Hero {
     private void moveRight() {
 
         //pos.setCol(pos.getCol() + 1);
-        hero.load("resources/claudioTiroDireita.png");
-        hero.translate(Canvas.CELL_SIZE, 0);
+        setDirection(Direction.RIGHT);
+        draw();
+        heroLeft.translate(Canvas.CELL_SIZE, 0);
+        heroRight.translate(Canvas.CELL_SIZE, 0);
         // if (this.getPos().getCol() == 10) {
         // return;
         //}
@@ -99,16 +123,20 @@ public class Hero {
         @Override
         public void keyPressed(KeyboardEvent keyboardEvent) {
 
-            if (keyboardEvent.getKey() == KeyboardEvent.KEY_LEFT) {
-                hero.moveLeft();
+            switch (keyboardEvent.getKey()) {
+                case KeyboardEvent.KEY_LEFT:
+                    hero.moveLeft();
+                    break;
+                case KeyboardEvent.KEY_RIGHT:
+                    hero.moveRight();
+                    break;
+                case KeyboardEvent.KEY_SPACE:
+                default:
+                    shootProjectiles();
+                    break;
+
             }
 
-            if (keyboardEvent.getKey() == KeyboardEvent.KEY_RIGHT) {
-                hero.moveRight();
-            }
-            if(keyboardEvent.getKey() == KeyboardEvent.KEY_SPACE){
-                shootProjectiles();
-            }
         }
 
         @Override
@@ -122,5 +150,20 @@ public class Hero {
         return true;
     }
 
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void setDead(boolean dead) {
+        this.dead = dead;
+    }
+
+    public Direction getDirection() {
+        return direction;
+    }
+
+    public void setDirection(Direction direction) {
+        this.direction = direction;
+    }
 }
 

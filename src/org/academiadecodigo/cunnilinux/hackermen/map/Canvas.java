@@ -1,4 +1,4 @@
-package org.academiadecodigo.cunnilinux.hackermen;
+package org.academiadecodigo.cunnilinux.hackermen.map;
 
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
