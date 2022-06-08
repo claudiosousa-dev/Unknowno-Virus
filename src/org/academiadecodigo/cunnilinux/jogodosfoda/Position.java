@@ -34,11 +34,6 @@ public class Position {
     }
 
     public int setRow(int row) {
-       return this.row = row;
+        return this.row = row;
     }
-<<<<<<< HEAD
 }
-=======
-
-*/
->>>>>>> 2468be00406d109040122f2225e0a1f3bb1a1e0a
