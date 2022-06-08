@@ -1,22 +1,19 @@
 package org.academiadecodigo.cunnilinux.jogodosfoda;
 
-import org.academiadecodigo.cunnilinux.jogodosfoda.Position;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.awt.*;
-
-public class Hero {
+public class HeroOld {
 
     private Position pos;
     private Picture hero;
 
     private HeroInputs heroInputs = new HeroInputs(new HeroMovement(this));
 
-    Hero(int col, int row) {
+    HeroOld(int col, int row) {
         pos = new Position(col, row);
         hero = new Picture(pos.colToX(), pos.rowToY(), "resources/claudioTiroDireita.png");
     }
@@ -76,9 +73,9 @@ public class Hero {
 
     public class HeroMovement implements KeyboardHandler {
 
-        private Hero hero;
+        private HeroOld hero;
 
-        private HeroMovement(Hero hero) {
+        private HeroMovement(HeroOld hero) {
             this.hero = hero;
         }
 

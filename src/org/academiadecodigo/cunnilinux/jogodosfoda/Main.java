@@ -7,6 +7,5 @@ public class Main {
         Canvas canvas = new Canvas();
         game.start();
 
-
     }
 }
