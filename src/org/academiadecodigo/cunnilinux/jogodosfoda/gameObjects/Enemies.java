@@ -50,10 +50,6 @@ public class Enemies {
     public void setCol(int col) {
         this.col = col;
     }
-
-    public int getRow() {
-        return row;
-    }
 }
 
 //joao
