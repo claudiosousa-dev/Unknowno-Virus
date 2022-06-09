@@ -11,7 +11,7 @@ public class Canvas {
 
     public Canvas() {
 
-        canvas = new Rectangle(PADDING, PADDING, CELL_SIZE * 38, CELL_SIZE * 20);
+        canvas = new Rectangle(PADDING, PADDING, CELL_SIZE * 36, CELL_SIZE * 18);
         canvas.fill();
 
     }
@@ -23,6 +23,5 @@ public class Canvas {
     public int getHeight() {
         return canvas.getHeight();
     }
-
 
 }

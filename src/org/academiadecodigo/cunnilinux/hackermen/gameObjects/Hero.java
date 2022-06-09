@@ -80,10 +80,11 @@ public class Hero {
     }
 
     private class HeroInputs {
-        private HeroInputs(KeyboardHandler heroMovement) {
+        public HeroInputs(KeyboardHandler heroMovement) {
 
             Keyboard keyboard = new Keyboard(heroMovement);
 
+            /*
             KeyboardEvent left = new KeyboardEvent();
             KeyboardEvent right = new KeyboardEvent();
             KeyboardEvent space = new KeyboardEvent();
@@ -99,6 +100,24 @@ public class Hero {
             keyboard.addEventListener(left);
             keyboard.addEventListener(right);
             keyboard.addEventListener(space);
+            */
+
+            int[] keysArray = {KeyboardEvent.KEY_RIGHT, KeyboardEvent.KEY_LEFT, KeyboardEvent.KEY_SPACE};
+            addEventListener(keyboard, keysArray);
+
+        }
+
+        public void addEventListener(Keyboard keyboard, int[] keysArray) {
+            for (int key : keysArray) {
+                keyboard.addEventListener(createKeyboardEvent(key, KeyboardEventType.KEY_PRESSED));
+            }
+        }
+
+        public KeyboardEvent createKeyboardEvent(int keyboardEventKey, KeyboardEventType keyboardEventType) {
+            KeyboardEvent keyboardEvent = new KeyboardEvent();
+            keyboardEvent.setKey(keyboardEventKey);
+            keyboardEvent.setKeyboardEventType(keyboardEventType);
+            return keyboardEvent;
         }
 
     }
