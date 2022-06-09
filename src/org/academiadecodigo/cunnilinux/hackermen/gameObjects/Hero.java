@@ -55,17 +55,18 @@ public class Hero {
 
     public void drawProjectile() {
         if (projectile.isMoving()) {
-            if (direction == Direction.RIGHT) {
-                projectile.move(Canvas.CELL_SIZE / 5);
+            if (projectile.getDirection() == Direction.RIGHT) {
+                projectile.move(Canvas.CELL_SIZE );
             } else {
-                projectile.move(-Canvas.CELL_SIZE / 5);
+                projectile.move(-Canvas.CELL_SIZE);
             }
          //   projectile.setX(xPosition);
         }
     }
 
     public void shootProjectiles() {
-        projectile.setMoving();
+        System.out.println("asd");
+        projectile.setMoving(direction);
         if (direction == Direction.RIGHT) {
             projectile.setX(xPosition + getWidth());
         } else {

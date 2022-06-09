@@ -19,7 +19,7 @@ public class Game {
 
         Canvas canvas = new Canvas();
         background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
-        hero = new Hero(Canvas.CANVAS_WIDTH / 2);
+        hero = new Hero(Canvas.CANVAS_WIDTH/2);
         enemy = new Enemy();
         gameOver = false;
 
