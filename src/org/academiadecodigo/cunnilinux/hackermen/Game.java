@@ -1,9 +1,6 @@
 package org.academiadecodigo.cunnilinux.hackermen;
 
-import org.academiadecodigo.cunnilinux.hackermen.gameObjects.CollisionDetector;
-import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Enemy;
-import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Hero;
-import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Projectile;
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -13,11 +10,14 @@ public class Game {
     private Picture background;
     private Hero hero;
     private Enemy enemy;
+    private Health health;
+
     private boolean gameOver;
     private Projectile projectile;
     public void init() {
 
         Canvas canvas = new Canvas();
+        health = new Health();
         background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
         hero = new Hero(Canvas.CANVAS_WIDTH / 2);
         enemy = new Enemy();
@@ -26,7 +26,7 @@ public class Game {
         background.draw();
         hero.draw();
         enemy.show();
-
+        health.show();
         initCollisionDetector();
 
     }
@@ -36,15 +36,19 @@ public class Game {
         while (true) {
 
             if(CollisionDetector.intersectsEnemy()) {
-                hero.setDead(true);
-                gameOver = true;
-                break;
+                health.setCounter(health.getHeroHealth() - 1);
+
+                if (health.getHeroHealth() == 0) {
+                    hero.setDead(true);
+                    gameOver = true;
+                    break;
+                }
             }
             hero.drawProjectile();
             enemy.move();
 
             try {
-                Thread.sleep(300);
+                Thread.sleep(500);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
                 throw new RuntimeException(exception);
