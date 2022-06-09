@@ -2,7 +2,6 @@ package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 
 public class CollisionDetector {
 
@@ -13,16 +12,6 @@ public class CollisionDetector {
 
     public static boolean intersectsEnemy() {
         return checkIntersection(hero.bounds(), enemy.bounds());
-    }
-
-    public static void intersectCanvas() {
-
-        if ((hero.getDirection() == Direction.RIGHT) && (hero.getX() >= Canvas.CANVAS_WIDTH)) {
-            hero.setX(Canvas.CANVAS_WIDTH);
-        } else if ((hero.getDirection() == Direction.LEFT) && (hero.getX() <= Canvas.PADDING)) {
-            hero.setX(Canvas.PADDING);
-        }
-
     }
 
     public static boolean checkIntersection(int[] heroBounds, int[] enemyBounds) {

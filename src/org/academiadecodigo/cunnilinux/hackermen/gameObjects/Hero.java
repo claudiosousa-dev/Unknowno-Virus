@@ -3,8 +3,6 @@ package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 import org.academiadecodigo.cunnilinux.hackermen.AssetPaths;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
-import org.academiadecodigo.cunnilinux.hackermen.map.Position;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -29,10 +27,6 @@ public class Hero {
         direction = Direction.RIGHT;
         dead = false;
 
-    }
-
-    public int getX() {
-        return xPosition;
     }
 
     public Picture getHero() {
@@ -64,20 +58,32 @@ public class Hero {
 
     private void moveLeft() {
 
-        setDirection(Direction.LEFT);
-        draw();
-        heroLeft.translate(-Canvas.CELL_SIZE, 0);
-        heroRight.translate(-Canvas.CELL_SIZE, 0);
+        if(getX() > Canvas.CELL_SIZE) {
+            setDirection(Direction.LEFT);
+            translate(-Canvas.CELL_SIZE);
+        } else {
+            setDirection(Direction.RIGHT);
+            setX(Canvas.CELL_SIZE);
+        }
 
     }
 
     private void moveRight() {
 
-        setDirection(Direction.RIGHT);
-        draw();
-        heroLeft.translate(Canvas.CELL_SIZE, 0);
-        heroRight.translate(Canvas.CELL_SIZE, 0);
+        if(getRightX() < Canvas.CANVAS_RIGHT_LIMIT) {
+            setDirection(Direction.RIGHT);
+            translate(Canvas.CELL_SIZE);
+        } else {
+            setDirection(Direction.LEFT);
+            setX(Canvas.CANVAS_RIGHT_LIMIT - getWidth());
+        }
 
+    }
+
+    private void translate(int distance) {
+        draw();
+        heroLeft.translate(distance, 0);
+        heroRight.translate(distance, 0);
     }
 
     private class HeroInputs {
@@ -135,6 +141,7 @@ public class Hero {
         public void keyPressed(KeyboardEvent keyboardEvent) {
 
             switch (keyboardEvent.getKey()) {
+
                 case KeyboardEvent.KEY_LEFT:
                     hero.moveLeft();
                     break;
@@ -178,16 +185,28 @@ public class Hero {
         this.direction = direction;
     }
 
-    public void setX(int xPosition) {
+    public int getX() {
 
-        this.xPosition = xPosition;
-
-        if(direction == Direction.RIGHT) {
-
-        } else {
-
-        }
+        return heroRight.getX();
 
     }
+
+    public int getRightX() {
+
+        return getX() + getWidth();
+
+    }
+
+    public void setX(int xPosition) {
+
+        translate(xPosition - getX());
+        this.xPosition = xPosition;
+
+    }
+
+    public int getWidth() {
+        return heroLeft.getWidth();
+    }
+
 }
 

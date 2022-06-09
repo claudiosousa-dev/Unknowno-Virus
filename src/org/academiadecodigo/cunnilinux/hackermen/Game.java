@@ -34,8 +34,6 @@ public class Game {
 
         while (true) {
 
-            CollisionDetector.intersectCanvas();
-
             if(CollisionDetector.intersectsEnemy()) {
                 hero.setDead(true);
                 gameOver = true;
@@ -51,6 +49,8 @@ public class Game {
             }
 
         }
+
+
 
     }
 
