@@ -50,9 +50,8 @@ public class Enemy {
 
     }
 
-    public Rectangle bounds() {
-        return new Rectangle(enemy.getX(), enemy.getY(),
-                enemy.getWidth(), enemy.getHeight());
+    public int[] bounds() {
+        return new int[]{enemy.getX(), enemy.getX() + enemy.getWidth()};
     }
 
     public void show() {
@@ -62,4 +61,5 @@ public class Enemy {
     public void hide() {
         enemy.delete();
     }
+
 }

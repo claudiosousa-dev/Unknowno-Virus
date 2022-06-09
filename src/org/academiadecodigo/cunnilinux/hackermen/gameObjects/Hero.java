@@ -156,9 +156,10 @@ public class Hero {
 
     }
 
-    public Rectangle bounds() {
-        return new Rectangle(heroRight.getX(), heroRight.getY(),
-                heroRight.getWidth(), heroRight.getHeight());
+    public int[] bounds() {
+
+        return new int[]{heroRight.getX(), heroRight.getX() + heroRight.getWidth()};
+
     }
 
     public boolean isDead() {
@@ -175,6 +176,12 @@ public class Hero {
 
     public void setDirection(Direction direction) {
         this.direction = direction;
+    }
+
+    public void setxPosition(int xPosition) {
+
+        this.xPosition = xPosition;
+
     }
 }
 
