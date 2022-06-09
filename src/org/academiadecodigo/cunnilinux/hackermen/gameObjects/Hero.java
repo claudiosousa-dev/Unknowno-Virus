@@ -178,7 +178,7 @@ public class Hero {
         this.direction = direction;
     }
 
-    public void setxPosition(int xPosition) {
+    public void setX(int xPosition) {
 
         this.xPosition = xPosition;
 

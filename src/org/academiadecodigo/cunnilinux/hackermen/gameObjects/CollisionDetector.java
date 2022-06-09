@@ -18,9 +18,9 @@ public class CollisionDetector {
     public static void intersectCanvas() {
 
         if ((hero.getDirection() == Direction.RIGHT) && (hero.getX() >= Canvas.CANVAS_WIDTH)) {
-            hero.setxPosition(Canvas.CANVAS_WIDTH);
+            hero.setX(Canvas.CANVAS_WIDTH);
         } else if ((hero.getDirection() == Direction.LEFT) && (hero.getX() <= Canvas.PADDING)) {
-            hero.setxPosition(Canvas.PADDING);
+            hero.setX(Canvas.PADDING);
         }
 
     }

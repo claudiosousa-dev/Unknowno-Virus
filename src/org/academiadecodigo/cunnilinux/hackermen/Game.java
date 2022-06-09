@@ -44,7 +44,7 @@ public class Game {
             enemy.move();
 
             try {
-                Thread.sleep(500);
+                Thread.sleep(300);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
                 throw new RuntimeException(exception);
