@@ -4,6 +4,7 @@ import org.academiadecodigo.cunnilinux.hackermen.AssetPaths;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 import org.academiadecodigo.cunnilinux.hackermen.map.Position;
+import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -155,9 +156,9 @@ public class Hero {
 
     }
 
-    public boolean bounds() {
-        //return new Rectangle();
-        return true;
+    public Rectangle bounds() {
+        return new Rectangle(heroRight.getX(), heroRight.getY(),
+                heroRight.getWidth(), heroRight.getHeight());
     }
 
     public boolean isDead() {

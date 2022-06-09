@@ -1,5 +1,7 @@
 package org.academiadecodigo.cunnilinux.hackermen.map;
 
+import org.academiadecodigo.cunnilinux.hackermen.utils.RandomGenerator;
+
 /**
  * The directions in which positions may move
  */
@@ -37,6 +39,13 @@ public enum Direction {
         }
 
         return opposite;
+    }
+
+    public static Direction randomDirectionType() {
+
+        Direction[] directions = Direction.values();
+        return directions[RandomGenerator.getRandom(directions.length - 1)];
+
     }
 
 }

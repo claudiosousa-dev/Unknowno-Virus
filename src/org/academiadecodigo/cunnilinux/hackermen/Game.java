@@ -1,5 +1,6 @@
 package org.academiadecodigo.cunnilinux.hackermen;
 
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.CollisionDetector;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Enemy;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Hero;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
@@ -17,45 +18,45 @@ public class Game {
 
         Canvas canvas = new Canvas();
         background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
-        hero = new Hero(canvas.getWidth() / 2);
-        //enemy = new Enemy();
+        hero = new Hero(Canvas.CANVAS_WIDTH / 2);
+        enemy = new Enemy();
         gameOver = false;
 
         background.draw();
         hero.draw();
+        enemy.show();
+
+        initCollisionDetector();
 
     }
 
     public void start() {
-        //init();
-        //setupThings();
-        //setupLevel();
-        // ProjectileFactory.createProjectiles();
-        //Enemies.createEnemies();
 
-        //while (true) {
+        while (true) {
 
+            if(CollisionDetector.intersectsEnemy()) {
+                hero.setDead(true);
+                gameOver = true;
+                break;
+            }
+            enemy.move();
 
-        try {
-            Thread.sleep(100);
-        } catch (InterruptedException exception) {
-            exception.printStackTrace();
-            throw new RuntimeException(exception);
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+                throw new RuntimeException(exception);
+            }
+
         }
 
-        //}
-
     }
 
-    private void setupLevel() {
+    private void initCollisionDetector() {
 
-        //background.draw();
-        //hero.draw();
-
-    }
-
-    public void setup() {
-
+        CollisionDetector.setCanvasBoundaries(canvas);
+        CollisionDetector.setHero(hero);
+        CollisionDetector.setEnemy(enemy);
 
     }
 
