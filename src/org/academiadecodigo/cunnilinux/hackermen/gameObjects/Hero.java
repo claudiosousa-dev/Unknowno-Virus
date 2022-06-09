@@ -18,6 +18,7 @@ public class Hero {
     private HeroInputs heroInputs;
     private Direction direction;
     private boolean dead;
+    private Projectile projectile;
 
     public Hero(int xPosition) {
         this.xPosition = xPosition;
@@ -26,6 +27,7 @@ public class Hero {
         heroInputs = new HeroInputs(new HeroMovement(this));
         direction = Direction.RIGHT;
         dead = false;
+        projectile = new Projectile(xPosition);
 
     }
 
@@ -51,14 +53,31 @@ public class Hero {
 
     }
 
-    private void shootProjectiles() {
-        //Projectile projectile = new Projectile(pos.setCol(3),pos.setRow(3));
-        //projectile.draw();
+    public void drawProjectile() {
+        if (projectile.isMoving()) {
+            if (direction == Direction.RIGHT) {
+                projectile.move(Canvas.CELL_SIZE / 5);
+            } else {
+                projectile.move(-Canvas.CELL_SIZE / 5);
+            }
+         //   projectile.setX(xPosition);
+        }
     }
+
+    public void shootProjectiles() {
+        projectile.setMoving();
+        if (direction == Direction.RIGHT) {
+            projectile.setX(xPosition + getWidth());
+        } else {
+            projectile.setX(xPosition);
+        }
+        projectile.draw();
+    }
+
 
     private void moveLeft() {
 
-        if(getX() > Canvas.CELL_SIZE) {
+        if (getX() > Canvas.CELL_SIZE) {
             setDirection(Direction.LEFT);
             translate(-Canvas.CELL_SIZE);
         } else {
@@ -70,7 +89,7 @@ public class Hero {
 
     private void moveRight() {
 
-        if(getRightX() < Canvas.CANVAS_RIGHT_LIMIT) {
+        if (getRightX() < Canvas.CANVAS_RIGHT_LIMIT) {
             setDirection(Direction.RIGHT);
             translate(Canvas.CELL_SIZE);
         } else {

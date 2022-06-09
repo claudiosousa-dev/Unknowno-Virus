@@ -3,6 +3,7 @@ package org.academiadecodigo.cunnilinux.hackermen;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.CollisionDetector;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Enemy;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Hero;
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Projectile;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
@@ -13,7 +14,7 @@ public class Game {
     private Hero hero;
     private Enemy enemy;
     private boolean gameOver;
-
+    private Projectile projectile;
     public void init() {
 
         Canvas canvas = new Canvas();
@@ -39,6 +40,7 @@ public class Game {
                 gameOver = true;
                 break;
             }
+            hero.drawProjectile();
             enemy.move();
 
             try {
