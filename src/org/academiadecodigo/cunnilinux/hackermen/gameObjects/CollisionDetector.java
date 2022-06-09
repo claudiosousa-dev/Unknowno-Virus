@@ -8,10 +8,14 @@ public class CollisionDetector {
     private static Canvas canvas;
     private static Hero hero;
     private static Enemy enemy;
-    private static Projectile projectiles;
+    private static Projectile projectile;
 
     public static boolean intersectsEnemy() {
         return checkIntersection(hero.bounds(), enemy.bounds());
+    }
+
+    public boolean intersectsBulletEnemy() {
+        return checkIntersection(enemy.bounds(), projectile.bounds());
     }
 
     public static boolean checkIntersection(int[] heroBounds, int[] enemyBounds) {

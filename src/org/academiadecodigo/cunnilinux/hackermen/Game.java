@@ -44,6 +44,9 @@ public class Game {
                     break;
                 }
             }
+
+            if(CollisionDetector.intersectsEnemy())
+
             hero.drawProjectile();
             enemy.move();
 
