@@ -182,6 +182,12 @@ public class Hero {
 
         this.xPosition = xPosition;
 
+        if(direction == Direction.RIGHT) {
+
+        } else {
+
+        }
+
     }
 }
 
