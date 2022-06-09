@@ -4,19 +4,24 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Enemies {
 
-    //createEnemies(){
     private Picture monsterTier2 = new Picture(400.0, 400.0, "resources/zombie.png");
     Game game = new Game();
     Picture zombie;
+    Hero hero;
+    private int col; // Needs to change
 
-    private int col;
-    private int row;
+    // Lines to create a number of random zombies
+
+
+
+
+
+
+    // .
 
     public Enemies(int col) {
         zombie = new Picture(getCol(), getCol());  //row no value.
         }
-
-
 
     public void moveZombie() {
         int movePos = (int)(Math.random() * 2);
@@ -26,7 +31,6 @@ public class Enemies {
         if (movePos == 2) {
             this.moveRight();
         }
-
     }
 
     private void moveRight() {
@@ -51,8 +55,26 @@ public class Enemies {
         this.col = col;
     }
 
-    public int getRow() {
-        return row;
+    //HEALTH
+    private Picture health1 = new Picture(200, 120, "Hackermen/resources/health.png");
+    private Picture health2 = new Picture(200,110,"Hackermen/resources/health.png");
+    private Picture health3 = new Picture(200,100, "Hackermen/resources/health.png");
+
+    public void Health(int col, int row) {
+        health1.draw();
+        health2.draw();
+        health3.draw();
+    }
+
+    public void removeHealth() { // Needs some changes
+        if (hero.getX() == monsterTier2.getX()) {
+            health3.delete();
+        } else if (hero.getX() == monsterTier2.getX()) {
+            health2.delete();
+        } else if (hero.getX() == monsterTier2.getX()) {
+            health1.delete();
+            System.out.println("You lost!"); // EXAMPLE FOR TESTING
+        }
     }
 }
 
