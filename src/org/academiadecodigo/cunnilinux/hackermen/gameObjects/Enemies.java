@@ -56,9 +56,9 @@ public class Enemies {
     }
 
     //HEALTH
-    private Picture health1 = new Picture(200, 120, "Hackermen/resources/health.png");
-    private Picture health2 = new Picture(200,110,"Hackermen/resources/health.png");
-    private Picture health3 = new Picture(200,100, "Hackermen/resources/health.png");
+    private Picture health1 = new Picture(200, 120, "resources/health.png");
+    private Picture health2 = new Picture(200,110,"resources/health.png");
+    private Picture health3 = new Picture(200,100, "resources/health.png");
 
     public void Health(int col, int row) {
         health1.draw();
