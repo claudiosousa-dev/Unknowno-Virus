@@ -7,9 +7,6 @@ import org.academiadecodigo.cunnilinux.hackermen.utils.RandomGenerator;
 import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.awt.*;
-import java.util.concurrent.RecursiveAction;
-
 
 public class Enemy {
 
