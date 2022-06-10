@@ -12,7 +12,7 @@ public class Game {
     private final Hero hero;
     private final Enemy enemy;
     private final Health health;
-
+    private Picture startMenu;
     private Picture gameOverShow;
 
 
@@ -28,12 +28,13 @@ public class Game {
         enemy = new Enemy();
         health = new Health();
         gameOver = false;
+        startMenu = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.STARTMENU);
         gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAMEOVER);
 
     }
 
     public void init() {
-
+        //startMenu.draw(); // Just for testing and need some graphic update!
         background.draw();
         hero.show();
         enemy.show();

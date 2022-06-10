@@ -17,7 +17,7 @@ public class Projectile {
         this.direction = direction;
         moving = true;
 
-        projectile = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLET);
+        projectile = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLETLEFT);
 
     }
 
