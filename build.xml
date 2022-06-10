@@ -21,7 +21,7 @@
     </target>
 
     <!-- Creates the build directories to hold JAR and Class files -->
-    <target name="prepare" description="Creates the build and classes directories" depends="init">
+    <target name="prepare" description="Creates the build and classes directories" depends="clean">
         <mkdir dir="${classes.dir}" />
     </target>
 
@@ -37,10 +37,19 @@
         <jar destfile="${build.dir}/${project.name}.jar" basedir="${classes.dir}">
             <manifest>
                 <attribute name="Main-Class" value="${main.class}" />
-                <attribute name="Class-Path" value="${lib.dir}" />
+                <attribute name="Class-Path" value="${lib.dir} ${resources.dir}" />
             </manifest>
             <zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
+            <fileset dir=".">
+                <include name="**/${resources.dir}/**" />
+            </fileset>
         </jar>
     </target>
+
+    <!-- Removes the build directory -->
+    <target name="final_clean" description="Clean up project" depends="jarfile">
+        <delete dir="${build.dir}" />
+    </target>
+
 
 </project>

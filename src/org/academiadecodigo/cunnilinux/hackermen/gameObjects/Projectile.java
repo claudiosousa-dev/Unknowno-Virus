@@ -18,8 +18,6 @@ public class Projectile {
         moving = true;
 
         projectile = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLET);
-        //projectile.grow(-2, -2);
-
 
     }
 
