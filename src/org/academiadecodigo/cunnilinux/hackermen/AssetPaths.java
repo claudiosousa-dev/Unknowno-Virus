@@ -2,6 +2,7 @@ package org.academiadecodigo.cunnilinux.hackermen;
 
 public class AssetPaths {
 
+    public static final String STARTMENU = "resources/startMenu.png";
     public static final String BACKGROUND = "resources/backgroundGame.jpeg";
     public static final String HERO_LEFT = "resources/heroLeft.png";
     public static final String HERO_RIGHT = "resources/heroRight.png";
