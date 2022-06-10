@@ -7,7 +7,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Projectile {
 
-    private final static int GUN_LEVEL = 580;
+    private final static int GUN_LEVEL = 800;
     private final Picture projectile;
     private final Direction direction;
     private boolean moving;

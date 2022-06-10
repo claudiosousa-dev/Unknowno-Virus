@@ -63,6 +63,7 @@ public class Game {
             if (hero.getProjectile() != null && hero.getProjectile().isMoving()) {
 
                 if (CollisionDetector.detectCollisionBulletEnemy(hero.getProjectile())) {
+
                     hero.setDead(true);
                     enemy.hide();
                     hero.getProjectile().hide();
