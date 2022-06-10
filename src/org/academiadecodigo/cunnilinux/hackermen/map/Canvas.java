@@ -8,7 +8,7 @@ public class Canvas {
     public static final int CELL_SIZE = 10;
     public static final int CANVAS_WIDTH = 1800;
     public static final int CANVAS_HEIGHT = 900;
-    public static final int FLOOR_LEVEL = 500;
+    public static final int FLOOR_LEVEL = 900;
     public static final int CANVAS_RIGHT_LIMIT = CANVAS_WIDTH - CELL_SIZE;
     private static Rectangle canvas;
 
