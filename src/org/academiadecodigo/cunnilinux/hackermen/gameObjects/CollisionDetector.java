@@ -5,7 +5,7 @@ public class CollisionDetector {
     //private static Canvas canvas;
     private static Hero hero;
     private static Enemy enemy;
-    private static Projectile projectile;
+    //private static Projectile projectile;
 
     public static boolean detectCollisionHeroEnemy() {
 
@@ -15,22 +15,26 @@ public class CollisionDetector {
     }
 
     // if bullet position = enemy - deal damage and delete bullet.
-    public static boolean detectCollisionBulletEnemy() {
+    public static boolean detectCollisionBulletEnemy(Projectile projectile) {
         return (enemy.getRightX() > projectile.getX() && enemy.getX() < projectile.getRightX()) ||
                 (enemy.getX() < projectile.getRightX() && enemy.getRightX() > projectile.getX());
     }
 
     public static void setHero(Hero hero) {
+
         CollisionDetector.hero = hero;
+
     }
 
     public static void setEnemy(Enemy enemy) {
+
         CollisionDetector.enemy = enemy;
+
     }
 
-    public static void setProjectile(Projectile projectile) {
+    /*public static void setProjectile(Projectile projectile) {
         CollisionDetector.projectile = projectile;
-    }
+    }*/
 
     /*public static void setCanvas(Canvas canvas) {
         CollisionDetector.canvas = canvas;

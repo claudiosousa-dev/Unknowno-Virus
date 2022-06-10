@@ -12,7 +12,6 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Hero {
 
-    private int xPosition;
     private final Picture heroRight;
     private final Picture heroLeft;
     private final HeroInputs heroInputs;
@@ -22,7 +21,6 @@ public class Hero {
 
     public Hero(int xPosition) {
 
-        this.xPosition = xPosition;
         heroLeft = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_LEFT);
         heroRight = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_RIGHT);
         heroInputs = new HeroInputs(new HeroMovement(this));
@@ -58,22 +56,9 @@ public class Hero {
 
     }
 
-    public void moveProjectile() {
+    public void shoot() {
 
-        if (projectile != null && projectile.isMoving()) {
-
-            if (projectile.getDirection() == Direction.RIGHT) {
-                projectile.move(Canvas.CELL_SIZE);
-            } else {
-                projectile.move(-Canvas.CELL_SIZE);
-            }
-        }
-
-    }
-
-    public void shootProjectile() {
-
-        if (projectile != null) {
+        if (projectile == null) {
 
             projectile = new Projectile(getX(), direction);
             projectile.show();
@@ -85,11 +70,15 @@ public class Hero {
     private void moveLeft() {
 
         if (getX() > Canvas.CELL_SIZE) {
+
             setDirection(Direction.LEFT);
             translate(-Canvas.CELL_SIZE);
+
         } else {
+
             setDirection(Direction.RIGHT);
-            setX(Canvas.CELL_SIZE);
+            translate(Canvas.CELL_SIZE - getX());
+
         }
 
     }
@@ -97,18 +86,22 @@ public class Hero {
     private void moveRight() {
 
         if (getRightX() < Canvas.CANVAS_RIGHT_LIMIT) {
+
             setDirection(Direction.RIGHT);
             translate(Canvas.CELL_SIZE);
+
         } else {
+
             setDirection(Direction.LEFT);
-            setX(Canvas.CANVAS_RIGHT_LIMIT - getWidth());
+            translate(Canvas.CANVAS_RIGHT_LIMIT - getWidth() - getX());
+
         }
 
     }
 
     private void translate(int distance) {
 
-        draw();
+        show();
         heroLeft.translate(distance, 0);
         heroRight.translate(distance, 0);
 
@@ -165,7 +158,7 @@ public class Hero {
                     break;
                 case KeyboardEvent.KEY_SPACE:
                 default:
-                    shootProjectile();
+                    hero.shoot();
                     break;
 
             }
@@ -207,13 +200,6 @@ public class Hero {
     public int getRightX() {
 
         return getX() + getWidth();
-
-    }
-
-    public void setX(int xPosition) {
-
-        translate(xPosition - getX());
-        this.xPosition = xPosition;
 
     }
 

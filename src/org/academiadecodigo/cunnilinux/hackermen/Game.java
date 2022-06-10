@@ -6,27 +6,34 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
-    private Canvas canvas;
-    private Hero hero;
-    private Enemy enemy;
-    private Health health;
+    private final Canvas canvas;
+    private final Picture background;
+
+    private final Hero hero;
+    private final Enemy enemy;
+    private final Health health;
 
     private boolean gameOver;
 
-    public void init() {
+    public Game() {
 
-        Canvas canvas = new Canvas();
-        Picture background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
+        canvas = new Canvas();
+        background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
 
         hero = new Hero(Canvas.CANVAS_WIDTH / 2);
         enemy = new Enemy();
         health = new Health();
         gameOver = false;
 
+    }
+
+    public void init() {
+
         background.draw();
-        hero.draw();
+        hero.show();
         enemy.show();
         health.show();
+
         initCollisionDetector();
 
     }
@@ -48,20 +55,29 @@ public class Game {
 
             if (hero.getProjectile() != null && hero.getProjectile().isMoving()) {
 
-                if (CollisionDetector.detectCollisionBulletEnemy()) {
+                if (CollisionDetector.detectCollisionBulletEnemy(hero.getProjectile())) {
 
                     enemy.hide();
                     hero.getProjectile().hide();
+                    gameOver = true;
+                    break;
 
                 }
 
             }
 
-            hero.moveProjectile();
+            try {
+
+                hero.getProjectile().move();
+
+            } catch (NullPointerException ignored) {
+
+            }
+
             enemy.move();
 
             try {
-                Thread.sleep(500);
+                Thread.sleep(300);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
                 throw new RuntimeException(exception);
@@ -74,10 +90,8 @@ public class Game {
 
     private void initCollisionDetector() {
 
-        //CollisionDetector.setCanvas(canvas);
         CollisionDetector.setHero(hero);
         CollisionDetector.setEnemy(enemy);
-        CollisionDetector.setProjectile(hero.getProjectile());
 
     }
 

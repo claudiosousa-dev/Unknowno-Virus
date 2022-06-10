@@ -7,13 +7,13 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Projectile {
 
-    private final Picture bullet;
-    private Direction direction;
+    private final Picture projectile;
+    private final Direction direction;
     private boolean moving;
 
     public Projectile(int xPosition, Direction direction) {
 
-        bullet = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.BULLET);
+        projectile = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.BULLET);
         this.direction = direction;
         moving = true;
 
@@ -25,44 +25,43 @@ public class Projectile {
 
     }
 
-    public void move(int distance) {
+    public void move() {
 
-        bullet.translate(distance, 0);
+        if (moving) {
 
-    }
+            if (direction == Direction.RIGHT) {
+                projectile.translate(Canvas.CELL_SIZE, 0);
+            } else {
+                projectile.translate(-Canvas.CELL_SIZE, 0);
+            }
 
-    public void setMoving(Direction direction) {
-
-        moving = true;
-        this.direction = direction;
+        }
 
     }
 
     public void show() {
 
-        bullet.draw();
+        projectile.draw();
 
     }
 
     public void hide() {
 
-        bullet.delete();
+        moving = false;
+        projectile.delete();
 
     }
 
     public int getX() {
 
-        return bullet.getX();
+        return projectile.getX();
 
     }
 
     public int getRightX() {
 
-        return bullet.getX() + bullet.getWidth();
+        return projectile.getX() + projectile.getWidth();
 
     }
 
-    public Direction getDirection() {
-        return direction;
-    }
 }
