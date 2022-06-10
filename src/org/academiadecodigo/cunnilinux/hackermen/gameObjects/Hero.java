@@ -9,6 +9,8 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.awt.*;
+
 
 public class Hero {
 
@@ -203,6 +205,8 @@ public class Hero {
     public void setDirection(Direction direction) {
 
         this.direction = direction;
+
+        Rectangle.intersection();
 
     }
 
