@@ -13,6 +13,10 @@ public class Game {
     private final Enemy enemy;
     private final Health health;
 
+    private Picture gameOverShow;
+
+
+
     private boolean gameOver;
 
     public Game() {
@@ -24,6 +28,7 @@ public class Game {
         enemy = new Enemy();
         health = new Health();
         gameOver = false;
+        gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAMEOVER);
 
     }
 
@@ -49,6 +54,8 @@ public class Game {
                 if (health.getHeroHealth() == 0) {
                     hero.setDead(true);
                     gameOver = true;
+                    enemy.hide();
+                    gameOverShow.draw();
                     break;
                 }
             }
@@ -56,10 +63,11 @@ public class Game {
             if (hero.getProjectile() != null && hero.getProjectile().isMoving()) {
 
                 if (CollisionDetector.detectCollisionBulletEnemy(hero.getProjectile())) {
-
+                    hero.setDead(true);
                     enemy.hide();
                     hero.getProjectile().hide();
                     gameOver = true;
+                    gameOverShow.draw();
                     break;
 
                 }
