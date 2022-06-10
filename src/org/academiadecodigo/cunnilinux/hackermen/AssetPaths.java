@@ -8,7 +8,7 @@ public class AssetPaths {
     public static final String MONSTER_TIER1 = "resources/monsterTier1.png";
     public static final String MONSTER_TIER2 = "resources/monsterTier2.png";
     public static final String MONSTER_TIER3 = "resources/monsterTier3.png";
-    public static final String BULLET1 = "resources/bullet1.png";
+    public static final String BULLET = "resources/bullet.png";
     public static final String BULLET2 = "resources/bullet2.png";
     public static final String BULLET_FIRE = "resources/bulletFire.png";
     public static final String HEALTH = "resources/health.png";

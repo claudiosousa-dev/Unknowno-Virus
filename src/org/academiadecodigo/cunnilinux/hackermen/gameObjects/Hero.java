@@ -13,25 +13,26 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Hero {
 
     private int xPosition;
-    private Picture heroRight;
-    private Picture heroLeft;
-    private HeroInputs heroInputs;
+    private final Picture heroRight;
+    private final Picture heroLeft;
+    private final HeroInputs heroInputs;
     private Direction direction;
     private boolean dead;
     private Projectile projectile;
 
     public Hero(int xPosition) {
+
         this.xPosition = xPosition;
         heroLeft = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_LEFT);
         heroRight = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_RIGHT);
         heroInputs = new HeroInputs(new HeroMovement(this));
         direction = Direction.RIGHT;
         dead = false;
-        projectile = new Projectile(xPosition);
+        projectile = null;
 
     }
 
-    public Picture getHero() {
+    /*public Picture getHero() {
 
         if (direction == Direction.RIGHT) {
             return heroRight;
@@ -39,42 +40,47 @@ public class Hero {
             return heroLeft;
         }
 
-    }
+    }*/
 
-    public void draw() {
+    public void show() {
 
         if (direction == Direction.RIGHT) {
+
             heroLeft.delete();
             heroRight.draw();
+
         } else {
+
             heroRight.delete();
             heroLeft.draw();
+
         }
 
     }
 
-    public void drawProjectile() {
-        if (projectile.isMoving()) {
+    public void moveProjectile() {
+
+        if (projectile != null && projectile.isMoving()) {
+
             if (projectile.getDirection() == Direction.RIGHT) {
-                projectile.move(Canvas.CELL_SIZE );
+                projectile.move(Canvas.CELL_SIZE);
             } else {
                 projectile.move(-Canvas.CELL_SIZE);
             }
-         //   projectile.setX(xPosition);
         }
+
     }
 
-    public void shootProjectiles() {
-        System.out.println("asd");
-        projectile.setMoving(direction);
-        if (direction == Direction.RIGHT) {
-            projectile.setX(xPosition + getWidth());
-        } else {
-            projectile.setX(xPosition);
-        }
-        projectile.draw();
-    }
+    public void shootProjectile() {
 
+        if (projectile != null) {
+
+            projectile = new Projectile(getX(), direction);
+            projectile.show();
+
+        }
+
+    }
 
     private void moveLeft() {
 
@@ -101,33 +107,18 @@ public class Hero {
     }
 
     private void translate(int distance) {
+
         draw();
         heroLeft.translate(distance, 0);
         heroRight.translate(distance, 0);
+
     }
 
-    private class HeroInputs {
+    private static class HeroInputs {
+
         public HeroInputs(KeyboardHandler heroMovement) {
 
             Keyboard keyboard = new Keyboard(heroMovement);
-
-            /*
-            KeyboardEvent left = new KeyboardEvent();
-            KeyboardEvent right = new KeyboardEvent();
-            KeyboardEvent space = new KeyboardEvent();
-
-            right.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-            left.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-            space.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-
-            right.setKey(KeyboardEvent.KEY_RIGHT);
-            left.setKey(KeyboardEvent.KEY_LEFT);
-            space.setKey(KeyboardEvent.KEY_SPACE);
-
-            keyboard.addEventListener(left);
-            keyboard.addEventListener(right);
-            keyboard.addEventListener(space);
-            */
 
             int[] keysArray = {KeyboardEvent.KEY_RIGHT, KeyboardEvent.KEY_LEFT, KeyboardEvent.KEY_SPACE};
             addEventListener(keyboard, keysArray);
@@ -135,23 +126,27 @@ public class Hero {
         }
 
         public void addEventListener(Keyboard keyboard, int[] keysArray) {
+
             for (int key : keysArray) {
                 keyboard.addEventListener(createKeyboardEvent(key, KeyboardEventType.KEY_PRESSED));
             }
+
         }
 
         public KeyboardEvent createKeyboardEvent(int keyboardEventKey, KeyboardEventType keyboardEventType) {
+
             KeyboardEvent keyboardEvent = new KeyboardEvent();
             keyboardEvent.setKey(keyboardEventKey);
             keyboardEvent.setKeyboardEventType(keyboardEventType);
             return keyboardEvent;
+
         }
 
     }
 
     public class HeroMovement implements KeyboardHandler {
 
-        private Hero hero;
+        private final Hero hero;
 
         private HeroMovement(Hero hero) {
             this.hero = hero;
@@ -170,7 +165,7 @@ public class Hero {
                     break;
                 case KeyboardEvent.KEY_SPACE:
                 default:
-                    shootProjectiles();
+                    shootProjectile();
                     break;
 
             }
@@ -183,26 +178,24 @@ public class Hero {
 
     }
 
-    public int[] bounds() {
-
-        return new int[]{heroRight.getX(), heroRight.getX() + heroRight.getWidth()};
-
-    }
-
-    public boolean isDead() {
+    /*public boolean isDead() {
         return dead;
-    }
+    }*/
 
     public void setDead(boolean dead) {
+
         this.dead = dead;
+
     }
 
-    public Direction getDirection() {
+    /*public Direction getDirection() {
         return direction;
-    }
+    }*/
 
     public void setDirection(Direction direction) {
+
         this.direction = direction;
+
     }
 
     public int getX() {
@@ -225,8 +218,15 @@ public class Hero {
     }
 
     public int getWidth() {
-        return heroLeft.getWidth();
+
+        return heroRight.getWidth();
+
     }
 
+    public Projectile getProjectile() {
+
+        return projectile;
+
+    }
 }
 

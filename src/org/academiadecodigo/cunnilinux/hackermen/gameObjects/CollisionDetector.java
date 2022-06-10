@@ -1,28 +1,23 @@
 package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 
-import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
-import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
-
 public class CollisionDetector {
 
-    private static Canvas canvas;
+    //private static Canvas canvas;
     private static Hero hero;
     private static Enemy enemy;
     private static Projectile projectile;
 
-    public static boolean intersectsEnemy() {
-        return checkIntersection(hero.bounds(), enemy.bounds());
+    public static boolean detectCollisionHeroEnemy() {
+
+        return (enemy.getRightX() > hero.getX() && enemy.getX() < hero.getRightX()) ||
+                (enemy.getX() < hero.getRightX() && enemy.getRightX() > hero.getX());
+
     }
 
-    public boolean intersectsBulletEnemy() {
-        return checkIntersection(enemy.bounds(), projectile.bounds());
-    }
-
-    public static boolean checkIntersection(int[] heroBounds, int[] enemyBounds) {
-
-        return ((enemyBounds[1] > heroBounds[0]) && (enemyBounds[0] < heroBounds[1])) ||
-                ((enemyBounds[0] < heroBounds[1]) && (enemyBounds[1] > heroBounds[0]));
-
+    // if bullet position = enemy - deal damage and delete bullet.
+    public static boolean detectCollisionBulletEnemy() {
+        return (enemy.getRightX() > projectile.getX() && enemy.getX() < projectile.getRightX()) ||
+                (enemy.getX() < projectile.getRightX() && enemy.getRightX() > projectile.getX());
     }
 
     public static void setHero(Hero hero) {
@@ -33,8 +28,12 @@ public class CollisionDetector {
         CollisionDetector.enemy = enemy;
     }
 
-    public static void setCanvasBoundaries(Canvas canvas) {
-        CollisionDetector.canvas = canvas;
+    public static void setProjectile(Projectile projectile) {
+        CollisionDetector.projectile = projectile;
     }
+
+    /*public static void setCanvas(Canvas canvas) {
+        CollisionDetector.canvas = canvas;
+    }*/
 
 }

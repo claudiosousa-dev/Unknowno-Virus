@@ -1,7 +1,5 @@
 package org.academiadecodigo.cunnilinux.hackermen.map;
 
-import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
-
 public class Position {
 
     private int col;

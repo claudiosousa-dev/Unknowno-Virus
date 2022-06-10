@@ -10,47 +10,58 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Enemy {
 
     private int xPosition;
-    private Picture enemy;
+    private final Picture enemy;
     private Direction direction;
-    private int speed; //Speed of zombie (random from 1 to 3)
+    private double speed; //Speed (double value) of the zombie (random from 0.5 to 2)
 
     public Enemy() {
 
         direction = Direction.randomDirectionType();
         xPosition = (direction == Direction.RIGHT) ? 0 : Canvas.CANVAS_WIDTH - 320;
-        enemy = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.MONSTER_TIER2);
-        speed = RandomGenerator.getRandom(1, 3);
+        enemy = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.MONSTER_TIER1);
+        speed = RandomGenerator.getRandom(0.5, 2.0);
 
     }
 
     public void move() {
+
         switch (direction) {
             case RIGHT:
                 moveRight();
                 break;
             case LEFT:
-            default:
                 moveLeft();
                 break;
+            default:
+                break;
         }
+
     }
 
     private void moveRight() {
 
-        enemy.translate(Canvas.CELL_SIZE, 0.0);
+        enemy.translate(Canvas.CELL_SIZE * speed, 0.0);
         show();
 
     }
 
     private void moveLeft() {
 
-        enemy.translate(-Canvas.CELL_SIZE, 0.0);
+        enemy.translate(-Canvas.CELL_SIZE * speed, 0.0);
         show();
 
     }
 
-    public int[] bounds() {
-        return new int[]{enemy.getX(), enemy.getX() + enemy.getWidth()};
+    public int getX() {
+
+        return enemy.getX();
+
+    }
+
+    public int getRightX() {
+
+        return enemy.getX() + enemy.getWidth();
+
     }
 
     public void show() {

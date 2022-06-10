@@ -7,20 +7,20 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Game {
 
     private Canvas canvas;
-    private Picture background;
     private Hero hero;
     private Enemy enemy;
     private Health health;
 
     private boolean gameOver;
-    private Projectile projectile;
+
     public void init() {
 
         Canvas canvas = new Canvas();
-        health = new Health();
-        background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
-        hero = new Hero(Canvas.CANVAS_WIDTH/2);
+        Picture background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
+
+        hero = new Hero(Canvas.CANVAS_WIDTH / 2);
         enemy = new Enemy();
+        health = new Health();
         gameOver = false;
 
         background.draw();
@@ -35,7 +35,8 @@ public class Game {
 
         while (true) {
 
-            if(CollisionDetector.intersectsEnemy()) {
+            if (CollisionDetector.detectCollisionHeroEnemy()) {
+
                 health.setCounter(health.getHeroHealth() - 1);
 
                 if (health.getHeroHealth() == 0) {
@@ -45,9 +46,18 @@ public class Game {
                 }
             }
 
-            if(CollisionDetector.intersectsEnemy())
+            if (hero.getProjectile() != null && hero.getProjectile().isMoving()) {
 
-            hero.drawProjectile();
+                if (CollisionDetector.detectCollisionBulletEnemy()) {
+
+                    enemy.hide();
+                    hero.getProjectile().hide();
+
+                }
+
+            }
+
+            hero.moveProjectile();
             enemy.move();
 
             try {
@@ -60,14 +70,14 @@ public class Game {
         }
 
 
-
     }
 
     private void initCollisionDetector() {
 
-        CollisionDetector.setCanvasBoundaries(canvas);
+        //CollisionDetector.setCanvas(canvas);
         CollisionDetector.setHero(hero);
         CollisionDetector.setEnemy(enemy);
+        CollisionDetector.setProjectile(hero.getProjectile());
 
     }
 
