@@ -17,8 +17,12 @@ public class Enemy {
         direction = Direction.randomDirectionType();
         speed = RandomGenerator.getRandom(0.5, 2.0);
 
-        enemy = new Picture((direction == Direction.RIGHT) ? 0 : Canvas.CANVAS_WIDTH - 230,
-                Canvas.FLOOR_LEVEL, AssetPaths.MONSTER_TIER2);
+        if (direction == Direction.RIGHT) {
+            enemy = new Picture(0, Canvas.FLOOR_LEVEL, AssetPaths.MONSTER_TIER2_RIGHT);
+        } else {
+            enemy = new Picture(Canvas.CANVAS_WIDTH - 230, Canvas.FLOOR_LEVEL, AssetPaths.MONSTER_TIER2_LEFT);
+        }
+
         enemy.translate(0, -enemy.getHeight());
 
     }
