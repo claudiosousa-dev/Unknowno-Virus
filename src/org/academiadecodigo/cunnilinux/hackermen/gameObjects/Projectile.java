@@ -7,15 +7,19 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Projectile {
 
+    private final static int GUN_LEVEL = 580;
     private final Picture projectile;
     private final Direction direction;
     private boolean moving;
 
     public Projectile(int xPosition, Direction direction) {
 
-        projectile = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.BULLET);
         this.direction = direction;
         moving = true;
+
+        projectile = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLET);
+        //projectile.grow(-2, -2);
+
 
     }
 

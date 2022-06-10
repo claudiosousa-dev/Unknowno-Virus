@@ -21,12 +21,16 @@ public class Hero {
 
     public Hero(int xPosition) {
 
-        heroLeft = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_LEFT);
-        heroRight = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_RIGHT);
         heroInputs = new HeroInputs(new HeroMovement(this));
         direction = Direction.RIGHT;
         dead = false;
         projectile = null;
+
+        heroRight = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_RIGHT);
+        heroRight.translate(0, -heroRight.getHeight());
+
+        heroLeft = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_LEFT);
+        heroLeft.translate(0, -heroLeft.getHeight());
 
     }
 
@@ -60,7 +64,7 @@ public class Hero {
 
         if (projectile == null) {
 
-            projectile = new Projectile(getX(), direction);
+            projectile = new Projectile(direction == Direction.LEFT ? getX() : getRightX(), direction);
             projectile.show();
 
         }
@@ -81,6 +85,8 @@ public class Hero {
 
         }
 
+        show();
+
     }
 
     private void moveRight() {
@@ -97,11 +103,12 @@ public class Hero {
 
         }
 
+        show();
+
     }
 
     private void translate(int distance) {
 
-        show();
         heroLeft.translate(distance, 0);
         heroRight.translate(distance, 0);
 
