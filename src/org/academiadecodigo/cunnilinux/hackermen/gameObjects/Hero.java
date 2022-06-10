@@ -206,8 +206,6 @@ public class Hero {
 
         this.direction = direction;
 
-        Rectangle.intersection();
-
     }
 
     public int getX() {
