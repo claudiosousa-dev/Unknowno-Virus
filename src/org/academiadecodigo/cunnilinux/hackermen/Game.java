@@ -8,6 +8,7 @@ public class Game {
 
     private Canvas canvas;
     private Picture background;
+    private Picture gameOverShow;
     private Hero hero;
     private Enemy enemy;
     private Health health;
@@ -22,6 +23,7 @@ public class Game {
         hero = new Hero(Canvas.CANVAS_WIDTH/2);
         enemy = new Enemy();
         gameOver = false;
+        gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAMEOVER);
 
         background.draw();
         hero.draw();
@@ -41,6 +43,8 @@ public class Game {
                 if (health.getHeroHealth() == 0) {
                     hero.setDead(true);
                     gameOver = true;
+                    enemy.hide();
+                    gameOverShow.draw();
                     break;
                 }
             }
