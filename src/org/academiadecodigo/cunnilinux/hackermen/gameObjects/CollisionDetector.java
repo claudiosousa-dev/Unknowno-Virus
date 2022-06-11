@@ -1,8 +1,9 @@
 package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 
+import org.academiadecodigo.simplegraphics.pictures.Picture;
+
 public class CollisionDetector {
 
-    //private static Canvas canvas;
     private static Hero hero;
     private static Enemy enemy;
 
@@ -13,11 +14,41 @@ public class CollisionDetector {
 
     }
 
-    public static boolean detectCollisionBulletEnemy(Projectile projectile) {
-        return (enemy.getRightX() > projectile.getX() && enemy.getX() < projectile.getRightX()) ||
-                (enemy.getX() < projectile.getRightX() && enemy.getRightX() > projectile.getX());
+    public static boolean detectCollisionBulletEnemy(Bullet bullet, Enemy enemy) {
+
+//        return (enemy.getRightX() > projectile.getX() && enemy.getX() < projectile.getRightX()) ||
+//                (enemy.getX() < projectile.getRightX() && enemy.getRightX() > projectile.getX());
+//
+        return intersects(bullet.getBullet(), enemy.getEnemy());
     }
 
+    public static boolean intersects(Picture rect1, Picture rect2) {
+
+        int rect1Width = rect1.getWidth();
+        int rect1Height = rect1.getHeight();
+        int rect2Width = rect2.getWidth();
+        int rect2Height = rect2.getHeight();
+
+        if (rect2Width <= 0 || rect2Height <= 0 || rect1Width <= 0 ||  rect1Height <= 0) {
+            return false;
+        }
+
+        int rect1X = rect1.getX();
+        int rect1Y = rect1.getY();
+        int rect2X = rect2.getX();
+        int rect2Y = rect2.getY();
+        rect2Width += rect2X;
+        rect2Height += rect2Y;
+        rect1Width += rect1X;
+        rect1Height += rect1Y;
+
+        return ((rect2Width < rect2X || rect2Width > rect1X) &&
+                (rect2Height < rect2Y || rect2Height > rect1Y) &&
+                (rect1Width < rect1X || rect1Width > rect2X) &&
+                (rect1Height < rect1Y ||  rect1Height > rect2Y));
+
+    }
+  
     public static void setHero(Hero hero) {
 
         CollisionDetector.hero = hero;
@@ -29,13 +60,5 @@ public class CollisionDetector {
         CollisionDetector.enemy = enemy;
 
     }
-
-    /*public static void setProjectile(Projectile projectile) {
-        CollisionDetector.projectile = projectile;
-    }*/
-
-    /*public static void setCanvas(Canvas canvas) {
-        CollisionDetector.canvas = canvas;
-    }*/
 
 }

@@ -9,8 +9,6 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-import java.awt.*;
-
 
 public class Hero {
 
@@ -19,14 +17,14 @@ public class Hero {
     private final HeroInputs heroInputs;
     private Direction direction;
     private boolean dead;
-    private Projectile projectile;
+    private Bullet bullet;
 
     public Hero(int xPosition) {
 
         heroInputs = new HeroInputs(new HeroMovement(this));
         direction = Direction.RIGHT;
         dead = false;
-        projectile = null;
+        bullet = null;
 
         heroRight = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_RIGHT);
         heroRight.translate(0, -heroRight.getHeight());
@@ -72,10 +70,10 @@ public class Hero {
 
     public void shoot() {
 
-        if (projectile == null) {
+        if (bullet == null) {
 
-            projectile = new Projectile(direction == Direction.LEFT ? getX() : getRightX(), direction);
-            projectile.show();
+            bullet = new Bullet(direction == Direction.LEFT ? getX() : getRightX(), direction);
+            bullet.show();
 
         }
 
@@ -226,10 +224,14 @@ public class Hero {
 
     }
 
-    public Projectile getProjectile() {
+    public Bullet getBullet() {
 
-        return projectile;
+        return bullet;
 
+    }
+
+    public Picture getHero() {
+        return heroRight;
     }
 }
 

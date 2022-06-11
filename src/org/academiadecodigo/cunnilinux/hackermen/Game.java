@@ -61,13 +61,13 @@ public class Game {
                 }
             }
 
-            if (hero.getProjectile() != null &&
-                    hero.getProjectile().isMoving() &&
-                    CollisionDetector.detectCollisionBulletEnemy(hero.getProjectile())) {
+            if (hero.getBullet() != null &&
+                    hero.getBullet().isMoving() &&
+                    CollisionDetector.detectCollisionBulletEnemy(hero.getBullet(), enemy)) {
 
                     hero.setDead(true);
                     enemy.hide();
-                    hero.getProjectile().hide();
+                    hero.getBullet().hide();
 
                     gameOver = true;
                     gameOverShow.draw();
@@ -77,7 +77,7 @@ public class Game {
 
             try {
 
-                hero.getProjectile().move();
+                hero.getBullet().move();
 
             } catch (NullPointerException ignored) {}
 
