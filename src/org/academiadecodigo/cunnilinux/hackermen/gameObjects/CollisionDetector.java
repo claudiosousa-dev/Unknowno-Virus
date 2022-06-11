@@ -9,13 +9,20 @@ public class CollisionDetector {
 
     public static boolean detectCollisionHeroEnemy() {
 
-        return intersects(hero.getHero(), enemy.getEnemy());
+        boolean checkIntersection = intersects(hero.getHero(), enemy.getEnemy());
+        enemy.grow();
+
+        return checkIntersection;
 
     }
 
     public static boolean detectCollisionBulletEnemy(Bullet bullet) {
 
-        return intersects(bullet.getBullet(), enemy.getEnemy());
+        boolean checkIntersection = intersects(bullet.getBullet(), enemy.getEnemy());
+        bullet.grow();
+        enemy.grow();
+
+        return checkIntersection;
 
     }
 

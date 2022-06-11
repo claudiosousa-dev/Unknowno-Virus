@@ -4,7 +4,6 @@ import org.academiadecodigo.cunnilinux.hackermen.AssetPaths;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 import org.academiadecodigo.cunnilinux.hackermen.utils.RandomGenerator;
-import org.academiadecodigo.simplegraphics.graphics.Rectangle;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Enemy {
@@ -20,18 +19,20 @@ public class Enemy {
         direction = Direction.randomDirectionType();
         speed = RandomGenerator.getRandom(0.5, 2.0);
 
-        if (direction == Direction.RIGHT) {
-            enemy = new Picture(0, Canvas.FLOOR_LEVEL, AssetPaths.MONSTER_TIER2_RIGHT);
-        } else {
-            enemy = new Picture(Canvas.CANVAS_WIDTH - MAX_ENEMY_WIDTH, Canvas.FLOOR_LEVEL, AssetPaths.MONSTER_TIER2_LEFT);
-        }
+        int xPosition = (direction == Direction.RIGHT) ? 0 : Canvas.CANVAS_WIDTH - MAX_ENEMY_WIDTH;
 
+        enemy = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.MONSTER_TIER2);
         enemy.translate(0, -enemy.getHeight());
+
+        grow();
 
     }
 
     public Picture getEnemy() {
+
+        grow();
         return enemy;
+
     }
 
     public void move() {
@@ -67,9 +68,9 @@ public class Enemy {
 
     }
 
-    public int getRightX() {
+    public int getWidth() {
 
-        return enemy.getX() + enemy.getWidth();
+        return enemy.getWidth();
 
     }
 
@@ -82,6 +83,16 @@ public class Enemy {
     public void hide() {
 
         enemy.delete();
+
+    }
+
+    public void grow() {
+
+        if (direction == Direction.LEFT) {
+
+            enemy.grow(-getWidth(), 0);
+
+        }
 
     }
 

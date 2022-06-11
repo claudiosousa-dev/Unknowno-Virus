@@ -20,7 +20,7 @@ public class Game {
 
     private final Picture startMenu;
     private final Picture gameOverShow;
-    public Music music;
+    private Music musicGame;
 
     public Game() {
 
@@ -34,8 +34,10 @@ public class Game {
 
         startMenu = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.STARTMENU);
         gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAMEOVER);
+        musicGame = new Music("resources/duringGame.wav");
 
     }
+
     private void setupMenu() {
         MainMenu menu = new MainMenu();
         menu.menuLoop();
@@ -60,7 +62,6 @@ public class Game {
 
     public void start() {
 
-        Music musicGame = new Music("resources/duringGame.wav");
         musicGame.startMusic(-1);
 
         while (true) {
@@ -71,10 +72,7 @@ public class Game {
 
                 if (health.getHeroHealth() == 0) {
                     hero.setDead(true);
-                    gameOver = true;
-                    musicGame.stop();
                     enemy.hide();
-                    setBackground();
                     break;
                 }
             }
@@ -83,14 +81,10 @@ public class Game {
                     hero.getBullet().isMoving() &&
                     CollisionDetector.detectCollisionBulletEnemy(hero.getBullet())) {
 
-                    hero.setDead(true);
-                    enemy.hide();
-                    musicGame.stop();
-                    hero.getBullet().hide();
-
-                    gameOver = true;
-                    setBackground();
-                    break;
+                hero.setDead(true);
+                enemy.hide();
+                hero.getBullet().hide();
+                break;
 
             }
 
@@ -98,18 +92,29 @@ public class Game {
 
                 hero.getBullet().move();
 
-            } catch (NullPointerException ignored) {}
+            } catch (NullPointerException ignored) {
+            }
 
             enemy.move();
 
             try {
-                Thread.sleep(300);
+                Thread.sleep(100);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
                 throw new RuntimeException(exception);
             }
 
         }
+
+        gameOver();
+
+    }
+
+    public void gameOver() {
+
+        gameOver = true;
+        musicGame.stop();
+        setBackground();
 
     }
 

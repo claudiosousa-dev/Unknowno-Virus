@@ -7,7 +7,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Bullet {
 
-    private final static int GUN_LEVEL = 850;
+    private final static int GUN_LEVEL = 780;
     private final Picture bullet;
     private final Direction direction;
     private boolean moving;
@@ -17,7 +17,8 @@ public class Bullet {
         this.direction = direction;
         moving = true;
 
-        bullet = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLETRIGHT);
+        bullet = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLET);
+        grow();
 
     }
 
@@ -58,20 +59,31 @@ public class Bullet {
 
     }
 
+    public void grow() {
+
+        if (direction == Direction.LEFT) {
+
+            bullet.grow(-getWidth(), 0);
+
+        }
+
+    }
+
     public int getX() {
 
         return bullet.getX();
 
     }
 
-    public int getRightX() {
+    public int getWidth() {
 
-        return bullet.getX() + bullet.getWidth();
+        return bullet.getWidth();
 
     }
 
     public Picture getBullet() {
 
+        grow();
         return bullet;
 
     }
