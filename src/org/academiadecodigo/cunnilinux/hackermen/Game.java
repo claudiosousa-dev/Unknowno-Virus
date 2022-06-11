@@ -2,6 +2,7 @@ package org.academiadecodigo.cunnilinux.hackermen;
 
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
+import org.academiadecodigo.cunnilinux.hackermen.utils.GameOverMenu;
 import org.academiadecodigo.cunnilinux.hackermen.utils.MainMenu;
 import org.academiadecodigo.cunnilinux.hackermen.utils.Music;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -40,6 +41,12 @@ public class Game {
         menu.menuLoop();
 
     }
+
+    private void setBackground() {
+        GameOverMenu menu = new GameOverMenu();
+        menu.menuLoop();
+    }
+
     public void init() {
         setupMenu();
         background.draw();
@@ -67,7 +74,7 @@ public class Game {
                     gameOver = true;
                     musicGame.stop();
                     enemy.hide();
-                    gameOverShow.draw();
+                    setBackground();
                     break;
                 }
             }
@@ -82,7 +89,7 @@ public class Game {
                     hero.getBullet().hide();
 
                     gameOver = true;
-                    gameOverShow.draw();
+                    setBackground();
                     break;
 
             }
