@@ -29,8 +29,5 @@ public class GameOverMenu {
 
             }
         }
-
-        gameOverMusic.stop();
-
     }
 }
