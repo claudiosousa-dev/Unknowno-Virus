@@ -20,7 +20,7 @@ public class Game {
 
     private final Picture startMenu;
     private final Picture gameOverShow;
-    private Music musicGame;
+    private final Music musicGame;
 
 
     public Game() {

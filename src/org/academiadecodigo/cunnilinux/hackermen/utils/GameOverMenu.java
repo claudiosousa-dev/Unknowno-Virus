@@ -6,31 +6,40 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class GameOverMenu {
 
-    private final Picture gameOverBackground = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAME_OVER);
-    private final boolean menu = true;
+    private final Picture gameOverBackground;
+    private boolean menu;
+    private Music gameOverMusic;
+
+    public GameOverMenu() {
+
+        menu = true;
+        gameOverBackground = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAME_OVER);
+        gameOverMusic = new Music(AssetPaths.GAME_OVER_VOICE);
+
+    }
 
     public void menuLoop() {
 
         gameOverBackground.draw();
-        Music gameOverMusic = new Music(AssetPaths.GAME_OVER_VOICE);
         gameOverMusic.startMusic(0);
 
-        for (; menu; this.gameOverBackground.load(AssetPaths.GAME_OVER)) {
+        while(true) {
 
-            this.gameOverBackground.load(AssetPaths.GAME_OVER2);
+            gameOverBackground.load(AssetPaths.GAME_OVER2);
 
             try {
 
                 Thread.sleep(70);
 
-            } catch (InterruptedException var2) {
+            } catch (InterruptedException exception) {
 
-                var2.printStackTrace();
+                exception.printStackTrace();
 
             }
+
         }
 
-        gameOverMusic.stop();
+        //gameOverMusic.stop();
 
     }
 }
