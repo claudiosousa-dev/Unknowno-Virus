@@ -7,7 +7,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Projectile {
 
-    private final static int GUN_LEVEL = 580;
+    private final static int GUN_LEVEL = 740;
     private final Picture projectile;
     private final Direction direction;
     private boolean moving;
@@ -17,7 +17,7 @@ public class Projectile {
         this.direction = direction;
         moving = true;
 
-        projectile = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLET);
+        projectile = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLETLEFT);
 
     }
 
@@ -32,9 +32,9 @@ public class Projectile {
         if (moving) {
 
             if (direction == Direction.RIGHT) {
-                projectile.translate(Canvas.CELL_SIZE, 0);
+                projectile.translate(Canvas.CELL_SIZE * 2, 0);
             } else {
-                projectile.translate(-Canvas.CELL_SIZE, 0);
+                projectile.translate(-Canvas.CELL_SIZE * 2, 0);
             }
 
         }

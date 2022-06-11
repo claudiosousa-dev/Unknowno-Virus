@@ -9,6 +9,8 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
+import java.awt.*;
+
 
 public class Hero {
 
@@ -31,7 +33,6 @@ public class Hero {
 
         heroLeft = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_LEFT);
         heroLeft.translate(0, -heroLeft.getHeight());
-
     }
 
     /*public Picture getHero() {
@@ -46,19 +47,28 @@ public class Hero {
 
     public void show() {
 
-        if (direction == Direction.RIGHT) {
+        if(!dead) {
 
-            heroLeft.delete();
-            heroRight.draw();
+            if (direction == Direction.RIGHT) {
 
+                heroLeft.delete();
+                heroRight.draw();
+
+            } else {
+
+                heroRight.delete();
+                heroLeft.draw();
+
+            }
         } else {
-
             heroRight.delete();
-            heroLeft.draw();
-
+            heroLeft.delete();
         }
 
+
+
     }
+
 
     public void shoot() {
 
