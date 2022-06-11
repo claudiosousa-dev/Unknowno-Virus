@@ -2,6 +2,7 @@ package org.academiadecodigo.cunnilinux.hackermen;
 
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
+import org.academiadecodigo.cunnilinux.hackermen.utils.MainMenu;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -32,9 +33,15 @@ public class Game {
         gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAMEOVER);
 
     }
-
+    private void setupMenu() {
+        MainMenu menu = new MainMenu();
+        //GameMusic.play(AssetPaths.MENU_MUSIC);
+        menu.menuLoop();
+        //GameMusic.stopMusic();
+        //GameMusic.play(AssetPaths.GAME_MUSIC);
+    }
     public void init() {
-        //startMenu.draw(); // Just for testing and need some graphic update!
+        setupMenu();
         background.draw();
         hero.show();
         enemy.show();
@@ -63,7 +70,7 @@ public class Game {
 
             if (hero.getBullet() != null &&
                     hero.getBullet().isMoving() &&
-                    CollisionDetector.detectCollisionBulletEnemy()) {
+                    CollisionDetector.detectCollisionBulletEnemy(hero.getBullet(), enemy)) {
 
                     hero.setDead(true);
                     enemy.hide();
@@ -98,8 +105,6 @@ public class Game {
 
         CollisionDetector.setHero(hero);
         CollisionDetector.setEnemy(enemy);
-        //CollisionDetector.setBullet(hero.getBullet());
-
 
     }
 

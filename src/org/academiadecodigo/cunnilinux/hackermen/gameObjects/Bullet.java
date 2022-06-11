@@ -17,9 +17,7 @@ public class Bullet {
         this.direction = direction;
         moving = true;
 
-        bullet = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLETLEFT);
-
-        //bullet.grow(-bullet.getWidth(), 0);
+        bullet = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLETRIGHT);
 
     }
 
@@ -34,9 +32,13 @@ public class Bullet {
         if (moving) {
 
             if (direction == Direction.RIGHT) {
+
                 bullet.translate(Canvas.CELL_SIZE * 2, 0);
+
             } else {
+
                 bullet.translate(-Canvas.CELL_SIZE * 2, 0);
+
             }
 
         }
