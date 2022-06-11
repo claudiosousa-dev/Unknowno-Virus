@@ -92,7 +92,7 @@ public class Game {
             enemy.move();
 
             try {
-                Thread.sleep(300);
+                Thread.sleep(100);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
                 throw new RuntimeException(exception);

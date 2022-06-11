@@ -15,7 +15,11 @@ public class CollisionDetector {
 
     public static boolean detectCollisionBulletEnemy(Bullet bullet) {
 
-        return intersects(bullet.getBullet(), enemy.getEnemy());
+        boolean checkIntersection = intersects(bullet.getBullet(), enemy.getEnemy());
+        bullet.grow();
+        enemy.grow();
+
+        return checkIntersection;
 
     }
 
