@@ -14,6 +14,7 @@ public class AssetPaths {
     public static final String MONSTER_TIER2_RIGHT = "resources/monsterTier2Right.png";
     public static final String BOSS1LEFT = "resources/boss1Left.png";
     public static final String BOSS1RIGHT = "resources/boss1Right.png";
+    public static final String BOSS2FINAL = "resources/bossfinalsopasandmariana.png";
     public static final String BULLET2 = "resources/bullet2.png";
     public static final String BULLET_FIRE = "resources/bulletFire.png";
     public static final String HEALTH = "resources/health.png";
