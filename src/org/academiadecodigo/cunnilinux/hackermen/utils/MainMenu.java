@@ -13,6 +13,8 @@ public class MainMenu {
 
         public void menuLoop() {
             this.background.draw();
+            Music music = new Music("resources/StartMenuMusic.wav");
+            music.startMusic(-1);
 
             for(; this.menu; this.background.load("resources/STARTMENU2WHITE.png")) {
                 this.background.load("resources/STARTMENU2RED.png");
@@ -25,6 +27,7 @@ public class MainMenu {
             }
 
             this.background.delete();
+            music.stop();
         }
 
         void setMenu(boolean var1) {

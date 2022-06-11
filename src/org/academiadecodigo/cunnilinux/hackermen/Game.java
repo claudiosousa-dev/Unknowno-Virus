@@ -3,6 +3,7 @@ package org.academiadecodigo.cunnilinux.hackermen;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.cunnilinux.hackermen.utils.MainMenu;
+import org.academiadecodigo.cunnilinux.hackermen.utils.Music;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
@@ -18,6 +19,7 @@ public class Game {
 
     private final Picture startMenu;
     private final Picture gameOverShow;
+    public Music music;
 
     public Game() {
 
@@ -35,10 +37,8 @@ public class Game {
     }
     private void setupMenu() {
         MainMenu menu = new MainMenu();
-        //GameMusic.play(AssetPaths.MENU_MUSIC);
         menu.menuLoop();
-        //GameMusic.stopMusic();
-        //GameMusic.play(AssetPaths.GAME_MUSIC);
+
     }
     public void init() {
         setupMenu();
@@ -50,6 +50,7 @@ public class Game {
         initCollisionDetector();
 
     }
+
 
     public void start() {
 
