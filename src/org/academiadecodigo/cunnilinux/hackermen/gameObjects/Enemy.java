@@ -38,6 +38,7 @@ public class Enemy {
     public void move() {
 
         switch (direction) {
+
             case RIGHT:
                 moveRight();
                 break;
@@ -46,6 +47,7 @@ public class Enemy {
                 break;
             default:
                 break;
+
         }
 
     }

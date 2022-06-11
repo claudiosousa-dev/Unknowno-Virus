@@ -32,8 +32,8 @@ public class Game {
         health = new Health();
         gameOver = false;
 
-        startMenu = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.STARTMENU);
-        gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAMEOVER);
+        startMenu = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.START_MENU_WHITE);
+        gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAME_OVER);
         musicGame = new Music(AssetPaths.START_MENU_MUSIC);
 
     }
