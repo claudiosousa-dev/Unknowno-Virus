@@ -6,7 +6,6 @@ public class CollisionDetector {
 
     private static Hero hero;
     private static Enemy enemy;
-    private static Bullet bullet;
 
     public static boolean detectCollisionHeroEnemy() {
 
@@ -14,19 +13,9 @@ public class CollisionDetector {
 
     }
 
-    public static boolean detectCollisionBulletEnemy(Bullet bulllet, Enemy enemy) {
+    public static boolean detectCollisionBulletEnemy(Bullet bullet) {
 
-        if (bullet != null) {
-
-            return (enemy.getRightX() > bullet.getX() && enemy.getX() < bullet.getRightX()) ||
-                    (enemy.getX() < bullet.getRightX() && enemy.getRightX() > bullet.getX());
-            //return intersects(bullet.getBullet(), enemy.getEnemy());
-
-        } else {
-
-            return false;
-
-        }
+        return intersects(bullet.getBullet(), enemy.getEnemy());
 
     }
 
@@ -69,9 +58,4 @@ public class CollisionDetector {
 
     }
 
-    public static void setBullet(Bullet bullet) {
-
-        CollisionDetector.bullet = bullet;
-
-    }
 }

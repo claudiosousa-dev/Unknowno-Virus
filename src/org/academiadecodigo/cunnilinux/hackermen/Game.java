@@ -71,7 +71,7 @@ public class Game {
 
             if (hero.getBullet() != null &&
                     hero.getBullet().isMoving() &&
-                    CollisionDetector.detectCollisionBulletEnemy(hero.getBullet(), enemy)) {
+                    CollisionDetector.detectCollisionBulletEnemy(hero.getBullet())) {
 
                     hero.setDead(true);
                     enemy.hide();
