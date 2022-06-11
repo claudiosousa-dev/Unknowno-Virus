@@ -13,8 +13,8 @@ public class GameOverMenu {
 
     public void menuLoop() {
         this.gameOverBackground.draw();
-        Music gameOverMusic = new Music("resources/StartMenuMusic.wav");
-        gameOverMusic.startMusic(-1);
+        Music gameOverMusic = new Music("resources/gameovervoice.wav");
+        gameOverMusic.startMusic(0);
 
         for (; this.menu; this.gameOverBackground.load("resources/gameover.png")) {
             this.gameOverBackground.load("resources/gameover2.png");

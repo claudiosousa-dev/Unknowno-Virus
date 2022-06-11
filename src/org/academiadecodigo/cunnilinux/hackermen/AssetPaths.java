@@ -13,7 +13,7 @@ public class AssetPaths {
     public static final String MONSTER_TIER2 = "resources/monsterTier2.png";
     public static final String BOSS1_LEFT = "resources/boss1Left.png";
     public static final String BOSS1_RIGHT = "resources/boss1Right.png";
-    public static final String BOSS2FINAL = "resources/bossfinalsopasandmariana.png";
+    public static final String BOSS2FINAL = "resources/bossFinalSopasMariana.png";
     public static final String HEALTH = "resources/health.png";
     public static final String GAMEOVER = "resources/gameover.png";
 

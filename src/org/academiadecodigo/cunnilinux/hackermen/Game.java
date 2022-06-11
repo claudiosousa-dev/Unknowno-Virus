@@ -22,6 +22,7 @@ public class Game {
     private final Picture gameOverShow;
     private Music musicGame;
 
+
     public Game() {
 
         canvas = new Canvas();
