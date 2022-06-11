@@ -12,9 +12,12 @@ public class AssetPaths {
     public static final String MONSTER_TIER2 = "resources/monsterTier2.png";
     public static final String BOSS1_LEFT = "resources/boss1Left.png";
     public static final String BOSS1_RIGHT = "resources/boss1Right.png";
-    public static final String BOSS_FINAL = "resources/bossFinalSopasMariana.png.png";
+    public static final String BOSS_FINAL = "resources/bossFinalSopasMariana.png";
     public static final String HEALTH = "resources/health.png";
     public static final String GAME_OVER = "resources/gameover.png";
     public static final String START_MENU_MUSIC = "resources/StartMenuMusic.wav";
+    public static final String DURING_GAME_MUSIC = "resources/duringGame.wav";
+
+
 
 }

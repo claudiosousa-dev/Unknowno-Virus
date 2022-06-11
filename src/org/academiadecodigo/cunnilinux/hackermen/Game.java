@@ -22,6 +22,7 @@ public class Game {
     private final Picture gameOverShow;
     private Music musicGame;
 
+
     public Game() {
 
         canvas = new Canvas();
@@ -34,7 +35,7 @@ public class Game {
 
         startMenu = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.START_MENU_WHITE);
         gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAME_OVER);
-        musicGame = new Music(AssetPaths.START_MENU_MUSIC);
+        musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
 
     }
 
