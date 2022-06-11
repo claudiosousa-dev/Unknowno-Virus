@@ -35,11 +35,13 @@ public class Game {
         gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAMEOVER);
 
     }
+
     private void setupMenu() {
         MainMenu menu = new MainMenu();
         menu.menuLoop();
 
     }
+
     public void init() {
         setupMenu();
         background.draw();
@@ -64,10 +66,9 @@ public class Game {
 
                 if (health.getHeroHealth() == 0) {
                     hero.setDead(true);
-                    gameOver = true;
-                    musicGame.stop();
                     enemy.hide();
-                    gameOverShow.draw();
+
+                    musicGame.stop();
                     break;
                 }
             }
@@ -76,14 +77,12 @@ public class Game {
                     hero.getBullet().isMoving() &&
                     CollisionDetector.detectCollisionBulletEnemy(hero.getBullet())) {
 
-                    hero.setDead(true);
-                    enemy.hide();
-                    musicGame.stop();
-                    hero.getBullet().hide();
+                hero.setDead(true);
+                enemy.hide();
+                hero.getBullet().hide();
 
-                    gameOver = true;
-                    gameOverShow.draw();
-                    break;
+                musicGame.stop();
+                break;
 
             }
 
@@ -91,7 +90,8 @@ public class Game {
 
                 hero.getBullet().move();
 
-            } catch (NullPointerException ignored) {}
+            } catch (NullPointerException ignored) {
+            }
 
             enemy.move();
 
@@ -103,6 +103,15 @@ public class Game {
             }
 
         }
+
+        gameOver();
+
+    }
+
+    public void gameOver() {
+
+        gameOver = true;
+        gameOverShow.draw();
 
     }
 
