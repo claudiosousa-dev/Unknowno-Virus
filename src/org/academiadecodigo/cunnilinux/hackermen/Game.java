@@ -34,22 +34,26 @@ public class Game {
 
         startMenu = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.STARTMENU);
         gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAMEOVER);
-        musicGame = new Music("resources/duringGame.wav");
+        musicGame = new Music(AssetPaths.START_MENU_MUSIC);
 
     }
 
     private void setupMenu() {
+
         MainMenu menu = new MainMenu();
         menu.menuLoop();
 
     }
 
     private void setBackground() {
+
         GameOverMenu menu = new GameOverMenu();
         menu.menuLoop();
+
     }
 
     public void init() {
+
         setupMenu();
         background.draw();
         hero.show();
@@ -71,9 +75,11 @@ public class Game {
                 health.setCounter(health.getHeroHealth() - 1);
 
                 if (health.getHeroHealth() == 0) {
+
                     hero.setDead(true);
                     enemy.hide();
                     break;
+
                 }
             }
 

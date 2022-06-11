@@ -16,5 +16,6 @@ public class AssetPaths {
     public static final String BOSS2FINAL = "resources/bossfinalsopasandmariana.png";
     public static final String HEALTH = "resources/health.png";
     public static final String GAMEOVER = "resources/gameover.png";
+    public static final String START_MENU_MUSIC = "resources/StartMenuMusic.wav";
 
 }
