@@ -78,6 +78,7 @@ public class Game {
 
                     hero.setDead(true);
                     enemy.hide();
+                    musicGame.stop();
                     hero.getBullet().hide();
 
                     gameOver = true;
