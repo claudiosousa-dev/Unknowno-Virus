@@ -46,13 +46,15 @@ public class Game {
         hero.show();
         enemy.show();
         health.show();
-
         initCollisionDetector();
 
     }
 
 
     public void start() {
+
+        Music musicGame = new Music("resources/duringGame.wav");
+        musicGame.startMusic(-1);
 
         while (true) {
 
@@ -63,6 +65,7 @@ public class Game {
                 if (health.getHeroHealth() == 0) {
                     hero.setDead(true);
                     gameOver = true;
+                    musicGame.stop();
                     enemy.hide();
                     gameOverShow.draw();
                     break;
@@ -75,6 +78,7 @@ public class Game {
 
                     hero.setDead(true);
                     enemy.hide();
+                    musicGame.stop();
                     hero.getBullet().hide();
 
                     gameOver = true;
