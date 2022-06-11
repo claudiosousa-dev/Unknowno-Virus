@@ -68,6 +68,7 @@ public class Game {
 
             try {
 
+                assert hero.getProjectile() != null;
                 hero.getProjectile().move();
 
             } catch (NullPointerException ignored) {
