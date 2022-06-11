@@ -19,6 +19,8 @@ public class Bullet {
 
         bullet = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLETLEFT);
 
+        //bullet.grow(-bullet.getWidth(), 0);
+
     }
 
     public boolean isMoving() {

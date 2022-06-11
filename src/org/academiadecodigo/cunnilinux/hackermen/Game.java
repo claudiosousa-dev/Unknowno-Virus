@@ -98,7 +98,7 @@ public class Game {
 
         CollisionDetector.setHero(hero);
         CollisionDetector.setEnemy(enemy);
-        CollisionDetector.setBullet(hero.getBullet());
+        //CollisionDetector.setBullet(hero.getBullet());
 
 
     }
