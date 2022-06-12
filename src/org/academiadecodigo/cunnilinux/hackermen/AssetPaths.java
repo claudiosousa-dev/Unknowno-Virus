@@ -4,7 +4,7 @@ public class AssetPaths {
 
     public static final String BACKGROUND_LEVEL1 = "resources/background1.jpg";
     public static final String BACKGROUND_LEVEL2 = "resources/background2.jpg";
-    public static final String START_MENU_WHITE = "resources/startMenuWhite.png";
+    public static final String START_MENU_WHITE = "resources/startMenuWhite2.png";
     public static final String START_MENU_RED = "resources/startMenuRed.png";
     public static final String VICTORY_MENU = "resources/victoryBackground.jpeg";
     public static final String HERO_LEFT = "resources/heroLeft.png";
