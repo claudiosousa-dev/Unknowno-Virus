@@ -9,25 +9,26 @@
         <property name="build.dir" value="build" />
         <property name="classes.dir" value="${build.dir}/classes" />
         <property name="lib.dir" value="lib" />
-        <property name="resources.dir" value="resources" />
+        <property name="resources.dir" value="resources/" />
         <path id="classpath">
             <fileset dir="${lib.dir}" includes="**/*.jar" />
         </path>
     </target>
 
-    <!-- Removes the build directory -->
+    <!-- Removes the build directory
     <target name="clean" description="Clean up project" depends="init">
         <delete dir="${build.dir}" />
     </target>
+    -->
 
     <!-- Creates the build directories to hold JAR and Class files -->
-    <target name="prepare" description="Creates the build and classes directories" depends="clean">
+    <target name="prepare" description="Creates the build and classes directories" depends="init">
         <mkdir dir="${classes.dir}" />
     </target>
 
     <!-- Compiles the source code -->
     <target name="compile" description="Compiles the source code" depends="prepare">
-        <javac includeantruntime="false" srcdir="${src.dir}" destdir="${classes.dir}" source="1.8" target="1.8">
+        <javac includeantruntime="true" srcdir="${src.dir}" destdir="${classes.dir}" source="1.8" target="1.8">
             <classpath refid="classpath"/>
         </javac>
     </target>
@@ -39,7 +40,7 @@
                 <attribute name="Main-Class" value="${main.class}" />
                 <attribute name="Class-Path" value="${lib.dir} ${resources.dir}" />
             </manifest>
-            <zipgroupfileset dir="${lib.dir}" includes="*.jar"/>
+            <zipgroupfileset dir="${lib.dir}" includes="*.jar" />
             <fileset dir=".">
                 <include name="**/${resources.dir}/**" />
             </fileset>

@@ -21,21 +21,17 @@ public class GameOverMenu {
         gameOverBackground.draw();
         gameOverMusic.startMusic(0);
 
-        while (true) {
+        try {
 
-            gameOverBackground.load(AssetPaths.GAME_OVER2);
+            Thread.sleep(3000);
 
-            try {
+        } catch (InterruptedException exception) {
 
-                Thread.sleep(70);
-
-            } catch (InterruptedException exception) {
-
-                exception.printStackTrace();
-
-            }
+            exception.printStackTrace();
 
         }
+
+        //gameOverBackground.load(AssetPaths.GAME_OVER2);
 
     }
 }

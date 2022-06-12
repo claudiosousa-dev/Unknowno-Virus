@@ -4,9 +4,9 @@ import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 
 public class EnemyFactory {
 
-    public static Enemy spawnEnemy(int enemyCounter) {
+    public static Zombie spawnEnemy(int enemyCounter) {
 
-        Enemy enemy;
+        Zombie enemy;
 
         if ((enemyCounter % 2) == 0) {
             enemy = new Zombie(Direction.RIGHT);

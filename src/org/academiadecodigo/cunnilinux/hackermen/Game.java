@@ -2,8 +2,8 @@ package org.academiadecodigo.cunnilinux.hackermen;
 
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Boss;
-import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Enemy;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.EnemyFactory;
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Zombie;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 import org.academiadecodigo.cunnilinux.hackermen.utils.GameOverMenu;
@@ -19,8 +19,8 @@ public class Game {
     private Picture victoryBackground;
     private Hero hero;
     private Bullet[] bullets;
-    private Enemy[] enemies;
-    private Enemy[] bosses;
+    private Zombie[] enemies;
+    private Boss[] bosses;
     private final int spawnedEnemies = 2;
     private int enemyDeadCounter;
     private Health health;
@@ -66,14 +66,14 @@ public class Game {
 
             }
 
-            if (collisionDetector.checkHeroEnemies() || collisionDetector.checkHeroBoss()) {
+            if (collisionDetector.checkHeroEnemies() || collisionDetector.checkHeroBosses()) {
 
                 enemyDeadCounter--;
                 health.setCounter(health.getHealth() - 1);
 
             }
 
-            if (collisionDetector.checkEnemies() || collisionDetector.checkBoss()) {
+            if (collisionDetector.checkEnemies() || collisionDetector.checkBosses()) {
 
                 enemyDeadCounter--;
 
@@ -89,7 +89,13 @@ public class Game {
             // Next level
             if (enemyDeadCounter == 0) {
 
-                win = true;
+                if (gameLevel == 2) {
+
+                    win = true;
+                    gameOver = true;
+
+                }
+
                 break;
 
             }
@@ -100,8 +106,8 @@ public class Game {
 
         if (gameOver) {
 
-            win = true;
             gameOver();
+            return;
 
         }
 
@@ -117,15 +123,14 @@ public class Game {
         switch (gameLevel) {
 
             case 1:
-                for (Enemy enemy : enemies) {
+                for (Zombie enemy : enemies) {
 
                     enemy.move();
 
                 }
                 break;
             case 2:
-
-                for (Enemy boss : bosses) {
+                for (Boss boss : bosses) {
 
                     boss.move();
 
@@ -166,14 +171,14 @@ public class Game {
 
             case 1:
                 background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL1);
-                musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
-                musicGame.startMusic(-1);
+                //musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
+                //musicGame.startMusic(-1);
 
                 health = new Health();
                 hero = new Hero(Canvas.CANVAS_WIDTH / 2);
                 bullets = hero.getBullets();
 
-                enemies = new Enemy[spawnedEnemies];
+                enemies = new Zombie[spawnedEnemies];
                 for (int i = 0; i < spawnedEnemies; i++) {
 
                     enemies[i] = EnemyFactory.spawnEnemy(i);
@@ -186,14 +191,19 @@ public class Game {
                 hero.setX(Canvas.CANVAS_WIDTH / 2);
                 bosses = new Boss[spawnedEnemies];
 
-
                 bosses[0] = new Boss(Direction.LEFT, AssetPaths.BOSS_FINAL);
                 bosses[1] = new Boss(Direction.RIGHT, AssetPaths.BOSS1_RIGHT);
 
                 enemyDeadCounter = spawnedEnemies;
 
-                break;
+                for (Bullet bullet : bullets) {
 
+                    bullet.setMoving(false);
+                    bullet.hide();
+
+                }
+
+                break;
 
         }
 
@@ -202,10 +212,9 @@ public class Game {
     public void setupCollisionDetector(int gameLevel) {
 
         switch (gameLevel) {
+
             case 1:
-
                 collisionDetector = new CollisionDetector(hero, enemies);
-
                 break;
             case 2:
                 collisionDetector = new CollisionDetector(hero, bosses);
@@ -231,6 +240,7 @@ public class Game {
             case 2:
                 bosses[0].show();
                 bosses[1].show();
+
         }
 
     }
@@ -238,13 +248,19 @@ public class Game {
     public void gameOver() throws InterruptedException {
 
         hero.setDead(true);
-        musicGame.stop();
-        setBackground();
+        //musicGame.stop();
 
         if (win) {
+
             victoryGame();
+
+        } else {
+
+            setBackground();
+
         }
-        Thread.sleep(1000);
+        Thread.sleep(60000);
+
         System.exit(0);
 
     }
@@ -253,8 +269,8 @@ public class Game {
 
         victoryBackground = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.VICTORY_MENU);
         victoryBackground.draw();
-        musicOnVictory = new Music(AssetPaths.VICTORY_MENU_SOUND_AND_VOICE);
-        musicOnVictory.startMusic(0);
+        //musicOnVictory = new Music(AssetPaths.VICTORY_MENU_SOUND_AND_VOICE);
+        //musicOnVictory.startMusic(0);
 
     }
 

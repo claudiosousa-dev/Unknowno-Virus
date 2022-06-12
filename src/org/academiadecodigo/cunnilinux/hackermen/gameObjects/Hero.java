@@ -29,7 +29,7 @@ public class Hero {
         direction = Direction.RIGHT;
         dead = false;
         bullets = BulletFactory.createBullets();
-        bulletCounter = -1;
+        bulletCounter = 0;
 
         heroRight = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_RIGHT);
         heroRight.translate(0, -heroRight.getHeight());
@@ -64,16 +64,17 @@ public class Hero {
 
         if (bulletCounter < bullets.length) {
 
-            Bullet bullet = bullets[++bulletCounter];
+            Bullet bullet = bullets[bulletCounter];
 
             bullet.setDirection(direction);
-            bullet.setMoving();
+            bullet.setMoving(true);
             bullet.grow();
             bullet.setX(direction == Direction.LEFT ? getX() : getRightX());
             bullet.show();
 
             bulletSound = new Music(AssetPaths.BULLET_SOUND);
             bulletSound.startMusic(0);
+            bulletCounter++;
 
         }
 

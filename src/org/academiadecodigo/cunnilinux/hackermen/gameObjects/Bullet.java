@@ -87,9 +87,9 @@ public class Bullet {
 
     }
 
-    public void setMoving() {
+    public void setMoving(boolean moving) {
 
-        moving = true;
+        this.moving = moving;
 
     }
 

@@ -1,30 +1,31 @@
 package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 
 import org.academiadecodigo.cunnilinux.hackermen.AssetPaths;
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Boss;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Enemy;
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Zombie;
 import org.academiadecodigo.cunnilinux.hackermen.utils.Music;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class CollisionDetector {
 
     private final Hero hero;
-    private final Enemy[] enemies;
-    private final Enemy boss;
+    private final Zombie[] enemies;
+    private final Boss[] bosses;
     private final Bullet[] bullets;
     private Music zombieDie;
-    private Music bossDie;
 
-    public CollisionDetector(Hero hero, Enemy[] enemies) {
+    public CollisionDetector(Hero hero, Zombie[] enemies) {
         this.hero = hero;
         this.enemies = enemies;
-        boss = null;
+        bosses = null;
         bullets = hero.getBullets();
     }
 
-    public CollisionDetector(Hero hero, Enemy boss) {
+    public CollisionDetector(Hero hero, Boss[] bosses) {
         this.hero = hero;
         enemies = null;
-        this.boss = boss;
+        this.bosses = bosses;
         bullets = hero.getBullets();
     }
 
@@ -38,7 +39,7 @@ public class CollisionDetector {
 
         }
 
-        for (Enemy enemy : enemies) {
+        for (Zombie enemy : enemies) {
 
             if (!enemy.isDead() && intersects(hero.getHero(), enemy.getEnemy())) {
 
@@ -57,15 +58,44 @@ public class CollisionDetector {
 
     }
 
-    public boolean checkHeroBoss() {
+    public boolean checkHeroBosses() {
 
-        if (boss == null) {
+        boolean checkIntersection = false;
+
+        if (bosses == null) {
 
             return false;
 
         }
 
-        return intersects(hero.getHero(), boss.getEnemy());
+        for (Bullet bullet : bullets) {
+
+            if (bullet.isMoving()) {
+
+                for (Boss boss : bosses) {
+
+                    if (!boss.isDead() && intersects(bullet.getBullet(), boss.getEnemy())) {
+
+                        checkIntersection = true;
+                        bullet.hide();
+                        boss.dead();
+
+                        zombieDie = new Music(AssetPaths.BOSS_DIE_SOUND);
+                        zombieDie.startMusic(0);
+
+                    } else {
+
+                        bullet.grow();
+
+                    }
+
+                }
+
+            }
+
+        }
+
+        return checkIntersection;
 
     }
 
@@ -83,7 +113,7 @@ public class CollisionDetector {
 
             if (bullet.isMoving()) {
 
-                for (Enemy enemy : enemies) {
+                for (Zombie enemy : enemies) {
 
                     if (!enemy.isDead() && intersects(bullet.getBullet(), enemy.getEnemy())) {
 
@@ -111,11 +141,11 @@ public class CollisionDetector {
 
     }
 
-    public boolean checkBoss() throws InterruptedException {
+    public boolean checkBosses() throws InterruptedException {
 
         boolean checkIntersection = false;
 
-        if (boss == null) {
+        if (bosses == null) {
 
             return false;
 
@@ -125,24 +155,30 @@ public class CollisionDetector {
 
             if (bullet.isMoving()) {
 
-                checkIntersection = intersects(bullet.getBullet(), boss.getEnemy());
+                for (Boss boss : bosses) {
+
+                    if (!boss.isDead() && intersects(bullet.getBullet(), boss.getEnemy())) {
+
+                        checkIntersection = true;
+                        bullet.hide();
+                        boss.dead();
+
+                        zombieDie = new Music(AssetPaths.BOSS_DIE_SOUND);
+                        zombieDie.startMusic(0);
+
+                    } else {
+
+                        bullet.grow();
+
+                    }
+
+                }
 
             }
 
         }
 
-        if (checkIntersection) {
-
-            bossDie = new Music(AssetPaths.BOSS_DIE_SOUND);
-            bossDie.startMusic(-1);
-
-            Thread.sleep(2000);
-            bossDie.stop();
-
-            return true;
-        }
-
-        return false;
+        return checkIntersection;
 
     }
 
