@@ -9,80 +9,88 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class MainMenu {
-        private static final int KEY_ESC = 27;
-        private boolean menu = true;
-        private final Picture background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.START_MENU_WHITE);
-        private MenuInput menuInput = new MenuInput(new MenuLogic(this));
+    private static final int KEY_ESC = 27;
+    private boolean menu = true;
+    private final Picture background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.START_MENU_WHITE);
+    private MenuInput menuInput = new MenuInput(new MenuLogic(this));
 
-        public void menuLoop() {
+    public void menuLoop() {
 
-            this.background.draw();
-            Music music = new Music(AssetPaths.START_MENU_MUSIC);
-            music.startMusic(-1);
+        background.draw();
+        Music music = new Music(AssetPaths.START_MENU_MUSIC);
+        music.startMusic(-1);
 
-            for(; this.menu; this.background.load(AssetPaths.START_MENU_WHITE)) {
+        while (menu) {
 
-                this.background.load(AssetPaths.START_MENU_RED);
+            background.load(AssetPaths.START_MENU_RED);
 
-                try {
+            try {
 
-                    Thread.sleep(70);
+                Thread.sleep(70);
 
-                } catch (InterruptedException var2) {
+            } catch (InterruptedException e) {
 
-                    var2.printStackTrace();
+                e.printStackTrace();
 
-                }
             }
 
-            this.background.delete();
-            music.stop();
-        }
-
-        void setMenu(boolean var1) {
-
-            this.menu = var1;
+            background.load(AssetPaths.START_MENU_WHITE);
 
         }
 
-        private class MenuInput {
-            public MenuInput(KeyboardHandler var2) {
+        background.delete();
+        music.stop();
+    }
 
-                Keyboard var3 = new Keyboard(var2);
-                KeyboardEvent var4 = new KeyboardEvent();
-                KeyboardEvent var5 = new KeyboardEvent();
+    void setMenu(boolean menu) {
 
-                var4.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-                var5.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
-                var4.setKey(KEY_ESC);
-                var5.setKey(KeyboardEvent.KEY_L);
-                var3.addEventListener(var4);
-                var3.addEventListener(var5);
-            }
-        }
+        this.menu = menu;
 
-        private class MenuLogic implements KeyboardHandler {
-            private MainMenu menu;
+    }
 
-            MenuLogic(MainMenu var2) {
+    private class MenuInput {
+        public MenuInput(KeyboardHandler menuLogic) {
 
-                this.menu = var2;
+            Keyboard keyboard = new Keyboard(menuLogic);
+            KeyboardEvent keyESC = new KeyboardEvent();
+            KeyboardEvent KeyL = new KeyboardEvent();
 
-            }
+            keyESC.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
+            KeyL.setKeyboardEventType(KeyboardEventType.KEY_PRESSED);
 
-            public void keyPressed(KeyboardEvent var1) {
+            keyESC.setKey(KEY_ESC);
+            KeyL.setKey(KeyboardEvent.KEY_L);
 
-                if (var1.getKey() == KEY_ESC) {
-
-                    this.menu.setMenu(false);
-                }
-
-                if (var1.getKey() == KeyboardEvent.KEY_L) {
-
-                    System.exit(0);
-                }
-
-            }
-            public void keyReleased(KeyboardEvent var1) {}
+            keyboard.addEventListener(keyESC);
+            keyboard.addEventListener(KeyL);
         }
     }
+
+    private class MenuLogic implements KeyboardHandler {
+        private MainMenu menu;
+
+        MenuLogic(MainMenu menu) {
+
+            this.menu = menu;
+
+        }
+
+        public void keyPressed(KeyboardEvent keyboardEvent) {
+
+            if (keyboardEvent.getKey() == KEY_ESC) {
+
+                menu.setMenu(false);
+            }
+
+            if (keyboardEvent.getKey() == KeyboardEvent.KEY_L) {
+
+                System.exit(0);
+
+            }
+
+        }
+
+        public void keyReleased(KeyboardEvent keyboardEvent) {}
+
+    }
+}

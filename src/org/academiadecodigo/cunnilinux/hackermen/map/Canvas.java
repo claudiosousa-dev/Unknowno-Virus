@@ -16,7 +16,6 @@ public class Canvas {
     public Canvas() {
 
         canvas = new Rectangle(PADDING, PADDING, CANVAS_WIDTH, CANVAS_HEIGHT);
-        canvas.fill();
 
     }
 

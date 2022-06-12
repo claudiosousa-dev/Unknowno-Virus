@@ -70,11 +70,6 @@ public class Game {
 
     }
 
-    /**
-     * Starts the animation
-     *
-     * @throws InterruptedException
-     */
     public void start() throws InterruptedException {
 
         musicGame.startMusic(-1);
@@ -82,10 +77,14 @@ public class Game {
         while (true) {
 
             try {
+
                 Thread.sleep(delay);
+
             } catch (InterruptedException exception) {
+
                 exception.printStackTrace();
                 throw new RuntimeException(exception);
+
             }
 
             if (collisionDetector.checkHero()) {
@@ -101,8 +100,10 @@ public class Game {
 
             }
 
-            if(checkEnd()) {
+            if (checkEnd()) {
+
                 break;
+
             }
 
             moveAll();
@@ -123,7 +124,9 @@ public class Game {
         }
 
         for (Enemy enemy : enemies) {
+
             enemy.move();
+
         }
 
     }
