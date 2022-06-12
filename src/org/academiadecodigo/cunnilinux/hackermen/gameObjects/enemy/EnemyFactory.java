@@ -1,18 +1,9 @@
-package org.academiadecodigo.cunnilinux.hackermen.gameObjects.factory;
+package org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy;
 
-import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Enemy;
 import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 
-/**
- * A factory of different types of Enemies
- */
 public class EnemyFactory {
 
-    /**
-     * Manufactures new random enemies
-     *
-     * @return a newly instantiated enemy
-     */
     public static Enemy spawnEnemy(int enemyCounter) {
 
         Enemy enemy;
