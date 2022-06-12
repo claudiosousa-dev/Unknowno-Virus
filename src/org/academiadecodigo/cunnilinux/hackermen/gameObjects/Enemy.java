@@ -13,9 +13,11 @@ public class Enemy {
     private final Picture enemy;
     private final Direction direction;
     private final double speed;
+    private boolean dead;
 
     public Enemy(Direction direction) {
 
+        dead = false;
         this.direction = direction;
         speed = RandomGenerator.getRandom(0.5, 2.0);
 
@@ -98,4 +100,14 @@ public class Enemy {
 
     }
 
+    public boolean isDead() {
+        return dead;
+    }
+
+    public void dead() {
+
+        this.dead = true;
+        hide();
+
+    }
 }

@@ -45,8 +45,6 @@ public class Game {
         //canvas = new Canvas();
         background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
 
-        collisionDetector = new CollisionDetector(hero, enemies);
-
         hero = new Hero(Canvas.CANVAS_WIDTH / 2);
         health = new Health();
 
@@ -68,6 +66,9 @@ public class Game {
 
         }
 
+        collisionDetector = new CollisionDetector(hero, enemies);
+        hero.setCollisionDetector(collisionDetector);
+
     }
 
     /**
@@ -88,33 +89,24 @@ public class Game {
                 throw new RuntimeException(exception);
             }
 
-            if (CollisionDetector.detectCollisionHeroEnemy()) {
+            if (collisionDetector.checkHero()) {
 
                 health.setCounter(health.getHeroHealth() - 1);
-
                 if (health.getHeroHealth() == 0) {
 
-                    hero.setDead(true);
-                    enemy.hide();
                     break;
 
                 }
             }
 
-            if (hero.getBullet() != null &&
-                    hero.getBullet().isMoving() &&
-                    CollisionDetector.detectCollisionBulletEnemy(hero.getBullet())) {
+            if (collisionDetector.checkEnemies()) {
 
-                hero.setDead(true);
-                enemy.hide();
                 hero.getBullet().hide();
                 break;
 
             }
 
             moveAll();
-
-
 
         }
 
@@ -140,6 +132,7 @@ public class Game {
     public void gameOver() {
 
         gameOver = true;
+        hero.setDead(true);
         musicGame.stop();
         setBackground();
 

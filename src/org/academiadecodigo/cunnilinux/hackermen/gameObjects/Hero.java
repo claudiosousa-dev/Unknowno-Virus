@@ -18,6 +18,7 @@ public class Hero {
     private Direction direction;
     private boolean dead;
     private Bullet bullet;
+    private CollisionDetector collisionDetector;
 
     public Hero(int xPosition) {
 
@@ -74,6 +75,7 @@ public class Hero {
 
             bullet = new Bullet(direction == Direction.LEFT ? getX() : getRightX(), direction);
             bullet.show();
+            collisionDetector.setBullet(bullet);
 
         }
 
@@ -231,7 +233,15 @@ public class Hero {
     }
 
     public Picture getHero() {
+
         return heroRight;
+
+    }
+
+    public void setCollisionDetector(CollisionDetector collisionDetector) {
+
+        this.collisionDetector = collisionDetector;
+
     }
 }
 

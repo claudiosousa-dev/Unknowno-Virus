@@ -5,27 +5,61 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class CollisionDetector {
 
     private final Hero hero;
-    private Enemy[] enemies;
+    private final Enemy[] enemies;
+    private Bullet bullet;
 
     public CollisionDetector(Hero hero, Enemy[] enemies) {
         this.hero = hero;
-        this.enemies =  enemies;
+        this.enemies = enemies;
+        this.bullet = null;
     }
 
-    public boolean detectCollisionHeroEnemy() {
+    public boolean checkHero() {
 
-        boolean checkIntersection = intersects(hero.getHero(), enemy.getEnemy());
-        enemy.grow();
+        boolean checkIntersection = false;
+
+        for (Enemy enemy : enemies) {
+
+            if (!enemy.isDead() && intersects(hero.getHero(), enemy.getEnemy())) {
+
+                checkIntersection = true;
+                enemy.dead();
+
+            } else {
+
+                enemy.grow();
+
+            }
+        }
 
         return checkIntersection;
 
     }
 
-    public boolean detectCollisionBulletEnemy(Bullet bullet) {
+    public boolean checkEnemies() {
 
-        boolean checkIntersection = intersects(bullet.getBullet(), enemy.getEnemy());
-        bullet.grow();
-        enemy.grow();
+        boolean checkIntersection = false;
+
+        if (bullet != null && bullet.isMoving()) {
+
+            for (Enemy enemy : enemies) {
+
+                if (!enemy.isDead() && intersects(bullet.getBullet(), enemy.getEnemy())) {
+
+                    checkIntersection = true;
+                    bullet.hide();
+                    enemy.dead();
+
+                } else {
+
+                    bullet.grow();
+                    enemy.grow();
+
+                }
+
+            }
+
+        }
 
         return checkIntersection;
 
@@ -58,10 +92,8 @@ public class CollisionDetector {
 
     }
 
-    public void setEnemies(Enemy[] enemies) {
-
-        CollisionDetector.enemies = enemies;
-
+    public void setBullet(Bullet bullet) {
+        this.bullet = bullet;
     }
 
 }
