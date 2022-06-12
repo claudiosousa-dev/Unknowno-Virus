@@ -1,4 +1,4 @@
-package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
+package org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy;
 
 import org.academiadecodigo.cunnilinux.hackermen.AssetPaths;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;

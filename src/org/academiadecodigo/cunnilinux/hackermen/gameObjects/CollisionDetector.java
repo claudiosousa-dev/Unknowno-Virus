@@ -1,5 +1,6 @@
 package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Enemy;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class CollisionDetector {

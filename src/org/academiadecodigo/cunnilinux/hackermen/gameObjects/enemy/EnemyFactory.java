@@ -1,6 +1,5 @@
-package org.academiadecodigo.cunnilinux.hackermen.gameObjects.factory;
+package org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy;
 
-import org.academiadecodigo.cunnilinux.hackermen.gameObjects.Enemy;
 import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 
 /**

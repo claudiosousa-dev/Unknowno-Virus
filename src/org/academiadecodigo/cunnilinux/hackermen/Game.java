@@ -1,7 +1,8 @@
 package org.academiadecodigo.cunnilinux.hackermen;
 
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
-import org.academiadecodigo.cunnilinux.hackermen.gameObjects.factory.EnemyFactory;
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Enemy;
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.EnemyFactory;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 import org.academiadecodigo.cunnilinux.hackermen.utils.GameOverMenu;
