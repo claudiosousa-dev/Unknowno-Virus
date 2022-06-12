@@ -179,9 +179,6 @@ public class Game {
 
         }
 
-        musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
-        musicGame.startMusic(-1);
-
     }
 
     public void setupCollisionDetector(int gameLevel) {
