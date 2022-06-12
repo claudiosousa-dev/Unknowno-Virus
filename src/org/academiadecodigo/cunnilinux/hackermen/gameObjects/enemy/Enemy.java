@@ -101,7 +101,9 @@ public class Enemy {
     }
 
     public boolean isDead() {
+
         return dead;
+
     }
 
     public void dead() {
