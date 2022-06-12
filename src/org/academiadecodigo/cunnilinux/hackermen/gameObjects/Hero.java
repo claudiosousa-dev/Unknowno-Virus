@@ -226,6 +226,12 @@ public class Hero {
 
     }
 
+    public void setX(int x) {
+
+        translate(-getX() + x);
+
+    }
+
     public Bullet getBullet() {
 
         return bullet;
@@ -243,8 +249,6 @@ public class Hero {
         this.collisionDetector = collisionDetector;
 
     }
-
-
 
 }
 
