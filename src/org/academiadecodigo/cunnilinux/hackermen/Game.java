@@ -123,7 +123,7 @@ public class Game {
 
     }
 
-    public void setupLevel() {
+    public void setupLevel() throws InterruptedException {
 
         if (gameLevel < 1 || gameLevel > 2) {
 
@@ -157,9 +157,10 @@ public class Game {
                 }
                 enemyDeadCounter = spawnedEnemies;
                 break;
+
             case 2:
                 background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL2);
-                hero = new Hero(0);
+                hero.setX(Canvas.PADDING);
                 boss = new Enemy(Direction.LEFT);
                 enemyDeadCounter = 1;
                 break;
@@ -189,11 +190,11 @@ public class Game {
     public void renderStage(int gameLevel) {
 
         background.draw();
+        health.show();
         hero.show();
 
         switch (gameLevel) {
             case 1:
-                health.show();
                 for (int i = 0; i < spawnedEnemies; i++) {
 
                     enemies[i].show();
@@ -206,11 +207,13 @@ public class Game {
 
     }
 
-    public void gameOver() {
+    public void gameOver() throws InterruptedException {
 
         hero.setDead(true);
         musicGame.stop();
         setBackground();
+        Thread.sleep(1000);
+        System.exit(0);
 
     }
 
