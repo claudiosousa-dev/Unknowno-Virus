@@ -16,6 +16,7 @@ public class Game {
     private int gameLevel;
     private final int delay;
     private Picture background;
+    private Picture victoryBackground;
 
     private Hero hero;
     private Enemy[] enemies;
@@ -99,6 +100,7 @@ public class Game {
 
         if (gameOver) {
 
+            win = true;
             gameOver();
 
         }
@@ -169,7 +171,7 @@ public class Game {
                 break;
 
             case 2:
-                background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL2);
+                background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL1);
                 hero.setX(Canvas.PADDING);
                 boss = new Boss(Direction.LEFT);
                 enemyDeadCounter = 1;
@@ -222,9 +224,18 @@ public class Game {
         hero.setDead(true);
         musicGame.stop();
         setBackground();
+        if (win) {
+            victoryGame();
+        }
         Thread.sleep(1000);
         System.exit(0);
 
+    }
+
+    public void victoryGame() throws InterruptedException{
+
+        victoryBackground = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.VICTORY_MENU);
+        victoryBackground.draw();
     }
 
     private void setupMenu() {
