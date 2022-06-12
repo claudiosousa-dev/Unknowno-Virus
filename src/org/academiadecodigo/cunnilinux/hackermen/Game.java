@@ -10,23 +10,20 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
-    //private final Canvas canvas;
+    private final int delay;
     private Picture background;
 
     private Hero hero;
     private Enemy[] enemies;
     private final int spawnedEnemies = 2;
+    private int enemyDeadCounter;
 
     private Health health;
 
     private CollisionDetector collisionDetector;
 
-    /**
-     * Animation delay
-     */
-    private int delay;
-
     private boolean gameOver;
+    private boolean win;
 
     //private final Picture startMenu;
     //private final Picture gameOverShow;
@@ -37,6 +34,8 @@ public class Game {
 
         this.delay = delay;
         gameOver = false;
+        win = false;
+        enemyDeadCounter = spawnedEnemies;
 
     }
 
@@ -91,19 +90,19 @@ public class Game {
 
             if (collisionDetector.checkHero()) {
 
+                enemyDeadCounter--;
                 health.setCounter(health.getHeroHealth() - 1);
-                if (health.getHeroHealth() == 0) {
 
-                    break;
-
-                }
             }
 
             if (collisionDetector.checkEnemies()) {
 
-                hero.getBullet().hide();
-                break;
+                enemyDeadCounter--;
 
+            }
+
+            if(checkEnd()) {
+                break;
             }
 
             moveAll();
@@ -126,6 +125,12 @@ public class Game {
         for (Enemy enemy : enemies) {
             enemy.move();
         }
+
+    }
+
+    private boolean checkEnd() {
+
+        return enemyDeadCounter == 0 || health.getHeroHealth() == 0;
 
     }
 
