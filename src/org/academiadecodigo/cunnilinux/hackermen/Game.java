@@ -71,7 +71,7 @@ public class Game {
             if (collisionDetector.checkHeroEnemies() || collisionDetector.checkHeroBoss()) {
 
                 enemyDeadCounter--;
-                health.setCounter(health.getHeroHealth() - 1);
+                health.setCounter(health.getHealth() - 1);
 
             }
 
@@ -81,7 +81,7 @@ public class Game {
 
             }
 
-            if (health.getHeroHealth() == 0) {
+            if (health.getHealth() == 0) {
 
                 gameOver = true;
                 win = false;
@@ -173,7 +173,6 @@ public class Game {
                 break;
 
             case 2:
-                background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL1);
                 hero.setX(Canvas.PADDING);
                 boss = new Boss(Direction.LEFT);
                 enemyDeadCounter = 1;

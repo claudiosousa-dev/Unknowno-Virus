@@ -26,17 +26,9 @@ public class Health {
 
     }
 
-    public int getHeroHealth() {
+    public int getHealth() {
 
         return counter;
-
-    }
-
-    public void show() {
-
-        health1.draw();
-        health2.draw();
-        health3.draw();
 
     }
 
@@ -51,11 +43,11 @@ public class Health {
     public void setCounter(int counter) {
 
         this.counter = counter;
-        removeHealth();
+        show();
 
     }
 
-    public void removeHealth() {
+    public void show() {
 
         switch (counter) {
             case 1:
@@ -69,7 +61,9 @@ public class Health {
                 health3.delete();
                 break;
             case 3:
-                show();
+                health1.draw();
+                health2.draw();
+                health3.draw();
                 break;
             case 0:
             default:
