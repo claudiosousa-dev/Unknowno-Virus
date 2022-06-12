@@ -99,6 +99,7 @@ public class Game {
 
         if (gameOver) {
 
+            win = true;
             gameOver();
 
         }
@@ -214,18 +215,19 @@ public class Game {
         hero.setDead(true);
         musicGame.stop();
         setBackground();
+        if (win) {
+            victoryGame();
+        }
         Thread.sleep(1000);
         System.exit(0);
 
     }
 
-    /* public void victoryGame() throws InterruptedException{
-        hero.setDead(false);
-        musicGame.stop();
+    public void victoryGame() throws InterruptedException{
+
         victoryBackground = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.VICTORY_MENU);
-        Thread.sleep(1000);
-        System.exit(0);
-    } */
+        victoryBackground.draw();
+    }
 
     private void setupMenu() {
 
