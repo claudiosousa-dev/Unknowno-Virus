@@ -6,36 +6,21 @@ import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 import org.academiadecodigo.cunnilinux.hackermen.utils.RandomGenerator;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
-public class Enemy {
+public abstract class Enemy {
 
-    private static final int MAX_ENEMY_WIDTH = 200;
-
-    private final Picture enemy;
-    private final Direction direction;
-    private final double speed;
-    private boolean dead;
+    protected Picture enemy;
+    protected Direction direction;
+    protected double speed;
+    protected boolean dead;
 
     public Enemy(Direction direction) {
 
         dead = false;
         this.direction = direction;
-        speed = RandomGenerator.getRandom(0.5, 2.0);
-
-        int xPosition = (direction == Direction.RIGHT) ? 0 : Canvas.CANVAS_WIDTH - MAX_ENEMY_WIDTH;
-
-        enemy = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.MONSTER_TIER2);
-        enemy.translate(0, -enemy.getHeight());
-
-        grow();
 
     }
 
-    public Picture getEnemy() {
-
-        grow();
-        return enemy;
-
-    }
+    public abstract Picture getEnemy();
 
     public void move() {
 
@@ -90,15 +75,7 @@ public class Enemy {
 
     }
 
-    public void grow() {
-
-        if (direction == Direction.LEFT) {
-
-            enemy.grow(-getWidth(), 0);
-
-        }
-
-    }
+    public void grow() {};
 
     public boolean isDead() {
 

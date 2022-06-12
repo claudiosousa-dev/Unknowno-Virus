@@ -9,9 +9,9 @@ public class EnemyFactory {
         Enemy enemy;
 
         if ((enemyCounter % 2) == 0) {
-            enemy = new Enemy(Direction.RIGHT);
+            enemy = new Zombie(Direction.RIGHT);
         } else {
-            enemy = new Enemy(Direction.LEFT);
+            enemy = new Zombie(Direction.LEFT);
         }
 
         return enemy;

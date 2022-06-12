@@ -1,6 +1,7 @@
 package org.academiadecodigo.cunnilinux.hackermen;
 
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Boss;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Enemy;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.EnemyFactory;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
@@ -71,7 +72,7 @@ public class Game {
 
             }
 
-            if (collisionDetector.checkEnemies() ||  collisionDetector.checkBoss()) {
+            if (collisionDetector.checkEnemies() || collisionDetector.checkBoss()) {
 
                 enemyDeadCounter--;
 
@@ -85,14 +86,14 @@ public class Game {
             }
 
             // Next level
-            if(enemyDeadCounter == 0) {
+            if (enemyDeadCounter == 0) {
 
                 win = true;
                 break;
 
             }
 
-            moveAll();
+            moveAll(gameLevel);
 
         }
 
@@ -107,7 +108,7 @@ public class Game {
 
     }
 
-    public void moveAll() {
+    public void moveAll(int gameLevel) {
 
         try {
 
@@ -116,9 +117,17 @@ public class Game {
         } catch (NullPointerException ignored) {
         }
 
-        for (Enemy enemy : enemies) {
+        switch (gameLevel) {
 
-            enemy.move();
+            case 1:
+                for (Enemy enemy : enemies) {
+
+                    enemy.move();
+
+                }
+                break;
+            case 2:
+                boss.move();
 
         }
 
@@ -162,7 +171,7 @@ public class Game {
             case 2:
                 background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL2);
                 hero.setX(Canvas.PADDING);
-                boss = new Enemy(Direction.LEFT);
+                boss = new Boss(Direction.LEFT);
                 enemyDeadCounter = 1;
                 break;
 
