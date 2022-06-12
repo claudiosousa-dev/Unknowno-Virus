@@ -224,9 +224,9 @@ public class Game {
         hero.setDead(true);
         musicGame.stop();
         setBackground();
-        //if (win) {
+        if (win) {
             victoryGame();
-        //}
+        }
         Thread.sleep(1000);
         System.exit(0);
 
