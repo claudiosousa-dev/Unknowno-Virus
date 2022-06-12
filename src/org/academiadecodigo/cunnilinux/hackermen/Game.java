@@ -63,14 +63,14 @@ public class Game {
 
             }
 
-            if (collisionDetector.checkHeroEnemies()) {
+            if (collisionDetector.checkHeroEnemies() || collisionDetector.checkHeroBoss()) {
 
                 enemyDeadCounter--;
                 health.setCounter(health.getHeroHealth() - 1);
 
             }
 
-            if (collisionDetector.checkEnemies()) {
+            if (collisionDetector.checkEnemies() ||  collisionDetector.checkBoss()) {
 
                 enemyDeadCounter--;
 

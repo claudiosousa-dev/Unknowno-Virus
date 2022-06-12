@@ -27,6 +27,12 @@ public class CollisionDetector {
 
         boolean checkIntersection = false;
 
+        if(enemies == null) {
+
+            return false;
+
+        }
+
         for (Enemy enemy : enemies) {
 
             if (!enemy.isDead() && intersects(hero.getHero(), enemy.getEnemy())) {
@@ -47,7 +53,12 @@ public class CollisionDetector {
 
     public boolean checkHeroBoss() {
 
-        assert boss != null;
+        if(boss == null) {
+
+            return false;
+
+        }
+
         return intersects(hero.getHero(), boss.getEnemy());
 
     }
@@ -55,6 +66,12 @@ public class CollisionDetector {
     public boolean checkEnemies() {
 
         boolean checkIntersection = false;
+
+        if(enemies == null) {
+
+            return false;
+
+        }
 
         if (bullet != null && bullet.isMoving()) {
 
@@ -83,9 +100,9 @@ public class CollisionDetector {
 
     public boolean checkBoss() {
 
-        if (bullet != null && bullet.isMoving()) {
 
-            assert boss != null;
+        if (boss != null && bullet != null && bullet.isMoving()) {
+
             return intersects(bullet.getBullet(), boss.getEnemy());
 
         }
