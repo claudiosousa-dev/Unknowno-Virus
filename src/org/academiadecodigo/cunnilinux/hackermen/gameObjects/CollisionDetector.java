@@ -8,27 +8,27 @@ public class CollisionDetector {
     private final Hero hero;
     private final Enemy[] enemies;
     private final Enemy boss;
-    private Bullet bullet;
+    private final Bullet[] bullets;
 
     public CollisionDetector(Hero hero, Enemy[] enemies) {
         this.hero = hero;
         this.enemies = enemies;
         boss = null;
-        this.bullet = null;
+        bullets = hero.getBullets();
     }
 
     public CollisionDetector(Hero hero, Enemy boss) {
         this.hero = hero;
-        this.enemies = null;
+        enemies = null;
         this.boss = boss;
-        this.bullet = null;
+        bullets = hero.getBullets();
     }
 
     public boolean checkHeroEnemies() {
 
         boolean checkIntersection = false;
 
-        if(enemies == null) {
+        if (enemies == null) {
 
             return false;
 
@@ -54,7 +54,7 @@ public class CollisionDetector {
 
     public boolean checkHeroBoss() {
 
-        if(boss == null) {
+        if (boss == null) {
 
             return false;
 
@@ -68,26 +68,30 @@ public class CollisionDetector {
 
         boolean checkIntersection = false;
 
-        if(enemies == null) {
+        if (enemies == null) {
 
             return false;
 
         }
 
-        if (bullet != null && bullet.isMoving()) {
+        for (Bullet bullet : bullets) {
 
-            for (Enemy enemy : enemies) {
+            if (bullet.isMoving()) {
 
-                if (!enemy.isDead() && intersects(bullet.getBullet(), enemy.getEnemy())) {
+                for (Enemy enemy : enemies) {
 
-                    checkIntersection = true;
-                    bullet.hide();
-                    enemy.dead();
+                    if (!enemy.isDead() && intersects(bullet.getBullet(), enemy.getEnemy())) {
 
-                } else {
+                        checkIntersection = true;
+                        bullet.hide();
+                        enemy.dead();
 
-                    bullet.grow();
-                    enemy.grow();
+                    } else {
+
+                        bullet.grow();
+                        enemy.grow();
+
+                    }
 
                 }
 
@@ -101,10 +105,19 @@ public class CollisionDetector {
 
     public boolean checkBoss() {
 
+        if (boss == null) {
 
-        if (boss != null && bullet != null && bullet.isMoving()) {
+            return false;
 
-            return intersects(bullet.getBullet(), boss.getEnemy());
+        }
+
+        for (Bullet bullet : bullets) {
+
+            if (bullet.isMoving()) {
+
+                return intersects(bullet.getBullet(), boss.getEnemy());
+
+            }
 
         }
 
@@ -137,10 +150,6 @@ public class CollisionDetector {
                 (rect1Width < rect1X || rect1Width > rect2X) &&
                 (rect1Height < rect1Y || rect1Height > rect2Y));
 
-    }
-
-    public void setBullet(Bullet bullet) {
-        this.bullet = bullet;
     }
 
 }

@@ -17,15 +17,16 @@ public class Hero {
     private final HeroInputs heroInputs;
     private Direction direction;
     private boolean dead;
-    private Bullet bullet;
-    private CollisionDetector collisionDetector;
+    private final Bullet[] bullets;
+    private int bulletCounter;
 
     public Hero(int xPosition) {
 
         heroInputs = new HeroInputs(new HeroMovement(this));
         direction = Direction.RIGHT;
         dead = false;
-        bullet = null;
+        bullets = BulletFactory.createBullets();
+        bulletCounter = -1;
 
         heroRight = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.HERO_RIGHT);
         heroRight.translate(0, -heroRight.getHeight());
@@ -34,19 +35,9 @@ public class Hero {
         heroLeft.translate(0, -heroLeft.getHeight());
     }
 
-    /*public Picture getHero() {
-
-        if (direction == Direction.RIGHT) {
-            return heroRight;
-        } else {
-            return heroLeft;
-        }
-
-    }*/
-
     public void show() {
 
-        if(!dead) {
+        if (!dead) {
 
             if (direction == Direction.RIGHT) {
 
@@ -66,14 +57,17 @@ public class Hero {
 
     }
 
-
     public void shoot() {
 
-        if (bullet == null) {
+        if (bulletCounter < bullets.length) {
 
-            bullet = new Bullet(direction == Direction.LEFT ? getX() : getRightX(), direction);
+            Bullet bullet = bullets[++bulletCounter];
+
+            bullet.setDirection(direction);
+            bullet.setMoving();
+            bullet.grow();
+            bullet.setX(direction == Direction.LEFT ? getX() : getRightX());
             bullet.show();
-            collisionDetector.setBullet(bullet);
 
         }
 
@@ -186,19 +180,12 @@ public class Hero {
 
     }
 
-    /*public boolean isDead() {
-        return dead;
-    }*/
 
     public void setDead(boolean dead) {
 
         this.dead = dead;
 
     }
-
-    /*public Direction getDirection() {
-        return direction;
-    }*/
 
     public void setDirection(Direction direction) {
 
@@ -230,21 +217,15 @@ public class Hero {
 
     }
 
-    public Bullet getBullet() {
+    public Bullet[] getBullets() {
 
-        return bullet;
+        return bullets;
 
     }
 
     public Picture getHero() {
 
         return heroRight;
-
-    }
-
-    public void setCollisionDetector(CollisionDetector collisionDetector) {
-
-        this.collisionDetector = collisionDetector;
 
     }
 

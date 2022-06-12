@@ -17,13 +17,12 @@ public class Game {
     private final int delay;
     private Picture background;
     private Picture victoryBackground;
-
     private Hero hero;
+    private Bullet[] bullets;
     private Enemy[] enemies;
     private Enemy boss;
     private final int spawnedEnemies = 2;
     private int enemyDeadCounter;
-
     private Health health;
 
     private CollisionDetector collisionDetector;
@@ -112,12 +111,7 @@ public class Game {
 
     public void moveAll(int gameLevel) {
 
-        try {
-
-            hero.getBullet().move();
-
-        } catch (NullPointerException ignored) {
-        }
+        moveBullets();
 
         switch (gameLevel) {
 
@@ -130,6 +124,16 @@ public class Game {
                 break;
             case 2:
                 boss.move();
+
+        }
+
+    }
+
+    private void moveBullets() {
+
+        for (Bullet bullet : bullets) {
+
+            bullet.move();
 
         }
 
@@ -158,8 +162,10 @@ public class Game {
                 background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL1);
                 musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
                 musicGame.startMusic(-1);
+
                 health = new Health();
                 hero = new Hero(Canvas.CANVAS_WIDTH / 2);
+                bullets = hero.getBullets();
 
                 enemies = new Enemy[spawnedEnemies];
                 for (int i = 0; i < spawnedEnemies; i++) {
@@ -184,14 +190,14 @@ public class Game {
 
         switch (gameLevel) {
             case 1:
+
                 collisionDetector = new CollisionDetector(hero, enemies);
+
                 break;
             case 2:
                 collisionDetector = new CollisionDetector(hero, boss);
 
         }
-
-        hero.setCollisionDetector(collisionDetector);
 
     }
 

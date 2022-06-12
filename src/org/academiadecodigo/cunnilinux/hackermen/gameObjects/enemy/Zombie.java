@@ -11,7 +11,7 @@ public class Zombie extends Enemy {
     public Zombie(Direction direction) {
         super(direction);
 
-        speed = RandomGenerator.getRandom(0.5, 2.0);
+        speed = RandomGenerator.getRandom(1.0, 3.0);
 
         int xPosition = (direction == Direction.RIGHT) ? 0 : Canvas.CANVAS_WIDTH;
         enemy = new Picture(xPosition, Canvas.FLOOR_LEVEL, AssetPaths.MONSTER_TIER2);

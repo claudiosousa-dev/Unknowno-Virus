@@ -10,16 +10,14 @@ public class Bullet {
     private final static int GUN_LEVEL = 780;
     private final static double BULLET_SPEED = 3.0;
     private final Picture bullet;
-    private final Direction direction;
+    private Direction direction;
     private boolean moving;
 
-    public Bullet(int xPosition, Direction direction) {
 
-        this.direction = direction;
-        moving = true;
+    public Bullet() {
 
-        bullet = new Picture(xPosition, GUN_LEVEL, AssetPaths.BULLET);
-        grow();
+        moving = false;
+        bullet = new Picture(0, GUN_LEVEL, AssetPaths.BULLET);
 
     }
 
@@ -88,4 +86,23 @@ public class Bullet {
         return bullet;
 
     }
+
+    public void setMoving() {
+
+        moving = true;
+
+    }
+
+    public void setDirection(Direction direction) {
+
+        this.direction = direction;
+
+    }
+
+    public void setX(int distance) {
+
+        bullet.translate(distance, 0);
+
+    }
+
 }
