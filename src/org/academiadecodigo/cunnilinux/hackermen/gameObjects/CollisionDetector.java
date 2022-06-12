@@ -32,7 +32,7 @@ public class CollisionDetector {
 
         boolean checkIntersection = false;
 
-        if(enemies == null) {
+        if (enemies == null) {
 
             return false;
 
@@ -59,7 +59,7 @@ public class CollisionDetector {
 
     public boolean checkHeroBoss() {
 
-        if(boss == null) {
+        if (boss == null) {
 
             return false;
 
@@ -73,7 +73,7 @@ public class CollisionDetector {
 
         boolean checkIntersection = false;
 
-        if(enemies == null) {
+        if (enemies == null) {
 
             return false;
 
@@ -106,17 +106,26 @@ public class CollisionDetector {
 
     }
 
-    public boolean checkBoss() {
+    public boolean checkBoss() throws InterruptedException {
 
+        boolean checkIntersection = false;
 
         if (boss != null && bullet != null && bullet.isMoving()) {
-            /* bossDie = new Music(AssetPaths.BOSS_DIE_SOUND);
-            bossDie.startMusic(0); */ //Sound not working!
 
-            return intersects(bullet.getBullet(), boss.getEnemy());
+            checkIntersection = intersects(bullet.getBullet(), boss.getEnemy());
+
 
         }
 
+        if (checkIntersection) {
+            bossDie = new Music(AssetPaths.BOSS_DIE_SOUND);
+            bossDie.startMusic(-1);
+
+            Thread.sleep(2000);
+            bossDie.stop();
+
+            return true;
+        }
         return false;
 
     }

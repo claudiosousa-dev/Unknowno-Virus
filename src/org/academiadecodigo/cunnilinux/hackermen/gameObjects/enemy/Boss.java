@@ -7,13 +7,18 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Boss extends Enemy {
 
-    public Boss(Direction direction) {
+    public Boss(Direction direction, String picturePath) {
         super(direction);
 
         speed = 2.0;
-        enemy = new Picture(Canvas.CANVAS_WIDTH, Canvas.FLOOR_LEVEL, AssetPaths.BOSS_FINAL);
-        enemy.translate(-getWidth(), -enemy.getHeight());
 
+        if (direction == Direction.LEFT) {
+            enemy = new Picture(Canvas.CANVAS_WIDTH, Canvas.FLOOR_LEVEL, picturePath);
+            enemy.translate(-getWidth(), -enemy.getHeight());
+        } else {
+            enemy = new Picture(0, Canvas.FLOOR_LEVEL, picturePath);
+            enemy.translate(0, -enemy.getHeight());
+        }
     }
 
     public Picture getEnemy() {

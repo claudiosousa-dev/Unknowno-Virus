@@ -20,7 +20,7 @@ public class Game {
 
     private Hero hero;
     private Enemy[] enemies;
-    private Enemy boss;
+    private Enemy[] bosses;
     private final int spawnedEnemies = 2;
     private int enemyDeadCounter;
 
@@ -33,7 +33,6 @@ public class Game {
 
     private Music musicGame;
     private Music musicOnVictory;
-
 
 
     public Game(int delay) {
@@ -131,7 +130,12 @@ public class Game {
                 }
                 break;
             case 2:
-                boss.move();
+
+                for (Enemy boss : bosses) {
+
+                    boss.move();
+
+                }
 
         }
 
@@ -173,10 +177,17 @@ public class Game {
                 break;
 
             case 2:
-                hero.setX(Canvas.PADDING);
-                boss = new Boss(Direction.LEFT);
-                enemyDeadCounter = 1;
+                hero.setX(Canvas.CANVAS_WIDTH / 2);
+                bosses = new Boss[spawnedEnemies];
+
+
+                bosses[0] = new Boss(Direction.LEFT, AssetPaths.BOSS_FINAL);
+                bosses[1] = new Boss(Direction.RIGHT, AssetPaths.BOSS1_RIGHT);
+
+                enemyDeadCounter = spawnedEnemies;
+
                 break;
+
 
         }
 
@@ -189,7 +200,7 @@ public class Game {
                 collisionDetector = new CollisionDetector(hero, enemies);
                 break;
             case 2:
-                collisionDetector = new CollisionDetector(hero, boss);
+                collisionDetector = new CollisionDetector(hero, bosses);
 
         }
 
@@ -212,7 +223,8 @@ public class Game {
                 }
                 break;
             case 2:
-                boss.show();
+                bosses[0].show();
+                bosses[1].show();
         }
 
     }
