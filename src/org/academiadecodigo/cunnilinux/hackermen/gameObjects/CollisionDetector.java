@@ -6,15 +6,24 @@ public class CollisionDetector {
 
     private final Hero hero;
     private final Enemy[] enemies;
+    private final Enemy boss;
     private Bullet bullet;
 
     public CollisionDetector(Hero hero, Enemy[] enemies) {
         this.hero = hero;
         this.enemies = enemies;
+        boss = null;
         this.bullet = null;
     }
 
-    public boolean checkHero() {
+    public CollisionDetector(Hero hero, Enemy boss) {
+        this.hero = hero;
+        this.enemies = null;
+        this.boss = boss;
+        this.bullet = null;
+    }
+
+    public boolean checkHeroEnemies() {
 
         boolean checkIntersection = false;
 
@@ -33,6 +42,13 @@ public class CollisionDetector {
         }
 
         return checkIntersection;
+
+    }
+
+    public boolean checkHeroBoss() {
+
+        assert boss != null;
+        return intersects(hero.getHero(), boss.getEnemy());
 
     }
 
@@ -62,6 +78,19 @@ public class CollisionDetector {
         }
 
         return checkIntersection;
+
+    }
+
+    public boolean checkBoss() {
+
+        if (bullet != null && bullet.isMoving()) {
+
+            assert boss != null;
+            return intersects(bullet.getBullet(), boss.getEnemy());
+
+        }
+
+        return false;
 
     }
 

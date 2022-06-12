@@ -3,6 +3,7 @@ package org.academiadecodigo.cunnilinux.hackermen;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.factory.EnemyFactory;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
+import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 import org.academiadecodigo.cunnilinux.hackermen.utils.GameOverMenu;
 import org.academiadecodigo.cunnilinux.hackermen.utils.MainMenu;
 import org.academiadecodigo.cunnilinux.hackermen.utils.Music;
@@ -16,6 +17,7 @@ public class Game {
 
     private Hero hero;
     private Enemy[] enemies;
+    private Enemy boss;
     private final int spawnedEnemies = 2;
     private int enemyDeadCounter;
 
@@ -26,8 +28,6 @@ public class Game {
     private boolean gameOver;
     private boolean win;
 
-    //private final Picture startMenu;
-    //private final Picture gameOverShow;
     private Music musicGame;
 
 
@@ -36,35 +36,14 @@ public class Game {
         this.delay = delay;
         gameOver = false;
         win = false;
-        enemyDeadCounter = spawnedEnemies;
+
         gameLevel = 1;
 
     }
 
     public void init() {
 
-        //startMenu = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.START_MENU_WHITE);
-        //gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAME_OVER);
-        musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
-
         setupMenu();
-
-
-        health.show();
-
-
-        enemies = new Enemy[spawnedEnemies];
-        for (int i = 0; i < spawnedEnemies; i++) {
-
-            enemies[i] = EnemyFactory.spawnEnemy(i);
-            enemies[i].show();
-
-        }
-
-        collisionDetector = new CollisionDetector(hero, enemies);
-        hero.setCollisionDetector(collisionDetector);
-
-        musicGame.startMusic(-1);
 
     }
 
@@ -80,12 +59,11 @@ public class Game {
 
             } catch (InterruptedException exception) {
 
-                exception.printStackTrace();
                 throw new RuntimeException(exception);
 
             }
 
-            if (collisionDetector.checkHero()) {
+            if (collisionDetector.checkHeroEnemies()) {
 
                 enemyDeadCounter--;
                 health.setCounter(health.getHeroHealth() - 1);
@@ -98,9 +76,18 @@ public class Game {
 
             }
 
-            if (checkGameEnd()) {
+            if (health.getHeroHealth() == 0) {
 
                 gameOver = true;
+                win = false;
+
+            }
+
+            // Next level
+            if(enemyDeadCounter == 0) {
+
+                win = true;
+                break;
 
             }
 
@@ -157,22 +144,45 @@ public class Game {
 
             case 1:
                 background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL1);
+                musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
+                musicGame.startMusic(-1);
                 health = new Health();
                 hero = new Hero(Canvas.CANVAS_WIDTH / 2);
+
+                enemies = new Enemy[spawnedEnemies];
+                for (int i = 0; i < spawnedEnemies; i++) {
+
+                    enemies[i] = EnemyFactory.spawnEnemy(i);
+
+                }
+                enemyDeadCounter = spawnedEnemies;
                 break;
             case 2:
-            default:
                 background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL2);
-                hero =  new Hero(0);
+                hero = new Hero(0);
+                boss = new Enemy(Direction.LEFT);
+                enemyDeadCounter = 1;
                 break;
 
         }
+
+        musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
+        musicGame.startMusic(-1);
 
     }
 
     public void setupCollisionDetector(int gameLevel) {
 
+        switch (gameLevel) {
+            case 1:
+                collisionDetector = new CollisionDetector(hero, enemies);
+                break;
+            case 2:
+                collisionDetector = new CollisionDetector(hero, boss);
 
+        }
+
+        hero.setCollisionDetector(collisionDetector);
 
     }
 
@@ -181,12 +191,18 @@ public class Game {
         background.draw();
         hero.show();
 
-    }
+        switch (gameLevel) {
+            case 1:
+                health.show();
+                for (int i = 0; i < spawnedEnemies; i++) {
 
+                    enemies[i].show();
 
-    private boolean checkGameEnd() {
-
-        return enemyDeadCounter == 0 || health.getHeroHealth() == 0;
+                }
+                break;
+            case 2:
+                boss.show();
+        }
 
     }
 
