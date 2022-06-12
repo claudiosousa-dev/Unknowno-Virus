@@ -20,6 +20,9 @@ public class AssetPaths {
     public static final String GAME_OVER2 = "resources/gameover2.png";
     public static final String START_MENU_MUSIC = "resources/StartMenuMusic.wav";
     public static final String DURING_GAME_MUSIC = "resources/duringGame.wav";
+    public static final String VICTORY_MENU_SOUND = "resources/victorysoundmenu.wav";
+    public static final String VICTORY_MENU_VOICE = "";
+    public static final String BULLET_SOUND = "resources/bulletsound.wav";
     public static final String GAME_OVER_VOICE = "resources/gameovervoice.wav";
 
 }
