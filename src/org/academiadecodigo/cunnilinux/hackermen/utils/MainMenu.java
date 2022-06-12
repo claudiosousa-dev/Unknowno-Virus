@@ -58,7 +58,6 @@ public class MainMenu {
                 var5.setKey(KeyboardEvent.KEY_L);
                 var3.addEventListener(var4);
                 var3.addEventListener(var5);
-
             }
         }
 
@@ -76,18 +75,14 @@ public class MainMenu {
                 if (var1.getKey() == KEY_ESC) {
 
                     this.menu.setMenu(false);
-
                 }
 
                 if (var1.getKey() == KeyboardEvent.KEY_L) {
 
                     System.exit(0);
-
                 }
 
             }
-
             public void keyReleased(KeyboardEvent var1) {}
-
         }
     }

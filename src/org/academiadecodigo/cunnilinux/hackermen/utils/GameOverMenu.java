@@ -21,7 +21,7 @@ public class GameOverMenu {
         gameOverBackground.draw();
         gameOverMusic.startMusic(0);
 
-        while(true) {
+        while (true) {
 
             gameOverBackground.load(AssetPaths.GAME_OVER2);
 
