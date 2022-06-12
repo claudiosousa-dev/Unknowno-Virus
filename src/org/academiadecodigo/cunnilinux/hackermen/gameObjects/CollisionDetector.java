@@ -4,10 +4,15 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class CollisionDetector {
 
-    private static Hero hero;
-    private static Enemies[] enemies;
+    private final Hero hero;
+    private Enemy[] enemies;
 
-    public static boolean detectCollisionHeroEnemy() {
+    public CollisionDetector(Hero hero, Enemy[] enemies) {
+        this.hero = hero;
+        this.enemies =  enemies;
+    }
+
+    public boolean detectCollisionHeroEnemy() {
 
         boolean checkIntersection = intersects(hero.getHero(), enemy.getEnemy());
         enemy.grow();
@@ -16,7 +21,7 @@ public class CollisionDetector {
 
     }
 
-    public static boolean detectCollisionBulletEnemy(Bullet bullet) {
+    public boolean detectCollisionBulletEnemy(Bullet bullet) {
 
         boolean checkIntersection = intersects(bullet.getBullet(), enemy.getEnemy());
         bullet.grow();
@@ -53,15 +58,9 @@ public class CollisionDetector {
 
     }
 
-    public static void setHero(Hero hero) {
+    public void setEnemies(Enemy[] enemies) {
 
-        CollisionDetector.hero = hero;
-
-    }
-
-    public static void setEnemy(Enemy enemy) {
-
-        CollisionDetector.enemy = enemy;
+        CollisionDetector.enemies = enemies;
 
     }
 

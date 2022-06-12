@@ -3,7 +3,6 @@ package org.academiadecodigo.cunnilinux.hackermen;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.factory.EnemyFactory;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
-import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 import org.academiadecodigo.cunnilinux.hackermen.utils.GameOverMenu;
 import org.academiadecodigo.cunnilinux.hackermen.utils.MainMenu;
 import org.academiadecodigo.cunnilinux.hackermen.utils.Music;
@@ -11,22 +10,16 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
-    private final Canvas canvas;
-    private final Picture background;
+    //private final Canvas canvas;
+    private Picture background;
 
-    private final Hero hero;
-
-    /**
-     * Container of enemies
-     */
+    private Hero hero;
     private Enemy[] enemies;
+    private final int spawnedEnemies = 2;
 
-    /**
-     * Number of enemies to spawn
-     */
-    private int spawnedEnemies = 2;
+    private Health health;
 
-    private final Health health;
+    private CollisionDetector collisionDetector;
 
     /**
      * Animation delay
@@ -35,59 +28,45 @@ public class Game {
 
     private boolean gameOver;
 
-    private final Picture startMenu;
-    private final Picture gameOverShow;
-    private final Music musicGame;
+    //private final Picture startMenu;
+    //private final Picture gameOverShow;
+    private Music musicGame;
 
 
     public Game(int delay) {
 
-        canvas = new Canvas();
-        background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
-
         this.delay = delay;
-
-        hero = new Hero(Canvas.CANVAS_WIDTH / 2);
-        health = new Health();
         gameOver = false;
-
-        startMenu = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.START_MENU_WHITE);
-        gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAME_OVER);
-        musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
-
-    }
-
-    private void setupMenu() {
-
-        MainMenu menu = new MainMenu();
-        menu.menuLoop();
-
-    }
-
-    private void setBackground() {
-
-        GameOverMenu menu = new GameOverMenu();
-        menu.menuLoop();
 
     }
 
     public void init() {
 
+        //canvas = new Canvas();
+        background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
+
+        collisionDetector = new CollisionDetector(hero, enemies);
+
+        hero = new Hero(Canvas.CANVAS_WIDTH / 2);
+        health = new Health();
+
+        //startMenu = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.START_MENU_WHITE);
+        //gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAME_OVER);
+        musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
+
         setupMenu();
+
         background.draw();
+        health.show();
         hero.show();
 
         enemies = new Enemy[spawnedEnemies];
-
         for (int i = 0; i < spawnedEnemies; i++) {
 
             enemies[i] = EnemyFactory.spawnEnemy(i);
-            enemies[i] .show();
+            enemies[i].show();
 
         }
-
-        health.show();
-        initCollisionDetector();
 
     }
 
@@ -102,7 +81,12 @@ public class Game {
 
         while (true) {
 
-            Thread.sleep(delay);
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException exception) {
+                exception.printStackTrace();
+                throw new RuntimeException(exception);
+            }
 
             if (CollisionDetector.detectCollisionHeroEnemy()) {
 
@@ -128,25 +112,28 @@ public class Game {
 
             }
 
-            try {
+            moveAll();
 
-                hero.getBullet().move();
 
-            } catch (NullPointerException ignored) {
-            }
-
-            enemy.move();
-
-            try {
-                Thread.sleep(delay);
-            } catch (InterruptedException exception) {
-                exception.printStackTrace();
-                throw new RuntimeException(exception);
-            }
 
         }
 
         gameOver();
+
+    }
+
+    public void moveAll() {
+
+        try {
+
+            hero.getBullet().move();
+
+        } catch (NullPointerException ignored) {
+        }
+
+        for (Enemy enemy : enemies) {
+            enemy.move();
+        }
 
     }
 
@@ -158,10 +145,17 @@ public class Game {
 
     }
 
-    private void initCollisionDetector() {
+    private void setupMenu() {
 
-        CollisionDetector.setHero(hero);
-        CollisionDetector.setEnemies(enemies);
+        MainMenu menu = new MainMenu();
+        menu.menuLoop();
+
+    }
+
+    private void setBackground() {
+
+        GameOverMenu menu = new GameOverMenu();
+        menu.menuLoop();
 
     }
 
