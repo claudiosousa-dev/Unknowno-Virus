@@ -1,6 +1,7 @@
 package org.academiadecodigo.cunnilinux.hackermen;
 
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
+import org.academiadecodigo.cunnilinux.hackermen.gameObjects.factory.EnemyFactory;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 import org.academiadecodigo.cunnilinux.hackermen.utils.GameOverMenu;
@@ -18,7 +19,7 @@ public class Game {
     /**
      * Container of enemies
      */
-    private final Enemy enemy;
+    private Enemy[] enemies;
 
     /**
      * Number of enemies to spawn
@@ -46,7 +47,6 @@ public class Game {
 
         this.delay = delay;
 
-        enemy = new Enemy(Direction.randomDirectionType());
         hero = new Hero(Canvas.CANVAS_WIDTH / 2);
         health = new Health();
         gameOver = false;
@@ -77,21 +77,32 @@ public class Game {
         background.draw();
         hero.show();
 
+        enemies = new Enemy[spawnedEnemies];
 
-        enemy.show();
+        for (int i = 0; i < spawnedEnemies; i++) {
 
+            enemies[i] = EnemyFactory.spawnEnemy(i);
+            enemies[i] .show();
+
+        }
 
         health.show();
         initCollisionDetector();
 
     }
 
-
-    public void start() {
+    /**
+     * Starts the animation
+     *
+     * @throws InterruptedException
+     */
+    public void start() throws InterruptedException {
 
         musicGame.startMusic(-1);
 
         while (true) {
+
+            Thread.sleep(delay);
 
             if (CollisionDetector.detectCollisionHeroEnemy()) {
 
@@ -150,7 +161,7 @@ public class Game {
     private void initCollisionDetector() {
 
         CollisionDetector.setHero(hero);
-        CollisionDetector.setEnemy(enemy);
+        CollisionDetector.setEnemies(enemies);
 
     }
 

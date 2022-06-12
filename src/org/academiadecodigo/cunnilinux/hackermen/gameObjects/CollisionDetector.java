@@ -5,7 +5,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class CollisionDetector {
 
     private static Hero hero;
-    private static Enemy enemy;
+    private static Enemies[] enemies;
 
     public static boolean detectCollisionHeroEnemy() {
 
