@@ -8,6 +8,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Bullet {
 
     private final static int GUN_LEVEL = 780;
+    private final static double BULLET_SPEED = 3.0;
     private final Picture bullet;
     private final Direction direction;
     private boolean moving;
@@ -34,11 +35,11 @@ public class Bullet {
 
             if (direction == Direction.RIGHT) {
 
-                bullet.translate(Canvas.CELL_SIZE * 2, 0);
+                bullet.translate(Canvas.CELL_SIZE * BULLET_SPEED, 0);
 
             } else {
 
-                bullet.translate(-Canvas.CELL_SIZE * 2, 0);
+                bullet.translate(-Canvas.CELL_SIZE * BULLET_SPEED, 0);
 
             }
 
