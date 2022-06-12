@@ -2,6 +2,7 @@ package org.academiadecodigo.cunnilinux.hackermen;
 
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.*;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
+import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
 import org.academiadecodigo.cunnilinux.hackermen.utils.GameOverMenu;
 import org.academiadecodigo.cunnilinux.hackermen.utils.MainMenu;
 import org.academiadecodigo.cunnilinux.hackermen.utils.Music;
@@ -13,8 +14,23 @@ public class Game {
     private final Picture background;
 
     private final Hero hero;
+
+    /**
+     * Container of enemies
+     */
     private final Enemy enemy;
+
+    /**
+     * Number of enemies to spawn
+     */
+    private int spawnedEnemies = 2;
+
     private final Health health;
+
+    /**
+     * Animation delay
+     */
+    private int delay;
 
     private boolean gameOver;
 
@@ -23,13 +39,15 @@ public class Game {
     private final Music musicGame;
 
 
-    public Game() {
+    public Game(int delay) {
 
         canvas = new Canvas();
         background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
 
+        this.delay = delay;
+
+        enemy = new Enemy(Direction.randomDirectionType());
         hero = new Hero(Canvas.CANVAS_WIDTH / 2);
-        enemy = new Enemy();
         health = new Health();
         gameOver = false;
 
@@ -58,7 +76,11 @@ public class Game {
         setupMenu();
         background.draw();
         hero.show();
+
+
         enemy.show();
+
+
         health.show();
         initCollisionDetector();
 
@@ -105,7 +127,7 @@ public class Game {
             enemy.move();
 
             try {
-                Thread.sleep(100);
+                Thread.sleep(delay);
             } catch (InterruptedException exception) {
                 exception.printStackTrace();
                 throw new RuntimeException(exception);

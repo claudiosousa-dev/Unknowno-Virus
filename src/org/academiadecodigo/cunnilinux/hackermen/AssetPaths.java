@@ -3,8 +3,8 @@ package org.academiadecodigo.cunnilinux.hackermen;
 public class AssetPaths {
 
     public static final String BACKGROUND = "resources/background.jpg";
-    public static final String START_MENU_WHITE = "resources/STARTMENU2WHITE.png";
-    public static final String START_MENU_RED = "resources/STARTMENU2RED.png";
+    public static final String START_MENU_WHITE = "resources/startMenuWhite.png";
+    public static final String START_MENU_RED = "resources/startMenuRed.png";
     public static final String HERO_LEFT = "resources/heroLeft.png";
     public static final String HERO_RIGHT = "resources/heroRight.png";
     public static final String BULLET = "resources/bullet.png";

@@ -14,9 +14,9 @@ public class Enemy {
     private final Direction direction;
     private final double speed;
 
-    public Enemy() {
+    public Enemy(Direction direction) {
 
-        direction = Direction.randomDirectionType();
+        this.direction = direction;
         speed = RandomGenerator.getRandom(0.5, 2.0);
 
         int xPosition = (direction == Direction.RIGHT) ? 0 : Canvas.CANVAS_WIDTH - MAX_ENEMY_WIDTH;
