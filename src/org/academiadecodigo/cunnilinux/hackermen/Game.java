@@ -10,6 +10,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class Game {
 
+    private int gameLevel;
     private final int delay;
     private Picture background;
 
@@ -36,16 +37,11 @@ public class Game {
         gameOver = false;
         win = false;
         enemyDeadCounter = spawnedEnemies;
+        gameLevel = 1;
 
     }
 
     public void init() {
-
-        //canvas = new Canvas();
-        background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND);
-
-        hero = new Hero(Canvas.CANVAS_WIDTH / 2);
-        health = new Health();
 
         //startMenu = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.START_MENU_WHITE);
         //gameOverShow = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.GAME_OVER);
@@ -53,9 +49,9 @@ public class Game {
 
         setupMenu();
 
-        background.draw();
+
         health.show();
-        hero.show();
+
 
         enemies = new Enemy[spawnedEnemies];
         for (int i = 0; i < spawnedEnemies; i++) {
@@ -68,13 +64,15 @@ public class Game {
         collisionDetector = new CollisionDetector(hero, enemies);
         hero.setCollisionDetector(collisionDetector);
 
+        musicGame.startMusic(-1);
+
     }
 
     public void start() throws InterruptedException {
 
-        musicGame.startMusic(-1);
+        setupLevel();
 
-        while (true) {
+        while (!gameOver) {
 
             try {
 
@@ -100,9 +98,9 @@ public class Game {
 
             }
 
-            if (checkEnd()) {
+            if (checkGameEnd()) {
 
-                break;
+                gameOver = true;
 
             }
 
@@ -110,7 +108,14 @@ public class Game {
 
         }
 
-        gameOver();
+        if (gameOver) {
+
+            gameOver();
+
+        }
+
+        gameLevel++;
+        start();
 
     }
 
@@ -131,7 +136,55 @@ public class Game {
 
     }
 
-    private boolean checkEnd() {
+    public void setupLevel() {
+
+        if (gameLevel < 1 || gameLevel > 2) {
+
+            gameOver();
+
+        } else {
+
+            setupStage(gameLevel);
+            setupCollisionDetector(gameLevel);
+            renderStage(gameLevel);
+
+        }
+    }
+
+    public void setupStage(int gameLevel) {
+
+        switch (gameLevel) {
+
+            case 1:
+                background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL1);
+                health = new Health();
+                hero = new Hero(Canvas.CANVAS_WIDTH / 2);
+                break;
+            case 2:
+            default:
+                background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL2);
+                hero =  new Hero(0);
+                break;
+
+        }
+
+    }
+
+    public void setupCollisionDetector(int gameLevel) {
+
+
+
+    }
+
+    public void renderStage(int gameLevel) {
+
+        background.draw();
+        hero.show();
+
+    }
+
+
+    private boolean checkGameEnd() {
 
         return enemyDeadCounter == 0 || health.getHeroHealth() == 0;
 
@@ -139,7 +192,6 @@ public class Game {
 
     public void gameOver() {
 
-        gameOver = true;
         hero.setDead(true);
         musicGame.stop();
         setBackground();

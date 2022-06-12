@@ -243,5 +243,8 @@ public class Hero {
         this.collisionDetector = collisionDetector;
 
     }
+
+
+
 }
 
