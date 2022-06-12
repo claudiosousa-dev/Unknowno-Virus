@@ -1,6 +1,8 @@
 package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 
+import org.academiadecodigo.cunnilinux.hackermen.AssetPaths;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Enemy;
+import org.academiadecodigo.cunnilinux.hackermen.utils.Music;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
 
 public class CollisionDetector {
@@ -9,6 +11,8 @@ public class CollisionDetector {
     private final Enemy[] enemies;
     private final Enemy boss;
     private Bullet bullet;
+    private Music zombieDie;
+    private Music bossDie;
 
     public CollisionDetector(Hero hero, Enemy[] enemies) {
         this.hero = hero;
@@ -40,6 +44,7 @@ public class CollisionDetector {
 
                 checkIntersection = true;
                 enemy.dead();
+
 
             } else {
 
@@ -83,6 +88,8 @@ public class CollisionDetector {
                     checkIntersection = true;
                     bullet.hide();
                     enemy.dead();
+                    zombieDie = new Music(AssetPaths.ZOMBIE_DIE_SOUND);
+                    zombieDie.startMusic(0);
 
                 } else {
 
@@ -103,6 +110,8 @@ public class CollisionDetector {
 
 
         if (boss != null && bullet != null && bullet.isMoving()) {
+            /* bossDie = new Music(AssetPaths.BOSS_DIE_SOUND);
+            bossDie.startMusic(0); */ //Sound not working!
 
             return intersects(bullet.getBullet(), boss.getEnemy());
 

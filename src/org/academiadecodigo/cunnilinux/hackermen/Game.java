@@ -32,6 +32,8 @@ public class Game {
     private boolean win;
 
     private Music musicGame;
+    private Music musicOnVictory;
+
 
 
     public Game(int delay) {
@@ -221,6 +223,7 @@ public class Game {
         hero.setDead(true);
         musicGame.stop();
         setBackground();
+
         if (win) {
             victoryGame();
         }
@@ -233,6 +236,9 @@ public class Game {
 
         victoryBackground = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.VICTORY_MENU);
         victoryBackground.draw();
+        musicOnVictory = new Music(AssetPaths.VICTORY_MENU_SOUND_AND_VOICE);
+        musicOnVictory.startMusic(0);
+
     }
 
     private void setupMenu() {

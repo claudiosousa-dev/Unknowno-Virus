@@ -3,6 +3,7 @@ package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 import org.academiadecodigo.cunnilinux.hackermen.AssetPaths;
 import org.academiadecodigo.cunnilinux.hackermen.map.Canvas;
 import org.academiadecodigo.cunnilinux.hackermen.map.Direction;
+import org.academiadecodigo.cunnilinux.hackermen.utils.Music;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -18,6 +19,7 @@ public class Hero {
     private Direction direction;
     private boolean dead;
     private Bullet bullet;
+    private Music bulletsound;
     private CollisionDetector collisionDetector;
 
     public Hero(int xPosition) {
@@ -75,6 +77,8 @@ public class Hero {
 
             bullet = new Bullet(direction == Direction.LEFT ? getX() : getRightX(), direction);
             bullet.show();
+            bulletsound = new Music(AssetPaths.BULLET_SOUND);
+            bulletsound.startMusic(0);
             collisionDetector.setBullet(bullet);
 
         }
