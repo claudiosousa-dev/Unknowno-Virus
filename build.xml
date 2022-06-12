@@ -47,8 +47,10 @@
     </target>
 
     <!-- Removes the build directory -->
+    <!--
     <target name="final_clean" description="Clean up project" depends="jarfile">
         <delete dir="${build.dir}" />
     </target>
+    -->
 
 </project>
