@@ -26,7 +26,7 @@ public class MainMenu {
 
             try {
 
-                Thread.sleep(70);
+                Thread.sleep(100);
 
             } catch (InterruptedException e) {
 

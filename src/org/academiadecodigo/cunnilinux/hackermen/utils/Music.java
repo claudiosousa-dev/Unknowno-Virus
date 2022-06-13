@@ -4,7 +4,10 @@ import org.academiadecodigo.cunnilinux.hackermen.Main;
 
 import javax.sound.sampled.*;
 //import java.io.File;
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.URL;
 
     public class Music {
@@ -29,6 +32,7 @@ import java.net.URL;
         public void play(int loop) {
 
             URL soundURL;
+            //InputStream inputStream;
             AudioInputStream audioInputStream = null;
 
             try {
@@ -36,8 +40,17 @@ import java.net.URL;
                 //File file = new File(filePath);
                 //soundURL = file.toURI().toURL();
 
-                soundURL = Main.class.getResource(filePath);
-                audioInputStream = AudioSystem.getAudioInputStream(soundURL);
+                String resource = "music.wav";
+                //inputStream = Music.class.getResourceAsStream("/resources/" + resource); NOT WORKING
+//                inputStream = Music.class.getResourceAsStream("resources/" + resource);
+//                if (inputStream == null) {
+//                    // this is how we load file within editor (eg eclipse)
+//                    inputStream = Music.class.getClassLoader().getResourceAsStream(resource);
+//                }
+
+                inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
+                //inputStream = this.getClass().getResourceAsStream("/StartMenuMusic.wav");
+                audioInputStream = AudioSystem.getAudioInputStream(inputStream);
 
             } catch (UnsupportedAudioFileException | IOException e) {
 
