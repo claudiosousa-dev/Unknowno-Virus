@@ -16,6 +16,11 @@
         </path>
     </target>
 
+    <!-- Removes the build directory -->
+    <target name="clean_before" description="Clean up project" depends="init">
+        <delete dir="build" />
+    </target>
+
     <!-- Creates the build directories to hold JAR and Class files -->
     <target name="prepare" description="Creates the build and classes directories" depends="init">
         <mkdir dir="${classes.dir}" />
@@ -43,7 +48,7 @@
     </target>
 
     <!-- Removes the build directory -->
-    <target name="clean" description="Clean up project" depends="jarfile">
+    <target name="clean_after" description="Clean up project" depends="jarfile">
         <delete dir="${build.dir}" />
     </target>
 
