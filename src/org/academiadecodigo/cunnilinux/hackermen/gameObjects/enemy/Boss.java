@@ -10,7 +10,7 @@ public class Boss extends Enemy {
     public Boss(Direction direction, String picturePath) {
         super(direction);
 
-        speed = 2.0;
+        speed = 1.5;
 
         if (direction == Direction.LEFT) {
             enemy = new Picture(Canvas.CANVAS_WIDTH, Canvas.FLOOR_LEVEL, picturePath);

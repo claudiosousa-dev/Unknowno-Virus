@@ -8,7 +8,7 @@ import org.academiadecodigo.simplegraphics.pictures.Picture;
 public class Bullet {
 
     private final static int GUN_LEVEL = 780;
-    private final static double BULLET_SPEED = 3.0;
+    private final static double BULLET_SPEED = 5.0;
     private final Picture bullet;
     private Direction direction;
     private boolean moving;
@@ -65,12 +65,6 @@ public class Bullet {
             bullet.grow(-getWidth(), 0);
 
         }
-
-    }
-
-    public int getX() {
-
-        return bullet.getX();
 
     }
 
