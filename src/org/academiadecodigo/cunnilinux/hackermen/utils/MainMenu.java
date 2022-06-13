@@ -17,8 +17,8 @@ public class MainMenu {
     public void menuLoop() {
 
         background.draw();
-        //Music music = new Music(AssetPaths.START_MENU_MUSIC);
-        //music.startMusic(-1);
+        Music music = new Music(AssetPaths.START_MENU_MUSIC);
+        music.play(-1);
 
         while (menu) {
 
@@ -39,7 +39,7 @@ public class MainMenu {
         }
 
         background.delete();
-        //music.stop();
+        music.stop();
     }
 
     void setMenu(boolean menu) {

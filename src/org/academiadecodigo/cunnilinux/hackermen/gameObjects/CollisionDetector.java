@@ -81,7 +81,7 @@ public class CollisionDetector {
                         boss.dead();
 
                         zombieDie = new Music(AssetPaths.BOSS_DIE_SOUND);
-                        zombieDie.startMusic(0);
+                        zombieDie.play(0);
 
                     } else {
 
@@ -122,7 +122,7 @@ public class CollisionDetector {
                         enemy.dead();
 
                         zombieDie = new Music(AssetPaths.ZOMBIE_DIE_SOUND);
-                        zombieDie.startMusic(0);
+                        zombieDie.play(0);
 
                     } else {
 
@@ -164,7 +164,7 @@ public class CollisionDetector {
                         boss.dead();
 
                         zombieDie = new Music(AssetPaths.BOSS_DIE_SOUND);
-                        zombieDie.startMusic(0);
+                        zombieDie.play(0);
 
                     } else {
 

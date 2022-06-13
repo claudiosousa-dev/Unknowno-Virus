@@ -107,11 +107,12 @@ public class Game {
         if (gameOver) {
 
             gameOver();
-            return;
+            //return;
 
         }
 
         gameLevel++;
+        Thread.sleep(3000);
         start();
 
     }
@@ -171,8 +172,8 @@ public class Game {
 
             case 1:
                 background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL1);
-                //musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
-                //musicGame.startMusic(-1);
+                musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
+                musicGame.play(-1);
 
                 health = new Health();
                 hero = new Hero(Canvas.CANVAS_WIDTH / 2);
@@ -248,7 +249,7 @@ public class Game {
     public void gameOver() throws InterruptedException {
 
         hero.setDead(true);
-        //musicGame.stop();
+        musicGame.stop();
 
         if (win) {
 
@@ -269,8 +270,8 @@ public class Game {
 
         victoryBackground = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.VICTORY_MENU);
         victoryBackground.draw();
-        //musicOnVictory = new Music(AssetPaths.VICTORY_MENU_SOUND_AND_VOICE);
-        //musicOnVictory.startMusic(0);
+        musicOnVictory = new Music(AssetPaths.VICTORY_MENU_SOUND_AND_VOICE);
+        musicOnVictory.play(0);
 
     }
 

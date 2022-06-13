@@ -73,7 +73,7 @@ public class Hero {
             bullet.show();
 
             bulletSound = new Music(AssetPaths.BULLET_SOUND);
-            bulletSound.startMusic(0);
+            bulletSound.play(0);
             bulletCounter++;
 
         }

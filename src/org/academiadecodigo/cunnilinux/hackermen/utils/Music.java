@@ -1,7 +1,9 @@
 package org.academiadecodigo.cunnilinux.hackermen.utils;
 
+import org.academiadecodigo.cunnilinux.hackermen.Main;
+
 import javax.sound.sampled.*;
-import java.io.File;
+//import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -24,16 +26,17 @@ import java.net.URL;
             }
         }
 
-        public void startMusic(int loop) {
+        public void play(int loop) {
 
             URL soundURL;
             AudioInputStream audioInputStream = null;
 
             try {
 
-                File file = new File(filePath);
-                soundURL = file.toURI().toURL();
+                //File file = new File(filePath);
+                //soundURL = file.toURI().toURL();
 
+                soundURL = Main.class.getResource(filePath);
                 audioInputStream = AudioSystem.getAudioInputStream(soundURL);
 
             } catch (UnsupportedAudioFileException | IOException e) {
@@ -48,8 +51,8 @@ import java.net.URL;
                 clip.open(audioInputStream);
 
                 // -1 for Infinite Clip Loop | clip.LOOP_CONTINUOUSLY
-                clip.loop(loop);
                 clip.start();
+                clip.loop(loop);
 
             } catch (LineUnavailableException | IOException e) {
 
