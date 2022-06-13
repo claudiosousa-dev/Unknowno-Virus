@@ -1,78 +1,77 @@
 package org.academiadecodigo.cunnilinux.hackermen.utils;
 
-import org.academiadecodigo.cunnilinux.hackermen.Main;
 
-import javax.sound.sampled.*;
-//import java.io.File;
-import java.io.BufferedReader;
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by FernFlower decompiler)
+//
+
+import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.net.URL;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
-    public class Music {
-        private Clip clip;
-        private final String filePath;
+public class Music {
+    private Clip clip;
+    private URL soundURL;
 
-        public Music(String filePath) {
-
-            this.filePath = filePath;
-
-        }
-
-        public void stop() {
-
-            if (clip.isRunning()) {
-
-                clip.stop();
-
-            }
-        }
-
-        public void play(int loop) {
-
-            URL soundURL;
-            //InputStream inputStream;
-            AudioInputStream audioInputStream = null;
-
-            try {
-
-                //File file = new File(filePath);
-                //soundURL = file.toURI().toURL();
-                InputStream inputStream;
-
-                //String resource = "music.wav";
-                //inputStream = Music.class.getResourceAsStream("/resources/" + resource); NOT WORKING
-//                inputStream = Music.class.getResourceAsStream("resources/" + resource);
-//                if (inputStream == null) {
-//                    // this is how we load file within editor (eg eclipse)
-//                    inputStream = Music.class.getClassLoader().getResourceAsStream(resource);
-//                }
-
-                inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filePath);
-                //inputStream = this.getClass().getResourceAsStream("/StartMenuMusic.wav");
-                audioInputStream = AudioSystem.getAudioInputStream(inputStream);
-
-            } catch (UnsupportedAudioFileException | IOException e) {
-
-                System.err.println(e.getMessage());
-
-            }
-
-            try {
-
-                clip = AudioSystem.getClip();
-                clip.open(audioInputStream);
-
-                // -1 for Infinite Clip Loop | clip.LOOP_CONTINUOUSLY
-                clip.start();
-                clip.loop(loop);
-
-            } catch (LineUnavailableException | IOException e) {
-
-                System.err.println(e.getMessage());
-
-            }
-        }
+    public Music(String var1) {
+        this.initClip(var1);
     }
 
+    public void play(boolean var1) {
+        if (var1) {
+            this.clip.setFramePosition(0);
+        }
+
+        this.clip.start();
+    }
+
+    public void stop() {
+        this.clip.stop();
+    }
+
+    public void close() {
+        this.clip.close();
+    }
+
+    public void setLoop(int var1) {
+        this.clip.loop(var1);
+    }
+
+    public void reOpen() {
+        AudioInputStream var1 = null;
+
+        try {
+            var1 = AudioSystem.getAudioInputStream(this.soundURL);
+            this.clip.open(var1);
+        } catch (IOException | UnsupportedAudioFileException | LineUnavailableException var3) {
+            System.out.println(var3.getMessage());
+        }
+
+    }
+
+    private void initClip(String var1) {
+        this.soundURL = Music.class.getResource(var1);
+        AudioInputStream var2 = null;
+
+        try {
+            if (this.soundURL == null) {
+                var1 = var1.substring(1);
+                File var3 = new File(var1);
+                this.soundURL = var3.toURI().toURL();
+            }
+
+            var2 = AudioSystem.getAudioInputStream(this.soundURL);
+            this.clip = AudioSystem.getClip();
+            this.clip.open(var2);
+        } catch (LineUnavailableException | IOException | UnsupportedAudioFileException var4) {
+            System.out.println(var4.getMessage());
+        }
+
+    }
+}

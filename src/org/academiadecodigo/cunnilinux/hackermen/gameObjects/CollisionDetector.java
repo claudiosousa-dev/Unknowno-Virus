@@ -2,7 +2,6 @@ package org.academiadecodigo.cunnilinux.hackermen.gameObjects;
 
 import org.academiadecodigo.cunnilinux.hackermen.AssetPaths;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Boss;
-import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Enemy;
 import org.academiadecodigo.cunnilinux.hackermen.gameObjects.enemy.Zombie;
 import org.academiadecodigo.cunnilinux.hackermen.utils.Music;
 import org.academiadecodigo.simplegraphics.pictures.Picture;
@@ -81,7 +80,7 @@ public class CollisionDetector {
                         boss.dead();
 
                         zombieDie = new Music(AssetPaths.BOSS_DIE_SOUND);
-                        zombieDie.play(0);
+                        zombieDie.play(true);
 
                     } else {
 
@@ -122,7 +121,7 @@ public class CollisionDetector {
                         enemy.dead();
 
                         zombieDie = new Music(AssetPaths.ZOMBIE_DIE_SOUND);
-                        zombieDie.play(0);
+                        zombieDie.play(true);
 
                     } else {
 
@@ -164,7 +163,7 @@ public class CollisionDetector {
                         boss.dead();
 
                         zombieDie = new Music(AssetPaths.BOSS_DIE_SOUND);
-                        zombieDie.play(0);
+                        zombieDie.play(true);
 
                     } else {
 

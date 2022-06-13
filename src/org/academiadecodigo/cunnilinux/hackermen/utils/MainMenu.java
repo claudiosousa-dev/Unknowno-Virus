@@ -18,7 +18,7 @@ public class MainMenu {
 
         background.draw();
         Music music = new Music(AssetPaths.START_MENU_MUSIC);
-        music.play(-1);
+        music.play(true);
 
         while (menu) {
 

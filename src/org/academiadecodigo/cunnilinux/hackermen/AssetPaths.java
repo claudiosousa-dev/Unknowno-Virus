@@ -18,12 +18,12 @@ public class AssetPaths {
     public static final String HEALTH = "resources/health.png";
     public static final String GAME_OVER = "resources/gameover.png";
     public static final String GAME_OVER2 = "resources/gameover2.png";
-    public static final String START_MENU_MUSIC = "StartMenuMusic.wav";
-    public static final String DURING_GAME_MUSIC = "duringGame.wav";
-    public static final String VICTORY_MENU_SOUND_AND_VOICE = "victorysoundandvoice.wav";
-    public static final String BULLET_SOUND = "bulletsound.wav";
-    public static final String ZOMBIE_DIE_SOUND = "zombiedie.wav";
-    public static final String BOSS_DIE_SOUND = "bossdeath.wav";
-    public static final String GAME_OVER_VOICE = "gameovervoice.wav";
+    public static final String START_MENU_MUSIC = "/resources/startMenuMusic.wav";
+    public static final String DURING_GAME_MUSIC = "/resources/duringGame.wav";
+    public static final String VICTORY_MENU_SOUND_AND_VOICE = "/resources/victorysoundandvoice.wav";
+    public static final String BULLET_SOUND = "/resources/bulletsound.wav";
+    public static final String ZOMBIE_DIE_SOUND = "/resources/zombiedie.wav";
+    public static final String BOSS_DIE_SOUND = "/resources/bossdeath.wav";
+    public static final String GAME_OVER_VOICE = "/resources/gameovervoice.wav";
 
 }

@@ -173,7 +173,7 @@ public class Game {
             case 1:
                 background = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.BACKGROUND_LEVEL1);
                 musicGame = new Music(AssetPaths.DURING_GAME_MUSIC);
-                musicGame.play(-1);
+                musicGame.play(true);
 
                 health = new Health();
                 hero = new Hero(Canvas.CANVAS_WIDTH / 2);
@@ -271,7 +271,7 @@ public class Game {
         victoryBackground = new Picture(Canvas.PADDING, Canvas.PADDING, AssetPaths.VICTORY_MENU);
         victoryBackground.draw();
         musicOnVictory = new Music(AssetPaths.VICTORY_MENU_SOUND_AND_VOICE);
-        musicOnVictory.play(0);
+        musicOnVictory.play(true);
 
     }
 

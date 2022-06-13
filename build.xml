@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 
-<project name="Unknown_Virus" default="jarfile">
+<project name="Unknown_Virus" basedir="." default="jarfile">
 
     <!-- Initialize build properties  -->
     <target name="init" description="Initializes properties">

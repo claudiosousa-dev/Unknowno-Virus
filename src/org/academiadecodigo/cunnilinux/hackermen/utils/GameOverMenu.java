@@ -19,7 +19,7 @@ public class GameOverMenu {
     public void menuLoop() {
 
         gameOverBackground.draw();
-        gameOverMusic.play(0);
+        gameOverMusic.play(true);
 
         try {
 
