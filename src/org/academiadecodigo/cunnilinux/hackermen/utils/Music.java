@@ -39,8 +39,9 @@ import java.net.URL;
 
                 //File file = new File(filePath);
                 //soundURL = file.toURI().toURL();
+                InputStream inputStream;
 
-                String resource = "music.wav";
+                //String resource = "music.wav";
                 //inputStream = Music.class.getResourceAsStream("/resources/" + resource); NOT WORKING
 //                inputStream = Music.class.getResourceAsStream("resources/" + resource);
 //                if (inputStream == null) {
@@ -48,7 +49,7 @@ import java.net.URL;
 //                    inputStream = Music.class.getClassLoader().getResourceAsStream(resource);
 //                }
 
-                inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(resource);
+                inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(filePath);
                 //inputStream = this.getClass().getResourceAsStream("/StartMenuMusic.wav");
                 audioInputStream = AudioSystem.getAudioInputStream(inputStream);
 
